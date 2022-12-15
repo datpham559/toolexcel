@@ -4,13 +4,11 @@ import com.softdreams.excel.domain.Customer;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CustomerRepository;
 import com.softdreams.excel.service.CustomerService;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -69,9 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
                 if (customer.getPhoneNumber() != null) {
                     existingCustomer.setPhoneNumber(customer.getPhoneNumber());
                 }
-                if (customer.getUnfollow() != null) {
-                    existingCustomer.setUnfollow(customer.getUnfollow());
-                }
+                existingCustomer.setUnfollow(customer.isUnfollow());
                 if (customer.getCreatedDate() != null) {
                     existingCustomer.setCreatedDate(customer.getCreatedDate());
                 }

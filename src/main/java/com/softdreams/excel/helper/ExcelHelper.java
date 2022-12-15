@@ -1,24 +1,32 @@
 package com.softdreams.excel.helper;
 
 import com.softdreams.excel.domain.Customer;
-import org.apache.poi.ss.usermodel.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import org.apache.poi.ss.usermodel.*;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelHelper {
+
     public static String TYPE1 = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     public static String TYPE2 = "application/vnd.ms-excel";
-    static String[] HEADERs = {"Mã khách hàng", "Tên khách hàng", "Địa chỉ", "Nhóm KH, NCC", "Mã số thuế", "Quy mô", "Loại đối tượng", "Điện thoại", "Ngừng theo dõi"};
+    static String[] HEADERs = {
+        "Mã khách hàng",
+        "Tên khách hàng",
+        "Địa chỉ",
+        "Nhóm KH, NCC",
+        "Mã số thuế",
+        "Quy mô",
+        "Loại đối tượng",
+        "Điện thoại",
+        "Ngừng theo dõi",
+    };
     static String SHEET = "Khach_hang";
 
     public static boolean hasExcelFormat(MultipartFile file) {
-
         if (TYPE1.equals(file.getContentType()) || TYPE2.equals(file.getContentType())) {
             return true;
         }
@@ -29,14 +37,17 @@ public class ExcelHelper {
         try {
             Workbook workbook = WorkbookFactory.create(is);
             Sheet sheet = workbook.getSheetAt(0);
+            Cell cell0 = sheet.getRow(sheet.getLastRowNum()).getCell(0);
 
-            if (sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue().contains("Số dòng")) {
+            if (
+                sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue().contains("Số dòng") &&
+                sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue() != null
+            ) {
                 sheet.removeRow(sheet.getRow(sheet.getLastRowNum()));
             }
 
             Iterator<Row> rows = sheet.iterator();
             List<Customer> customers = new ArrayList<>();
-
 
             int rowNumber = 0;
             while (rows.hasNext()) {
@@ -75,9 +86,9 @@ public class ExcelHelper {
                         case 5:
                             customer.setPhoneNumber(currentCell.getStringCellValue());
                             break;
-//                        case 6:
-//                            customer.setUnfollow(currentCell.getStringCellValue());
-//                            break;
+                        //                        case 6:
+                        //                            customer.setUnfollow(currentCell.getStringCellValue());
+                        //                            break;
 
                         default:
                             break;
@@ -93,268 +104,267 @@ public class ExcelHelper {
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
         }
     }
-
-//    public static List<Synthetic> excelToSynthetic(InputStream is) {
-//        try {
-//            Workbook workbook = WorkbookFactory.create(is);
-//            Sheet sheet = workbook.getSheetAt(0);
-//
-//            if (sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue().contains("Số dòng")) {
-//                sheet.removeRow(sheet.getRow(sheet.getLastRowNum()));
-//            }
-//
-//            Iterator<Row> rows = sheet.iterator();
-//            List<Synthetic> synthetics = new ArrayList<>();
-//
-//
-//            int rowNumber = 0;
-//            while (rows.hasNext()) {
-//                Row currentRow = rows.next();
-//
-//                // skip header
-//                if (rowNumber == 0) {
-//                    rowNumber++;
-//                    continue;
-//                }
-//                Iterator<Cell> cellsInRow = currentRow.iterator();
-//
-//                Synthetic synthetic = new Synthetic();
-//
-//                Cell cell1 = currentRow.getCell(1);
-//                if (cell1.getStringCellValue().equals("Chứng từ nghiệp vụ khác")) {
-//                    synthetic.setVoucherTypeNo(1);
-//                } else if (cell1.getStringCellValue().equals("Bán hàng hóa, dịch vụ trong nước chưa thu tiền")) {
-//                    synthetic.setVoucherTypeNo(2);
-//                } else if (cell1.getStringCellValue().equals("Mua hàng trong nước nhập kho chưa thanh toán")) {
-//                    synthetic.setVoucherTypeNo(3);
-//                } else if (cell1.getStringCellValue().equals("Bảng tính khấu hao tài sản cố định")) {
-//                    synthetic.setVoucherTypeNo(4);
-//                } else if (cell1.getStringCellValue().equals("Chứng từ mua dịch vụ chưa thanh toán")) {
-//                    synthetic.setVoucherTypeNo(5);
-//                } else if (cell1.getStringCellValue().equals("Kết chuyển lãi,lỗ")) {
-//                    synthetic.setVoucherTypeNo(6);
-//                } else if (cell1.getStringCellValue().equals("Phiếu chi")) {
-//                    synthetic.setVoucherTypeNo(7);
-//                } else if (cell1.getStringCellValue().equals("Phiếu thu")) {
-//                    synthetic.setVoucherTypeNo(8);
-//                } else if (cell1.getStringCellValue().equals("Thu tiền gửi")) {
-//                    synthetic.setVoucherTypeNo(9);
-//                } else if (cell1.getStringCellValue().equals("Nhận hóa đơn hàng hóa")) {
-//                    synthetic.setVoucherTypeNo(10);
-//                } else if (cell1.getStringCellValue().equals("Xuất kho bán hàng")) {
-//                    synthetic.setVoucherTypeNo(11);
-//                } else if (cell1.getStringCellValue().equals("Phân bổ chi phí CCDC")) {
-//                    synthetic.setVoucherTypeNo(12);
-//                } else if (cell1.getStringCellValue().equals("Uỷ nhiệm chi")) {
-//                    synthetic.setVoucherTypeNo(13);
-//                }
-//
-//                int cellIdx = 0;
-//                while (cellsInRow.hasNext()) {
-//                    Cell currentCell = cellsInRow.next();
-//
-//                    switch (cellIdx) {
-//                        case 1:
-//                            synthetic.setVoucherType(currentCell.getStringCellValue());
-//                            break;
-//                        case 2:
-//                            synthetic.setVoucherNo(currentCell.getStringCellValue());
-//                            break;
-//                        case 3:
-//                            synthetic.setVoucherDate(convertToLocalDate(currentCell.getDateCellValue()));
-//                            break;
-//                        case 4:
-//                            synthetic.setAccountingDate(convertToLocalDate(currentCell.getDateCellValue()));
-//                            break;
-//                        case 5:
-//                            synthetic.setInvoiceNo(currentCell.getStringCellValue());
-//                            break;
-//                        case 6:
-//                            synthetic.setInvoiceDate(convertToLocalDate(currentCell.getDateCellValue()));
-//                            break;
-//                        case 7:
-//                            synthetic.setDebitAccount(currentCell.getStringCellValue());
-//                            break;
-//                        case 8:
-//                            synthetic.setCreditAccount(currentCell.getStringCellValue());
-//                            break;
-//                        case 9:
-//                            synthetic.setCurrencyType(currentCell.getStringCellValue());
-//                            break;
-//                        case 10:
-//                            synthetic.setCurrency((long) currentCell.getNumericCellValue());
-//                            break;
-//                        case 11:
-//                            synthetic.setMaterialGoodCode(currentCell.getStringCellValue());
-//                            break;
-//                        case 12:
-//                            synthetic.setMaterialGoodName(currentCell.getStringCellValue());
-//                            break;
-//                        case 13:
-//                            synthetic.setStorageIn(currentCell.getStringCellValue());
-//                            break;
-//                        case 14:
-//                            synthetic.setStorageOut(currentCell.getStringCellValue());
-//                            break;
-//                        case 15:
-//                            synthetic.setCaculationUnit(currentCell.getStringCellValue());
-//                            break;
-//                        case 16:
-//                            synthetic.setAmount((long) currentCell.getNumericCellValue());
-//                            break;
-//                        case 17:
-//                            synthetic.setPrice((long) currentCell.getNumericCellValue());
-//                            break;
-//                        case 18:
-//                            synthetic.setTranferRate((float) currentCell.getNumericCellValue());
-//                            break;
-//                        case 19:
-//                            synthetic.setMoneyTranfer((long) currentCell.getNumericCellValue());
-//                            break;
-//                        case 20:
-//                            synthetic.setFixedAssetsType(currentCell.getStringCellValue());
-//                            break;
-//                        case 21:
-//                            synthetic.setFixedAssetsCode(currentCell.getStringCellValue());
-//                            break;
-//                        case 22:
-//                            synthetic.setToolsCode(currentCell.getStringCellValue());
-//                            break;
-//                        case 23:
-//                            synthetic.setDebitObject(currentCell.getStringCellValue());
-//                            break;
-//                        case 24:
-//                            synthetic.setCreditObject(currentCell.getStringCellValue());
-//                            break;
-//                        case 25:
-//                            synthetic.setUnit(currentCell.getStringCellValue());
-//                            break;
-//                        case 26:
-//                            synthetic.setEmployee(currentCell.getStringCellValue());
-//                            break;
-//                        case 27:
-//                            synthetic.setBankAccount(currentCell.getStringCellValue());
-//                            break;
-//                        case 28:
-//                            synthetic.setItemCost(currentCell.getStringCellValue());
-//                            break;
-//                        case 29:
-//                            synthetic.setConstruction(currentCell.getStringCellValue());
-//                            break;
-//                        case 30:
-//                            synthetic.setCostSet(currentCell.getStringCellValue());
-//                            break;
-//                        case 31:
-//                            synthetic.setPurchaseOrder(currentCell.getStringCellValue());
-//                            break;
-//                        case 32:
-//                            synthetic.setBuyOrder(currentCell.getStringCellValue());
-//                            break;
-//                        case 33:
-//                            synthetic.setPurchaseContract(currentCell.getStringCellValue());
-//                            break;
-//                        case 34:
-//                            synthetic.setSaleContract(currentCell.getStringCellValue());
-//                            break;
-//                        case 35:
-//                            synthetic.setStatsCode(currentCell.getStringCellValue());
-//                            break;
-//                        case 36:
-//                            synthetic.setExplanation(currentCell.getStringCellValue());
-//                            break;
-//                        case 37:
-//                            synthetic.setExplanationDetail(currentCell.getStringCellValue());
-//                            break;
-//                        case 38:
-//                            synthetic.setRecordStatus(currentCell.getStringCellValue());
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//
-//                    cellIdx++;
-//                }
-//                synthetics.add(synthetic);
-//            }
-//            workbook.close();
-//            return synthetics;
-//        } catch (IOException e) {
-//            throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
-//        }
-//    }
-//
-//    public static LocalDate convertToLocalDate(Date dateToConvert) {
-//        if (dateToConvert == null) {
-//            return null;
-//        }
-//        return dateToConvert.toInstant()
-//                .atZone(ZoneId.systemDefault())
-//                .toLocalDate();
-//    }
-//
-//
-//    public static ByteArrayInputStream customersToExcel(List<Customer> customers) {
-//        try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
-//            Sheet sheet = workbook.createSheet(SHEET);
-//
-//            // Header
-//            Row headerRow = sheet.createRow(0);
-//            headerRow.setHeight((short) 400);
-//            CellStyle cellStyleHeader = workbook.createCellStyle();
-//            Font fontHeader = workbook.createFont();
-//            fontHeader.setBold(true);
-//            cellStyleHeader.setFont(fontHeader);
-//            cellStyleHeader.setAlignment(HorizontalAlignment.CENTER);
-//            cellStyleHeader.setVerticalAlignment(VerticalAlignment.CENTER);
-//            cellStyleHeader.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
-//            cellStyleHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-//            cellStyleHeader.setBorderBottom(BorderStyle.THIN);
-//            cellStyleHeader.setBorderTop(BorderStyle.THIN);
-//            cellStyleHeader.setBorderRight(BorderStyle.THIN);
-//            cellStyleHeader.setBorderLeft(BorderStyle.THIN);
-//
-//            for (int col = 0; col < HEADERs.length; col++) {
-//                Cell cell = headerRow.createCell(col);
-//                cell.setCellValue(HEADERs[col]);
-//                cell.setCellStyle(cellStyleHeader);
-//                if (col == 1 || col == 2) {
-//                    sheet.setColumnWidth(1, 25 * 700);
-//                    sheet.setColumnWidth(2, 25 * 1000);
-//                } else {
-//                    sheet.setColumnWidth(col, 20 * 250);
-//                }
-//            }
-//
-//            int rowIdx = 1;
-//            for (Customer customer : customers) {
-//                Row row = sheet.createRow(rowIdx++);
-//                row.createCell(0).setCellValue(customer.getCustomerCode());
-//                row.createCell(1).setCellValue(customer.getCustomerName());
-//                row.createCell(2).setCellValue(customer.getAddress());
-//                row.createCell(3).setCellValue(customer.getCustomerGroup());
-//                row.createCell(4).setCellValue(customer.getTax());
-//                boolean checkContainScale = false;
-//                for (String scale : scales) {
-//                    if (customer.getCustomerName().toLowerCase().contains(scale.toLowerCase())) {
-//                        checkContainScale = true;
-//                        break;
-//                    }
-//                }
-//                if (checkContainScale) {
-//                    row.createCell(5).setCellValue("Tổ chức");
-//                } else {
-//                    row.createCell(5).setCellValue("Cá nhân");
-//                }
-//                row.createCell(6).setCellValue("Khách hàng");
-//                row.createCell(7).setCellValue(customer.getPhoneNumber());
-//                row.createCell(8).setCellValue(customer.isUnfollow());
-//
-//            }
-//
-//            workbook.write(out);
-//            return new ByteArrayInputStream(out.toByteArray());
-//        } catch (IOException e) {
-//            throw new RuntimeException("fail to import data to Excel file: " + e.getMessage());
-//        }
-//    }
+    //    public static List<Synthetic> excelToSynthetic(InputStream is) {
+    //        try {
+    //            Workbook workbook = WorkbookFactory.create(is);
+    //            Sheet sheet = workbook.getSheetAt(0);
+    //
+    //            if (sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue().contains("Số dòng")) {
+    //                sheet.removeRow(sheet.getRow(sheet.getLastRowNum()));
+    //            }
+    //
+    //            Iterator<Row> rows = sheet.iterator();
+    //            List<Synthetic> synthetics = new ArrayList<>();
+    //
+    //
+    //            int rowNumber = 0;
+    //            while (rows.hasNext()) {
+    //                Row currentRow = rows.next();
+    //
+    //                // skip header
+    //                if (rowNumber == 0) {
+    //                    rowNumber++;
+    //                    continue;
+    //                }
+    //                Iterator<Cell> cellsInRow = currentRow.iterator();
+    //
+    //                Synthetic synthetic = new Synthetic();
+    //
+    //                Cell cell1 = currentRow.getCell(1);
+    //                if (cell1.getStringCellValue().equals("Chứng từ nghiệp vụ khác")) {
+    //                    synthetic.setVoucherTypeNo(1);
+    //                } else if (cell1.getStringCellValue().equals("Bán hàng hóa, dịch vụ trong nước chưa thu tiền")) {
+    //                    synthetic.setVoucherTypeNo(2);
+    //                } else if (cell1.getStringCellValue().equals("Mua hàng trong nước nhập kho chưa thanh toán")) {
+    //                    synthetic.setVoucherTypeNo(3);
+    //                } else if (cell1.getStringCellValue().equals("Bảng tính khấu hao tài sản cố định")) {
+    //                    synthetic.setVoucherTypeNo(4);
+    //                } else if (cell1.getStringCellValue().equals("Chứng từ mua dịch vụ chưa thanh toán")) {
+    //                    synthetic.setVoucherTypeNo(5);
+    //                } else if (cell1.getStringCellValue().equals("Kết chuyển lãi,lỗ")) {
+    //                    synthetic.setVoucherTypeNo(6);
+    //                } else if (cell1.getStringCellValue().equals("Phiếu chi")) {
+    //                    synthetic.setVoucherTypeNo(7);
+    //                } else if (cell1.getStringCellValue().equals("Phiếu thu")) {
+    //                    synthetic.setVoucherTypeNo(8);
+    //                } else if (cell1.getStringCellValue().equals("Thu tiền gửi")) {
+    //                    synthetic.setVoucherTypeNo(9);
+    //                } else if (cell1.getStringCellValue().equals("Nhận hóa đơn hàng hóa")) {
+    //                    synthetic.setVoucherTypeNo(10);
+    //                } else if (cell1.getStringCellValue().equals("Xuất kho bán hàng")) {
+    //                    synthetic.setVoucherTypeNo(11);
+    //                } else if (cell1.getStringCellValue().equals("Phân bổ chi phí CCDC")) {
+    //                    synthetic.setVoucherTypeNo(12);
+    //                } else if (cell1.getStringCellValue().equals("Uỷ nhiệm chi")) {
+    //                    synthetic.setVoucherTypeNo(13);
+    //                }
+    //
+    //                int cellIdx = 0;
+    //                while (cellsInRow.hasNext()) {
+    //                    Cell currentCell = cellsInRow.next();
+    //
+    //                    switch (cellIdx) {
+    //                        case 1:
+    //                            synthetic.setVoucherType(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 2:
+    //                            synthetic.setVoucherNo(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 3:
+    //                            synthetic.setVoucherDate(convertToLocalDate(currentCell.getDateCellValue()));
+    //                            break;
+    //                        case 4:
+    //                            synthetic.setAccountingDate(convertToLocalDate(currentCell.getDateCellValue()));
+    //                            break;
+    //                        case 5:
+    //                            synthetic.setInvoiceNo(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 6:
+    //                            synthetic.setInvoiceDate(convertToLocalDate(currentCell.getDateCellValue()));
+    //                            break;
+    //                        case 7:
+    //                            synthetic.setDebitAccount(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 8:
+    //                            synthetic.setCreditAccount(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 9:
+    //                            synthetic.setCurrencyType(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 10:
+    //                            synthetic.setCurrency((long) currentCell.getNumericCellValue());
+    //                            break;
+    //                        case 11:
+    //                            synthetic.setMaterialGoodCode(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 12:
+    //                            synthetic.setMaterialGoodName(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 13:
+    //                            synthetic.setStorageIn(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 14:
+    //                            synthetic.setStorageOut(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 15:
+    //                            synthetic.setCaculationUnit(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 16:
+    //                            synthetic.setAmount((long) currentCell.getNumericCellValue());
+    //                            break;
+    //                        case 17:
+    //                            synthetic.setPrice((long) currentCell.getNumericCellValue());
+    //                            break;
+    //                        case 18:
+    //                            synthetic.setTranferRate((float) currentCell.getNumericCellValue());
+    //                            break;
+    //                        case 19:
+    //                            synthetic.setMoneyTranfer((long) currentCell.getNumericCellValue());
+    //                            break;
+    //                        case 20:
+    //                            synthetic.setFixedAssetsType(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 21:
+    //                            synthetic.setFixedAssetsCode(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 22:
+    //                            synthetic.setToolsCode(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 23:
+    //                            synthetic.setDebitObject(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 24:
+    //                            synthetic.setCreditObject(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 25:
+    //                            synthetic.setUnit(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 26:
+    //                            synthetic.setEmployee(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 27:
+    //                            synthetic.setBankAccount(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 28:
+    //                            synthetic.setItemCost(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 29:
+    //                            synthetic.setConstruction(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 30:
+    //                            synthetic.setCostSet(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 31:
+    //                            synthetic.setPurchaseOrder(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 32:
+    //                            synthetic.setBuyOrder(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 33:
+    //                            synthetic.setPurchaseContract(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 34:
+    //                            synthetic.setSaleContract(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 35:
+    //                            synthetic.setStatsCode(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 36:
+    //                            synthetic.setExplanation(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 37:
+    //                            synthetic.setExplanationDetail(currentCell.getStringCellValue());
+    //                            break;
+    //                        case 38:
+    //                            synthetic.setRecordStatus(currentCell.getStringCellValue());
+    //                            break;
+    //                        default:
+    //                            break;
+    //                    }
+    //
+    //                    cellIdx++;
+    //                }
+    //                synthetics.add(synthetic);
+    //            }
+    //            workbook.close();
+    //            return synthetics;
+    //        } catch (IOException e) {
+    //            throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
+    //        }
+    //    }
+    //
+    //    public static LocalDate convertToLocalDate(Date dateToConvert) {
+    //        if (dateToConvert == null) {
+    //            return null;
+    //        }
+    //        return dateToConvert.toInstant()
+    //                .atZone(ZoneId.systemDefault())
+    //                .toLocalDate();
+    //    }
+    //
+    //
+    //    public static ByteArrayInputStream customersToExcel(List<Customer> customers) {
+    //        try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
+    //            Sheet sheet = workbook.createSheet(SHEET);
+    //
+    //            // Header
+    //            Row headerRow = sheet.createRow(0);
+    //            headerRow.setHeight((short) 400);
+    //            CellStyle cellStyleHeader = workbook.createCellStyle();
+    //            Font fontHeader = workbook.createFont();
+    //            fontHeader.setBold(true);
+    //            cellStyleHeader.setFont(fontHeader);
+    //            cellStyleHeader.setAlignment(HorizontalAlignment.CENTER);
+    //            cellStyleHeader.setVerticalAlignment(VerticalAlignment.CENTER);
+    //            cellStyleHeader.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
+    //            cellStyleHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    //            cellStyleHeader.setBorderBottom(BorderStyle.THIN);
+    //            cellStyleHeader.setBorderTop(BorderStyle.THIN);
+    //            cellStyleHeader.setBorderRight(BorderStyle.THIN);
+    //            cellStyleHeader.setBorderLeft(BorderStyle.THIN);
+    //
+    //            for (int col = 0; col < HEADERs.length; col++) {
+    //                Cell cell = headerRow.createCell(col);
+    //                cell.setCellValue(HEADERs[col]);
+    //                cell.setCellStyle(cellStyleHeader);
+    //                if (col == 1 || col == 2) {
+    //                    sheet.setColumnWidth(1, 25 * 700);
+    //                    sheet.setColumnWidth(2, 25 * 1000);
+    //                } else {
+    //                    sheet.setColumnWidth(col, 20 * 250);
+    //                }
+    //            }
+    //
+    //            int rowIdx = 1;
+    //            for (Customer customer : customers) {
+    //                Row row = sheet.createRow(rowIdx++);
+    //                row.createCell(0).setCellValue(customer.getCustomerCode());
+    //                row.createCell(1).setCellValue(customer.getCustomerName());
+    //                row.createCell(2).setCellValue(customer.getAddress());
+    //                row.createCell(3).setCellValue(customer.getCustomerGroup());
+    //                row.createCell(4).setCellValue(customer.getTax());
+    //                boolean checkContainScale = false;
+    //                for (String scale : scales) {
+    //                    if (customer.getCustomerName().toLowerCase().contains(scale.toLowerCase())) {
+    //                        checkContainScale = true;
+    //                        break;
+    //                    }
+    //                }
+    //                if (checkContainScale) {
+    //                    row.createCell(5).setCellValue("Tổ chức");
+    //                } else {
+    //                    row.createCell(5).setCellValue("Cá nhân");
+    //                }
+    //                row.createCell(6).setCellValue("Khách hàng");
+    //                row.createCell(7).setCellValue(customer.getPhoneNumber());
+    //                row.createCell(8).setCellValue(customer.isUnfollow());
+    //
+    //            }
+    //
+    //            workbook.write(out);
+    //            return new ByteArrayInputStream(out.toByteArray());
+    //        } catch (IOException e) {
+    //            throw new RuntimeException("fail to import data to Excel file: " + e.getMessage());
+    //        }
+    //    }
 }

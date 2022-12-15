@@ -28,7 +28,7 @@
     },
     {
       "fieldName": "unfollow",
-      "fieldType": "String"
+      "fieldType": "boolean"
     },
     {
       "fieldName": "createdDate",
