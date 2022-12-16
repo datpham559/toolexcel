@@ -1,8 +1,6 @@
 package com.softdreams.excel.service;
 
 import com.softdreams.excel.domain.Customer;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +53,4 @@ public interface CustomerService {
      * @param id the id of the entity.
      */
     void delete(Long id);
-
-    void saveToCustomer(MultipartFile file);
 }

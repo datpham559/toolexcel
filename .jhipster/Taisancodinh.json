@@ -1,0 +1,88 @@
+{
+  "changelogDate": "20221216041737",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "ma_tscd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ten_tscd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loai_tscd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "don_vi_su_dung",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ngay_ghi_tang",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "so_ct_ghi_tang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ngay_bat_dau_tinh_kh",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "thoi_gian_su_dung",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "thoi_gian_su_dung_con_lai",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nguyen_gia",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_tinh_kh",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "hao_mon_trong_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "hao_mon_luy_ke",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_con_lai",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_KH_thang",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tk_nguyen_gia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tk_khau_hao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "key_uuid",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Taisancodinh",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

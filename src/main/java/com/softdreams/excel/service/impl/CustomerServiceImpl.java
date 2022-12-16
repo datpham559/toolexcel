@@ -1,21 +1,14 @@
 package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Customer;
-import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CustomerRepository;
 import com.softdreams.excel.service.CustomerService;
-
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Service Implementation for managing {@link Customer}.
@@ -102,21 +95,5 @@ public class CustomerServiceImpl implements CustomerService {
     public void delete(Long id) {
         log.debug("Request to delete Customer : {}", id);
         customerRepository.deleteById(id);
-    }
-
-    @Override
-    public void saveToCustomer(MultipartFile file) {
-        try {
-            List<Customer> customers = ExcelHelper.excelToCustomers(file.getInputStream());
-            String key = UUID.randomUUID().toString();
-            LocalDate date = LocalDate.now();
-            for (Customer customer : customers) {
-                customer.setCreatedDate(date);
-                customer.setKeyUUID(key);
-            }
-            customerRepository.saveAll(customers);
-        } catch (IOException e) {
-            throw new RuntimeException("fail to store excel data: " + e.getMessage());
-        }
     }
 }

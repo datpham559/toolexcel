@@ -1,0 +1,214 @@
+<div>
+  <h2 id="page-heading" data-cy="TaisancodinhHeading">
+    <span>Taisancodinhs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-taisancodinh"
+        [routerLink]="['/taisancodinh/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Taisancodinh </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="taisancodinhs?.length === 0">
+    <span>No Taisancodinhs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="taisancodinhs && taisancodinhs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ma_tscd">
+            <div class="d-flex">
+              <span>Ma Tscd</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ten_tscd">
+            <div class="d-flex">
+              <span>Ten Tscd</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="loai_tscd">
+            <div class="d-flex">
+              <span>Loai Tscd</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="don_vi_su_dung">
+            <div class="d-flex">
+              <span>Don Vi Su Dung</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ngay_ghi_tang">
+            <div class="d-flex">
+              <span>Ngay Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_ct_ghi_tang">
+            <div class="d-flex">
+              <span>So Ct Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ngay_bat_dau_tinh_kh">
+            <div class="d-flex">
+              <span>Ngay Bat Dau Tinh Kh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="thoi_gian_su_dung">
+            <div class="d-flex">
+              <span>Thoi Gian Su Dung</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="thoi_gian_su_dung_con_lai">
+            <div class="d-flex">
+              <span>Thoi Gian Su Dung Con Lai</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nguyen_gia">
+            <div class="d-flex">
+              <span>Nguyen Gia</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_tinh_kh">
+            <div class="d-flex">
+              <span>Gia Tri Tinh Kh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hao_mon_trong_ky">
+            <div class="d-flex">
+              <span>Hao Mon Trong Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hao_mon_luy_ke">
+            <div class="d-flex">
+              <span>Hao Mon Luy Ke</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_con_lai">
+            <div class="d-flex">
+              <span>Gia Tri Con Lai</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_KH_thang">
+            <div class="d-flex">
+              <span>Gia Tri KH Thang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tk_nguyen_gia">
+            <div class="d-flex">
+              <span>Tk Nguyen Gia</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tk_khau_hao">
+            <div class="d-flex">
+              <span>Tk Khau Hao</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="key_uuid">
+            <div class="d-flex">
+              <span>Key Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let taisancodinh of taisancodinhs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/taisancodinh', taisancodinh.id, 'view']">{{ taisancodinh.id }}</a>
+          </td>
+          <td>{{ taisancodinh.ma_tscd }}</td>
+          <td>{{ taisancodinh.ten_tscd }}</td>
+          <td>{{ taisancodinh.loai_tscd }}</td>
+          <td>{{ taisancodinh.don_vi_su_dung }}</td>
+          <td>{{ taisancodinh.ngay_ghi_tang | formatMediumDate }}</td>
+          <td>{{ taisancodinh.so_ct_ghi_tang }}</td>
+          <td>{{ taisancodinh.ngay_bat_dau_tinh_kh | formatMediumDate }}</td>
+          <td>{{ taisancodinh.thoi_gian_su_dung }}</td>
+          <td>{{ taisancodinh.thoi_gian_su_dung_con_lai }}</td>
+          <td>{{ taisancodinh.nguyen_gia }}</td>
+          <td>{{ taisancodinh.gia_tri_tinh_kh }}</td>
+          <td>{{ taisancodinh.hao_mon_trong_ky }}</td>
+          <td>{{ taisancodinh.hao_mon_luy_ke }}</td>
+          <td>{{ taisancodinh.gia_tri_con_lai }}</td>
+          <td>{{ taisancodinh.gia_tri_KH_thang }}</td>
+          <td>{{ taisancodinh.tk_nguyen_gia }}</td>
+          <td>{{ taisancodinh.tk_khau_hao }}</td>
+          <td>{{ taisancodinh.createdDate | formatMediumDate }}</td>
+          <td>{{ taisancodinh.key_uuid }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/taisancodinh', taisancodinh.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/taisancodinh', taisancodinh.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(taisancodinh)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

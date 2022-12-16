@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="congnophaitra">
+      <h2 data-cy="congnophaitraDetailsHeading"><span>Congnophaitra</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ congnophaitra.id }}</span>
+        </dd>
+        <dt><span>Ma Ncc</span></dt>
+        <dd>
+          <span>{{ congnophaitra.ma_ncc }}</span>
+        </dd>
+        <dt><span>Ten Ncc</span></dt>
+        <dd>
+          <span>{{ congnophaitra.ten_ncc }}</span>
+        </dd>
+        <dt><span>Tk Congno</span></dt>
+        <dd>
+          <span>{{ congnophaitra.tk_congno }}</span>
+        </dd>
+        <dt><span>So Du No Dau Ky</span></dt>
+        <dd>
+          <span>{{ congnophaitra.so_du_no_dau_ky }}</span>
+        </dd>
+        <dt><span>So Du Co Dau Ky</span></dt>
+        <dd>
+          <span>{{ congnophaitra.so_du_co_dau_ky }}</span>
+        </dd>
+        <dt><span>Phat Sinh No</span></dt>
+        <dd>
+          <span>{{ congnophaitra.phat_sinh_no }}</span>
+        </dd>
+        <dt><span>Phat Sinh Co</span></dt>
+        <dd>
+          <span>{{ congnophaitra.phat_sinh_co }}</span>
+        </dd>
+        <dt><span>So Du No Cuoi Ky</span></dt>
+        <dd>
+          <span>{{ congnophaitra.so_du_no_cuoi_ky }}</span>
+        </dd>
+        <dt><span>So Du Co Cuoi Ky</span></dt>
+        <dd>
+          <span>{{ congnophaitra.so_du_co_cuoi_ky }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ congnophaitra.created_Date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key Uuid</span></dt>
+        <dd>
+          <span>{{ congnophaitra.key_uuid }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/congnophaitra', congnophaitra.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>
