@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tonkhodauky">
+      <h2 data-cy="tonkhodaukyDetailsHeading"><span>Tonkhodauky</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.id }}</span>
+        </dd>
+        <dt><span>Ten Kho</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.ten_kho }}</span>
+        </dd>
+        <dt><span>Ma Hang</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.ma_hang }}</span>
+        </dd>
+        <dt><span>Ten Hang</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.ten_hang }}</span>
+        </dd>
+        <dt><span>Dvt</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.dvt }}</span>
+        </dd>
+        <dt><span>Dau Ky So Luong</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.dau_ky_so_luong }}</span>
+        </dd>
+        <dt><span>Dau Ky Gia Tri</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.dau_ky_gia_tri }}</span>
+        </dd>
+        <dt><span>Nhap Kho So Luong</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.nhap_kho_so_luong }}</span>
+        </dd>
+        <dt><span>Nhap Kho Gia Tri</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.nhap_kho_gia_tri }}</span>
+        </dd>
+        <dt><span>Xuat Kho So Luong</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.xuat_kho_so_luong }}</span>
+        </dd>
+        <dt><span>Xuat Kho Gia Tri</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.xuat_kho_gia_tri }}</span>
+        </dd>
+        <dt><span>Cuoi Ky So Luong</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.cuoi_ky_so_luong }}</span>
+        </dd>
+        <dt><span>Cuoi Ky Gia Tri</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.cuoi_ky_gia_tri }}</span>
+        </dd>
+        <dt><span>Don Gia Binh Quan</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.don_gia_binh_quan }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.createdDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key Uuid</span></dt>
+        <dd>
+          <span>{{ tonkhodauky.key_uuid }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/tonkhodauky', tonkhodauky.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>

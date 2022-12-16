@@ -1,0 +1,92 @@
+{
+  "changelogDate": "20221216040318",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "ma_ccdc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ten_ccdc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loai_ccdc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ly_do_ghi_tang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ngay_ghi_tang",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "so_ct_ghi_tang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "so_ky_phan_bo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "so_ky_pb_con_lai",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dvt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sl_ghi_tang",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "luy_ke_sl_da_giam",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sl_con_lai",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_ccdc",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_PB_hang_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "pb_trong_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "luy_ke_da_pb",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gia_tri_con_lai",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tk_cho_phan_bo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "key_uuid",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Congcudungcu",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

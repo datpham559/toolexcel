@@ -1,0 +1,56 @@
+{
+  "changelogDate": "20221216035200",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "ma_ncc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ten_ncc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tk_congno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "so_du_no_dau_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "so_du_co_dau_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "phat_sinh_no",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "phat_sinh_co",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "so_du_no_cuoi_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "so_du_co_cuoi_ky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "created_Date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "key_uuid",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Congnophaitra",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="congnophaithu">
+      <h2 data-cy="congnophaithuDetailsHeading"><span>Congnophaithu</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ congnophaithu.id }}</span>
+        </dd>
+        <dt><span>Makh</span></dt>
+        <dd>
+          <span>{{ congnophaithu.makh }}</span>
+        </dd>
+        <dt><span>Tenkh</span></dt>
+        <dd>
+          <span>{{ congnophaithu.tenkh }}</span>
+        </dd>
+        <dt><span>Tkcongno</span></dt>
+        <dd>
+          <span>{{ congnophaithu.tkcongno }}</span>
+        </dd>
+        <dt><span>Sodunodauky</span></dt>
+        <dd>
+          <span>{{ congnophaithu.sodunodauky }}</span>
+        </dd>
+        <dt><span>Soducodauky</span></dt>
+        <dd>
+          <span>{{ congnophaithu.soducodauky }}</span>
+        </dd>
+        <dt><span>Sonophatsinh</span></dt>
+        <dd>
+          <span>{{ congnophaithu.sonophatsinh }}</span>
+        </dd>
+        <dt><span>Socophatsinh</span></dt>
+        <dd>
+          <span>{{ congnophaithu.socophatsinh }}</span>
+        </dd>
+        <dt><span>Sodunocuoiky</span></dt>
+        <dd>
+          <span>{{ congnophaithu.sodunocuoiky }}</span>
+        </dd>
+        <dt><span>Soducocuoiky</span></dt>
+        <dd>
+          <span>{{ congnophaithu.soducocuoiky }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ congnophaithu.createdDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key Uuid</span></dt>
+        <dd>
+          <span>{{ congnophaithu.key_uuid }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/congnophaithu', congnophaithu.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>

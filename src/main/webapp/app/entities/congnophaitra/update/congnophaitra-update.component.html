@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-congnophaitra-heading" data-cy="CongnophaitraCreateUpdateHeading">Thêm mới hoặc cập nhật Congnophaitra</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ma_ncc">Ma Ncc</label>
+          <input type="text" class="form-control" name="ma_ncc" id="field_ma_ncc" data-cy="ma_ncc" formControlName="ma_ncc" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ten_ncc">Ten Ncc</label>
+          <input type="text" class="form-control" name="ten_ncc" id="field_ten_ncc" data-cy="ten_ncc" formControlName="ten_ncc" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tk_congno">Tk Congno</label>
+          <input type="text" class="form-control" name="tk_congno" id="field_tk_congno" data-cy="tk_congno" formControlName="tk_congno" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_so_du_no_dau_ky">So Du No Dau Ky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="so_du_no_dau_ky"
+            id="field_so_du_no_dau_ky"
+            data-cy="so_du_no_dau_ky"
+            formControlName="so_du_no_dau_ky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_so_du_co_dau_ky">So Du Co Dau Ky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="so_du_co_dau_ky"
+            id="field_so_du_co_dau_ky"
+            data-cy="so_du_co_dau_ky"
+            formControlName="so_du_co_dau_ky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_phat_sinh_no">Phat Sinh No</label>
+          <input
+            type="number"
+            class="form-control"
+            name="phat_sinh_no"
+            id="field_phat_sinh_no"
+            data-cy="phat_sinh_no"
+            formControlName="phat_sinh_no"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_phat_sinh_co">Phat Sinh Co</label>
+          <input
+            type="number"
+            class="form-control"
+            name="phat_sinh_co"
+            id="field_phat_sinh_co"
+            data-cy="phat_sinh_co"
+            formControlName="phat_sinh_co"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_so_du_no_cuoi_ky">So Du No Cuoi Ky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="so_du_no_cuoi_ky"
+            id="field_so_du_no_cuoi_ky"
+            data-cy="so_du_no_cuoi_ky"
+            formControlName="so_du_no_cuoi_ky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_so_du_co_cuoi_ky">So Du Co Cuoi Ky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="so_du_co_cuoi_ky"
+            id="field_so_du_co_cuoi_ky"
+            data-cy="so_du_co_cuoi_ky"
+            formControlName="so_du_co_cuoi_ky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_created_Date">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_created_Date"
+              data-cy="created_Date"
+              type="text"
+              class="form-control"
+              name="created_Date"
+              ngbDatepicker
+              #created_DateDp="ngbDatepicker"
+              formControlName="created_Date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="created_DateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_key_uuid">Key Uuid</label>
+          <input type="text" class="form-control" name="key_uuid" id="field_key_uuid" data-cy="key_uuid" formControlName="key_uuid" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

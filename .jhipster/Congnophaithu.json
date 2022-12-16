@@ -1,0 +1,57 @@
+{
+  "changelogDate": "20221216033616",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "makh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tenkh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tkcongno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sodunodauky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "soducodauky",
+      "fieldType": "Double",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "sonophatsinh",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "socophatsinh",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sodunocuoiky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "soducocuoiky",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "key_uuid",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Congnophaithu",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

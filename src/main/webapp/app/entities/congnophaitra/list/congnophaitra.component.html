@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="CongnophaitraHeading">
+    <span>Congnophaitras</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-congnophaitra"
+        [routerLink]="['/congnophaitra/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Congnophaitra </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="congnophaitras?.length === 0">
+    <span>No Congnophaitras found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="congnophaitras && congnophaitras.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ma_ncc">
+            <div class="d-flex">
+              <span>Ma Ncc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ten_ncc">
+            <div class="d-flex">
+              <span>Ten Ncc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tk_congno">
+            <div class="d-flex">
+              <span>Tk Congno</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_du_no_dau_ky">
+            <div class="d-flex">
+              <span>So Du No Dau Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_du_co_dau_ky">
+            <div class="d-flex">
+              <span>So Du Co Dau Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="phat_sinh_no">
+            <div class="d-flex">
+              <span>Phat Sinh No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="phat_sinh_co">
+            <div class="d-flex">
+              <span>Phat Sinh Co</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_du_no_cuoi_ky">
+            <div class="d-flex">
+              <span>So Du No Cuoi Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_du_co_cuoi_ky">
+            <div class="d-flex">
+              <span>So Du Co Cuoi Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_Date">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="key_uuid">
+            <div class="d-flex">
+              <span>Key Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let congnophaitra of congnophaitras; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/congnophaitra', congnophaitra.id, 'view']">{{ congnophaitra.id }}</a>
+          </td>
+          <td>{{ congnophaitra.ma_ncc }}</td>
+          <td>{{ congnophaitra.ten_ncc }}</td>
+          <td>{{ congnophaitra.tk_congno }}</td>
+          <td>{{ congnophaitra.so_du_no_dau_ky }}</td>
+          <td>{{ congnophaitra.so_du_co_dau_ky }}</td>
+          <td>{{ congnophaitra.phat_sinh_no }}</td>
+          <td>{{ congnophaitra.phat_sinh_co }}</td>
+          <td>{{ congnophaitra.so_du_no_cuoi_ky }}</td>
+          <td>{{ congnophaitra.so_du_co_cuoi_ky }}</td>
+          <td>{{ congnophaitra.created_Date | formatMediumDate }}</td>
+          <td>{{ congnophaitra.key_uuid }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/congnophaitra', congnophaitra.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/congnophaitra', congnophaitra.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(congnophaitra)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
