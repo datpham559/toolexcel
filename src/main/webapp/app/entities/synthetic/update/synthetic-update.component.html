@@ -1,0 +1,454 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-synthetic-heading" data-cy="SyntheticCreateUpdateHeading">Thêm mới hoặc cập nhật Synthetic</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_voucherType">Voucher Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="voucherType"
+            id="field_voucherType"
+            data-cy="voucherType"
+            formControlName="voucherType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_voucherTypeNo">Voucher Type No</label>
+          <input
+            type="number"
+            class="form-control"
+            name="voucherTypeNo"
+            id="field_voucherTypeNo"
+            data-cy="voucherTypeNo"
+            formControlName="voucherTypeNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_voucherNo">Voucher No</label>
+          <input type="text" class="form-control" name="voucherNo" id="field_voucherNo" data-cy="voucherNo" formControlName="voucherNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_voucherDate">Voucher Date</label>
+          <div class="input-group">
+            <input
+              id="field_voucherDate"
+              data-cy="voucherDate"
+              type="text"
+              class="form-control"
+              name="voucherDate"
+              ngbDatepicker
+              #voucherDateDp="ngbDatepicker"
+              formControlName="voucherDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="voucherDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_accountingDate">Accounting Date</label>
+          <div class="input-group">
+            <input
+              id="field_accountingDate"
+              data-cy="accountingDate"
+              type="text"
+              class="form-control"
+              name="accountingDate"
+              ngbDatepicker
+              #accountingDateDp="ngbDatepicker"
+              formControlName="accountingDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="accountingDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_invoiceNo">Invoice No</label>
+          <input type="text" class="form-control" name="invoiceNo" id="field_invoiceNo" data-cy="invoiceNo" formControlName="invoiceNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_invoiceDate">Invoice Date</label>
+          <div class="input-group">
+            <input
+              id="field_invoiceDate"
+              data-cy="invoiceDate"
+              type="text"
+              class="form-control"
+              name="invoiceDate"
+              ngbDatepicker
+              #invoiceDateDp="ngbDatepicker"
+              formControlName="invoiceDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="invoiceDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_debitAccount">Debit Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="debitAccount"
+            id="field_debitAccount"
+            data-cy="debitAccount"
+            formControlName="debitAccount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_creditAccount">Credit Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="creditAccount"
+            id="field_creditAccount"
+            data-cy="creditAccount"
+            formControlName="creditAccount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_currencyType">Currency Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="currencyType"
+            id="field_currencyType"
+            data-cy="currencyType"
+            formControlName="currencyType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_currency">Currency</label>
+          <input type="number" class="form-control" name="currency" id="field_currency" data-cy="currency" formControlName="currency" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_materialGoodCode">Material Good Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="materialGoodCode"
+            id="field_materialGoodCode"
+            data-cy="materialGoodCode"
+            formControlName="materialGoodCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_materialGoodName">Material Good Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="materialGoodName"
+            id="field_materialGoodName"
+            data-cy="materialGoodName"
+            formControlName="materialGoodName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_storageIn">Storage In</label>
+          <input type="text" class="form-control" name="storageIn" id="field_storageIn" data-cy="storageIn" formControlName="storageIn" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_storageOut">Storage Out</label>
+          <input
+            type="text"
+            class="form-control"
+            name="storageOut"
+            id="field_storageOut"
+            data-cy="storageOut"
+            formControlName="storageOut"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_caculationUnit">Caculation Unit</label>
+          <input
+            type="text"
+            class="form-control"
+            name="caculationUnit"
+            id="field_caculationUnit"
+            data-cy="caculationUnit"
+            formControlName="caculationUnit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_amount">Amount</label>
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tranferRate">Tranfer Rate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="tranferRate"
+            id="field_tranferRate"
+            data-cy="tranferRate"
+            formControlName="tranferRate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_moneyTranfer">Money Tranfer</label>
+          <input
+            type="number"
+            class="form-control"
+            name="moneyTranfer"
+            id="field_moneyTranfer"
+            data-cy="moneyTranfer"
+            formControlName="moneyTranfer"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fixedAssetsType">Fixed Assets Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fixedAssetsType"
+            id="field_fixedAssetsType"
+            data-cy="fixedAssetsType"
+            formControlName="fixedAssetsType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fixedAssetsCode">Fixed Assets Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fixedAssetsCode"
+            id="field_fixedAssetsCode"
+            data-cy="fixedAssetsCode"
+            formControlName="fixedAssetsCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_toolsCode">Tools Code</label>
+          <input type="text" class="form-control" name="toolsCode" id="field_toolsCode" data-cy="toolsCode" formControlName="toolsCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_debitObject">Debit Object</label>
+          <input
+            type="text"
+            class="form-control"
+            name="debitObject"
+            id="field_debitObject"
+            data-cy="debitObject"
+            formControlName="debitObject"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_creditObject">Credit Object</label>
+          <input
+            type="text"
+            class="form-control"
+            name="creditObject"
+            id="field_creditObject"
+            data-cy="creditObject"
+            formControlName="creditObject"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit">Unit</label>
+          <input type="text" class="form-control" name="unit" id="field_unit" data-cy="unit" formControlName="unit" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_employee">Employee</label>
+          <input type="text" class="form-control" name="employee" id="field_employee" data-cy="employee" formControlName="employee" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bankAccount">Bank Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bankAccount"
+            id="field_bankAccount"
+            data-cy="bankAccount"
+            formControlName="bankAccount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_itemCost">Item Cost</label>
+          <input type="text" class="form-control" name="itemCost" id="field_itemCost" data-cy="itemCost" formControlName="itemCost" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_construction">Construction</label>
+          <input
+            type="text"
+            class="form-control"
+            name="construction"
+            id="field_construction"
+            data-cy="construction"
+            formControlName="construction"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_costSet">Cost Set</label>
+          <input type="text" class="form-control" name="costSet" id="field_costSet" data-cy="costSet" formControlName="costSet" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_purchaseOrder">Purchase Order</label>
+          <input
+            type="text"
+            class="form-control"
+            name="purchaseOrder"
+            id="field_purchaseOrder"
+            data-cy="purchaseOrder"
+            formControlName="purchaseOrder"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_buyOrder">Buy Order</label>
+          <input type="text" class="form-control" name="buyOrder" id="field_buyOrder" data-cy="buyOrder" formControlName="buyOrder" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_purchaseContract">Purchase Contract</label>
+          <input
+            type="text"
+            class="form-control"
+            name="purchaseContract"
+            id="field_purchaseContract"
+            data-cy="purchaseContract"
+            formControlName="purchaseContract"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_saleContract">Sale Contract</label>
+          <input
+            type="text"
+            class="form-control"
+            name="saleContract"
+            id="field_saleContract"
+            data-cy="saleContract"
+            formControlName="saleContract"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_statsCode">Stats Code</label>
+          <input type="text" class="form-control" name="statsCode" id="field_statsCode" data-cy="statsCode" formControlName="statsCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_explanation">Explanation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="explanation"
+            id="field_explanation"
+            data-cy="explanation"
+            formControlName="explanation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_explanationDetail">Explanation Detail</label>
+          <input
+            type="text"
+            class="form-control"
+            name="explanationDetail"
+            id="field_explanationDetail"
+            data-cy="explanationDetail"
+            formControlName="explanationDetail"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_recordStatus">Record Status</label>
+          <input
+            type="text"
+            class="form-control"
+            name="recordStatus"
+            id="field_recordStatus"
+            data-cy="recordStatus"
+            formControlName="recordStatus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdDate">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="text"
+              class="form-control"
+              name="createdDate"
+              ngbDatepicker
+              #createdDateDp="ngbDatepicker"
+              formControlName="createdDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="createdDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_keyUUID">Key UUID</label>
+          <input type="text" class="form-control" name="keyUUID" id="field_keyUUID" data-cy="keyUUID" formControlName="keyUUID" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

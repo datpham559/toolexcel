@@ -8,7 +8,7 @@ import javax.persistence.*;
  * A Customer.
  */
 @Entity
-@Table(name = "customers")
+@Table(name = "customer")
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Customer implements Serializable {
 
@@ -19,31 +19,31 @@ public class Customer implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "customer_code")
+    @Column(name = "customerCode")
     private String customerCode;
 
-    @Column(name = "customer_name")
+    @Column(name = "customerName")
     private String customerName;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "customer_group")
+    @Column(name = "customerGroup")
     private String customerGroup;
 
     @Column(name = "tax")
     private String tax;
 
-    @Column(name = "phone_number")
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
     @Column(name = "unfollow")
-    private String unfollow;
+    private Boolean unfollow;
 
-    @Column(name = "created_date")
+    @Column(name = "createdDate")
     private LocalDate createdDate;
 
-    @Column(name = "key_uuid")
+    @Column(name = "keyUUID")
     private String keyUUID;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -139,17 +139,17 @@ public class Customer implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUnfollow() {
-        return this.unfollow;
+    public Boolean getUnfollow() {
+        return unfollow;
     }
 
-    public Customer unfollow(String unfollow) {
+    public void setUnfollow(Boolean unfollow) {
+        this.unfollow = unfollow;
+    }
+
+    public Customer unfollow(Boolean unfollow) {
         this.setUnfollow(unfollow);
         return this;
-    }
-
-    public void setUnfollow(String unfollow) {
-        this.unfollow = unfollow;
     }
 
     public LocalDate getCreatedDate() {

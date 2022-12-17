@@ -4,13 +4,12 @@ import com.softdreams.excel.domain.Customer;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CustomerRepository;
 import com.softdreams.excel.service.CustomerService;
-
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -118,5 +117,12 @@ public class CustomerServiceImpl implements CustomerService {
         } catch (IOException e) {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ByteArrayInputStream exportExcel() {
+        List<Customer> customers = customerRepository.findAll();
+        ByteArrayInputStream inputStream = ExcelHelper.customersToExcel(customers);
+        return inputStream;
     }
 }

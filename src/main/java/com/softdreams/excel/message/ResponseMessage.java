@@ -1,6 +1,7 @@
 package com.softdreams.excel.message;
 
 public class ResponseMessage {
+
     private String message;
 
     public ResponseMessage(String message) {
@@ -14,5 +15,4 @@ public class ResponseMessage {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }

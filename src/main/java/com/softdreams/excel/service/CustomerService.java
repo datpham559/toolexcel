@@ -1,10 +1,10 @@
 package com.softdreams.excel.service;
 
 import com.softdreams.excel.domain.Customer;
-import org.springframework.web.multipart.MultipartFile;
-
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Service Interface for managing {@link Customer}.
@@ -57,4 +57,6 @@ public interface CustomerService {
     void delete(Long id);
 
     void saveToCustomer(MultipartFile file);
+
+    ByteArrayInputStream exportExcel();
 }
