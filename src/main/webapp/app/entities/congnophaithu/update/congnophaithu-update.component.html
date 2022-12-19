@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-congnophaithu-heading" data-cy="CongnophaithuCreateUpdateHeading">Thêm mới hoặc cập nhật Congnophaithu</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_makh">Makh</label>
+          <input type="text" class="form-control" name="makh" id="field_makh" data-cy="makh" formControlName="makh" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tenkh">Tenkh</label>
+          <input type="text" class="form-control" name="tenkh" id="field_tenkh" data-cy="tenkh" formControlName="tenkh" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tkcongno">Tkcongno</label>
+          <input type="text" class="form-control" name="tkcongno" id="field_tkcongno" data-cy="tkcongno" formControlName="tkcongno" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sodunodauky">Sodunodauky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sodunodauky"
+            id="field_sodunodauky"
+            data-cy="sodunodauky"
+            formControlName="sodunodauky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_soducodauky">Soducodauky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="soducodauky"
+            id="field_soducodauky"
+            data-cy="soducodauky"
+            formControlName="soducodauky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sonophatsinh">Sonophatsinh</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sonophatsinh"
+            id="field_sonophatsinh"
+            data-cy="sonophatsinh"
+            formControlName="sonophatsinh"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_socophatsinh">Socophatsinh</label>
+          <input
+            type="number"
+            class="form-control"
+            name="socophatsinh"
+            id="field_socophatsinh"
+            data-cy="socophatsinh"
+            formControlName="socophatsinh"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sodunocuoiky">Sodunocuoiky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sodunocuoiky"
+            id="field_sodunocuoiky"
+            data-cy="sodunocuoiky"
+            formControlName="sodunocuoiky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_soducocuoiky">Soducocuoiky</label>
+          <input
+            type="number"
+            class="form-control"
+            name="soducocuoiky"
+            id="field_soducocuoiky"
+            data-cy="soducocuoiky"
+            formControlName="soducocuoiky"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdDate">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="text"
+              class="form-control"
+              name="createdDate"
+              ngbDatepicker
+              #createdDateDp="ngbDatepicker"
+              formControlName="createdDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="createdDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_key_uuid">Key Uuid</label>
+          <input type="text" class="form-control" name="key_uuid" id="field_key_uuid" data-cy="key_uuid" formControlName="key_uuid" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

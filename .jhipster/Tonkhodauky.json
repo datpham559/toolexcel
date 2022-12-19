@@ -1,0 +1,72 @@
+{
+  "changelogDate": "20221216042217",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "ten_kho",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ma_hang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ten_hang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dvt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dau_ky_so_luong",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dau_ky_gia_tri",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nhap_kho_so_luong",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nhap_kho_gia_tri",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "xuat_kho_so_luong",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "xuat_kho_gia_tri",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cuoi_ky_so_luong",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cuoi_ky_gia_tri",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "don_gia_binh_quan",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "key_uuid",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Tonkhodauky",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

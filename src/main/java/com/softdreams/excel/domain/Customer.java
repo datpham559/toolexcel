@@ -8,14 +8,15 @@ import javax.persistence.*;
  * A Customer.
  */
 @Entity
-@Table(name = "customers")
+@Table(name = "customer")
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
 
