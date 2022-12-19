@@ -1,6 +1,8 @@
 package com.softdreams.excel.web.rest;
 
 import com.softdreams.excel.domain.Customer;
+import com.softdreams.excel.helper.ExcelHelper;
+import com.softdreams.excel.message.ResponseMessage;
 import com.softdreams.excel.repository.CustomerRepository;
 import com.softdreams.excel.service.CustomerService;
 import com.softdreams.excel.web.rest.errors.BadRequestAlertException;
@@ -12,8 +14,15 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
@@ -21,7 +30,7 @@ import tech.jhipster.web.util.ResponseUtil;
  * REST controller for managing {@link com.softdreams.excel.domain.Customer}.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class CustomerResource {
 
     private final Logger log = LoggerFactory.getLogger(CustomerResource.class);
@@ -168,5 +177,17 @@ public class CustomerResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping(value = "/export")
+    public ResponseEntity<Resource> exportExcel() {
+        String filename = "DM_KhachHang.xlsx";
+        InputStreamResource file = new InputStreamResource(customerService.exportExcel());
+
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
     }
 }

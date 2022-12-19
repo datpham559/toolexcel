@@ -86,6 +86,8 @@ public class SecurityConfiguration {
             .antMatchers("/api/congnophaithu/**").permitAll()
             .antMatchers("/api/congnophaitra/**").permitAll()
             .antMatchers("/api/taisancodinh/**").permitAll()
+            .antMatchers("/api/customer/**").permitAll()
+            .antMatchers("/api/synthetic/**").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
