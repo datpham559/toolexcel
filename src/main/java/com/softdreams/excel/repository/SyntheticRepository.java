@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SyntheticRepository extends JpaRepository<Synthetic, Long>, SyntheticRepositoryCustom {
     @Query(value = "select * from synthetic where voucherTypeNo = 13 order by voucherNo", nativeQuery = true)
-    List<Synthetic> getAccreditativeOrderByVoucherNo();
+    List<Synthetic> getAccreditativeOrderByVoucherNo13();
 
     @Query(value = "select * from synthetic where voucherTypeNo = 9 order by voucherNo", nativeQuery = true)
-    List<Synthetic> getAccreditativeOrderByVoucherNo();
+    List<Synthetic> getAccreditativeOrderByVoucherNo9();
 }

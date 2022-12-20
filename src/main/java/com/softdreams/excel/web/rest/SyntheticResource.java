@@ -210,7 +210,7 @@ public class SyntheticResource {
             .body(file);
     }
 
-    @GetMapping(value = "/export")
+    @GetMapping(value = "/export_Bao_Co")
     public ResponseEntity<Resource> exportExcel() {
         String filename = "import_Bao_Co.xlsx";
         InputStreamResource file = new InputStreamResource(syntheticService.exportExcel());

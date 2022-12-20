@@ -226,7 +226,7 @@ public class SyntheticServiceImpl implements SyntheticService {
 
     @Override
     public ByteArrayInputStream exportExcel() {
-        List<Synthetic> synthetics = syntheticRepository.getAccreditativeOrderByVoucherNo();
+        List<Synthetic> synthetics = syntheticRepository.getAccreditativeOrderByVoucherNo9();
         ByteArrayInputStream inputStream = ExcelHelper.creditTransferToExcel(synthetics);
         return inputStream;
     }
