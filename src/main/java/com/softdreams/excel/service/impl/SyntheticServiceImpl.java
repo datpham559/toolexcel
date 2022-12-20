@@ -211,7 +211,7 @@ public class SyntheticServiceImpl implements SyntheticService {
                 synthetic.setCreatedDate(date);
                 synthetic.setKeyUUID(key);
             }
-            syntheticRepository.saveAll(synthetics);
+            syntheticRepository.insertBulk(synthetics);
         } catch (IOException e) {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }

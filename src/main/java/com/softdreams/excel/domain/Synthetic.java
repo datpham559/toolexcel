@@ -37,7 +37,7 @@ import java.time.LocalDate;
                         @ColumnResult(name = "storageIn", type = String.class),
                         @ColumnResult(name = "storageOut", type = String.class),
                         @ColumnResult(name = "caculationUnit", type = String.class),
-                        @ColumnResult(name = "amount", type = Long.class),
+                        @ColumnResult(name = "amount", type = Float.class),
                         @ColumnResult(name = "price", type = BigDecimal.class),
                         @ColumnResult(name = "tranferRate", type = BigDecimal.class),
                         @ColumnResult(name = "moneyTranfer", type = BigDecimal.class),
