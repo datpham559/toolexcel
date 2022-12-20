@@ -1,8 +1,12 @@
 package com.softdreams.excel.helper;
 
 import static com.softdreams.excel.helper.ScaleConfig.scales;
+import static com.softdreams.excel.helper.ScaleConfig.scales;
 
 import com.softdreams.excel.domain.*;
+import com.softdreams.excel.domain.Customer;
+import com.softdreams.excel.domain.Synthetic;
+import com.softdreams.excel.service.dto.SyntheticDTO;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,8 +15,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelHelper {
@@ -621,54 +632,204 @@ public class ExcelHelper {
         }
     }
 
-    public static ByteArrayInputStream debitNoteToExcel(List<Synthetic> synthetics) {
+    public static ByteArrayInputStream debitNoteToExcel(List<SyntheticDTO> synthetics) {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             Sheet sheet = workbook.createSheet(SHEET_BAO_NO);
 
-            //BigDecimal exchangeRate = 1;
+            Integer exchangeRate = 1;
 
             // Header
             Row headerRow = sheet.createRow(0);
             headerRow.setHeight((short) 400);
             CellStyle cellStyleHeader = workbook.createCellStyle();
+
+            CellStyle cellBody = workbook.createCellStyle();
+            CreationHelper createHelper = workbook.getCreationHelper();
+            cellBody.setDataFormat(createHelper.createDataFormat().getFormat("DD/MM/YYYY"));
+
             Font fontHeader = workbook.createFont();
             fontHeader.setBold(true);
-            cellStyleHeader.setFont(fontHeader);
-            cellStyleHeader.setAlignment(HorizontalAlignment.CENTER);
-            cellStyleHeader.setVerticalAlignment(VerticalAlignment.CENTER);
-            cellStyleHeader.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
-            cellStyleHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            cellStyleHeader.setBorderBottom(BorderStyle.THIN);
-            cellStyleHeader.setBorderTop(BorderStyle.THIN);
-            cellStyleHeader.setBorderRight(BorderStyle.THIN);
-            cellStyleHeader.setBorderLeft(BorderStyle.THIN);
 
             for (int col = 0; col < HEADERs_BAO_NO.length; col++) {
                 Cell cell = headerRow.createCell(col);
                 cell.setCellValue(HEADERs_BAO_NO[col]);
-                cell.setCellStyle(cellStyleHeader);
                 sheet.setColumnWidth(col, 20 * 250);
+                if (col <= 11) {
+                    CellStyle light_blue = workbook.createCellStyle();
+                    light_blue.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
+                    light_blue.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    light_blue.setFont(fontHeader);
+                    light_blue.setAlignment(HorizontalAlignment.CENTER);
+                    light_blue.setVerticalAlignment(VerticalAlignment.CENTER);
+                    light_blue.setBorderBottom(BorderStyle.THIN);
+                    light_blue.setBorderTop(BorderStyle.THIN);
+                    light_blue.setBorderRight(BorderStyle.THIN);
+                    light_blue.setBorderLeft(BorderStyle.THIN);
+                    cell.setCellStyle(light_blue);
+                }
+                if (col >= 12 && col <= 24) {
+                    CellStyle orange = workbook.createCellStyle();
+
+                    orange.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
+                    orange.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    orange.setFont(fontHeader);
+                    orange.setAlignment(HorizontalAlignment.CENTER);
+                    orange.setVerticalAlignment(VerticalAlignment.CENTER);
+                    orange.setBorderBottom(BorderStyle.THIN);
+                    orange.setBorderTop(BorderStyle.THIN);
+                    orange.setBorderRight(BorderStyle.THIN);
+                    orange.setBorderLeft(BorderStyle.THIN);
+                    cell.setCellStyle(orange);
+                }
+                if (col > 24 && col <= HEADERs_BAO_NO.length) {
+                    CellStyle green = workbook.createCellStyle();
+
+                    green.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+                    green.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                    green.setFont(fontHeader);
+                    green.setAlignment(HorizontalAlignment.CENTER);
+                    green.setVerticalAlignment(VerticalAlignment.CENTER);
+                    green.setBorderBottom(BorderStyle.THIN);
+                    green.setBorderTop(BorderStyle.THIN);
+                    green.setBorderRight(BorderStyle.THIN);
+                    green.setBorderLeft(BorderStyle.THIN);
+                    cell.setCellStyle(green);
+                }
             }
 
             int rowIdx = 1;
-            for (Synthetic synthetic : synthetics) {
-                //   BigDecimal moneyChange = exchangeRate*synthetic.getCurrency();
+            StringBuilder term = new StringBuilder();
+            term.append(synthetics.get(0).getVoucherNo());
+            for (SyntheticDTO synthetic : synthetics) {
+                BigDecimal moneyChange = synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate));
                 Row row = sheet.createRow(rowIdx++);
-                row.createCell(0).setCellValue("Ủy nhiệm chi");
-                row.createCell(1).setCellValue("Sổ tài chính");
-                row.createCell(2).setCellValue("Có");
-                row.createCell(3).setCellValue("Là chi phí mua hàng");
-                row.createCell(4).setCellValue(synthetic.getVoucherNo());
-                row.createCell(5).setCellValue(synthetic.getVoucherDate());
-                row.createCell(6).setCellValue(synthetic.getAccountingDate());
-                if (synthetic.getCurrencyType().equals("VND")) {
-                    //    row.createCell(8).setCellValue((RichTextString) exchangeRate);
+                if (synthetic != synthetics.get(0)) {
+                    if (term.toString().equals(synthetic.getVoucherNo())) {
+                        row.createCell(0).setCellValue("");
+                        row.createCell(1).setCellValue("");
+                        row.createCell(2).setCellValue("");
+                        row.createCell(3).setCellValue("");
+                        row.createCell(4).setCellValue("");
+                        row.createCell(5).setCellValue("");
+                        row.createCell(6).setCellValue("");
+                        row.createCell(7).setCellValue("");
+                        if (synthetic.getCurrencyType().equals("VND")) {
+                            row.createCell(8).setCellValue("");
+                        }
+                        row.createCell(9).setCellValue("");
+                        row.createCell(10).setCellValue("");
+                        row.createCell(11).setCellValue("");
+                        row.createCell(12).setCellValue(synthetic.getDebitAccount());
+                        row.createCell(13).setCellValue(synthetic.getCreditAccount());
+                        row.createCell(14).setCellValue(synthetic.getCurrency().doubleValue());
+                        row.createCell(15).setCellValue(moneyChange.doubleValue());
+                        row.createCell(16).setCellValue(synthetic.getCreditObject());
+                        row.createCell(17).setCellValue(synthetic.getItemCost());
+                        row.createCell(18).setCellValue("");
+                        row.createCell(19).setCellValue(synthetic.getUnit());
+                        row.createCell(20).setCellValue(synthetic.getCostSet());
+                        row.createCell(21).setCellValue(synthetic.getStatsCode());
+                        row.createCell(22).setCellValue(synthetic.getSaleContract());
+                        row.createCell(23).setCellValue("");
+                        row.createCell(24).setCellValue("");
+                        row.createCell(25).setCellValue("");
+                        row.createCell(26).setCellValue("");
+                        row.createCell(27).setCellValue("");
+                        row.createCell(28).setCellValue("");
+                        row.createCell(29).setCellValue("");
+                        row.createCell(30).setCellValue("");
+                        row.createCell(31).setCellValue("");
+                        row.createCell(31).setCellValue("");
+                        row.createCell(33).setCellValue("");
+                        row.createCell(34).setCellValue("");
+                        row.createCell(35).setCellValue("");
+                    } else {
+                        term.delete(0, term.length());
+                        term.append(synthetic.getVoucherNo());
+                        row.createCell(0).setCellValue("Ủy nhiệm chi");
+                        row.createCell(1).setCellValue("Sổ tài chính");
+                        row.createCell(2).setCellValue("Có");
+                        row.createCell(3).setCellValue("Là chi phí mua hàng");
+                        row.createCell(4).setCellValue(synthetic.getVoucherNo());
+                        row.createCell(5).setCellValue(synthetic.getVoucherDate());
+                        row.getCell(5).setCellStyle(cellBody);
+                        row.createCell(6).setCellValue(synthetic.getAccountingDate());
+                        row.getCell(6).setCellStyle(cellBody);
+                        row.createCell(7).setCellValue(synthetic.getCurrencyType());
+                        if (synthetic.getCurrencyType().equals("VND")) {
+                            row.createCell(8).setCellValue(exchangeRate);
+                        }
+                        row.createCell(9).setCellValue(synthetic.getBankAccount());
+                        row.createCell(10).setCellValue(synthetic.getExplanation());
+                        row.createCell(11).setCellValue("");
+                        row.createCell(12).setCellValue(synthetic.getDebitAccount());
+                        row.createCell(13).setCellValue(synthetic.getCreditAccount());
+                        row.createCell(14).setCellValue(synthetic.getCurrency().doubleValue());
+                        row.createCell(15).setCellValue(moneyChange.doubleValue());
+                        row.createCell(16).setCellValue(synthetic.getCreditObject());
+                        row.createCell(17).setCellValue(synthetic.getItemCost());
+                        row.createCell(18).setCellValue("");
+                        row.createCell(19).setCellValue(synthetic.getUnit());
+                        row.createCell(20).setCellValue(synthetic.getCostSet());
+                        row.createCell(21).setCellValue(synthetic.getStatsCode());
+                        row.createCell(22).setCellValue(synthetic.getSaleContract());
+                        row.createCell(23).setCellValue("");
+                        row.createCell(24).setCellValue("");
+                        row.createCell(25).setCellValue("");
+                        row.createCell(26).setCellValue("");
+                        row.createCell(27).setCellValue("");
+                        row.createCell(28).setCellValue("");
+                        row.createCell(29).setCellValue("");
+                        row.createCell(30).setCellValue("");
+                        row.createCell(31).setCellValue("");
+                        row.createCell(31).setCellValue("");
+                        row.createCell(33).setCellValue("");
+                        row.createCell(34).setCellValue("");
+                        row.createCell(35).setCellValue("");
+                    }
+                } else {
+                    row.createCell(0).setCellValue("Ủy nhiệm chi");
+                    row.createCell(1).setCellValue("Sổ tài chính");
+                    row.createCell(2).setCellValue("Có");
+                    row.createCell(3).setCellValue("Là chi phí mua hàng");
+                    row.createCell(4).setCellValue(synthetic.getVoucherNo());
+                    row.createCell(5).setCellValue(synthetic.getVoucherDate());
+                    row.getCell(5).setCellStyle(cellBody);
+                    row.createCell(6).setCellValue(synthetic.getAccountingDate());
+                    row.getCell(6).setCellStyle(cellBody);
+                    row.createCell(7).setCellValue(synthetic.getCurrencyType());
+                    if (synthetic.getCurrencyType().equals("VND")) {
+                        row.createCell(8).setCellValue(exchangeRate);
+                    }
+
+                    row.createCell(9).setCellValue(synthetic.getBankAccount());
+                    row.createCell(10).setCellValue(synthetic.getExplanation());
+                    row.createCell(11).setCellValue("");
+                    row.createCell(12).setCellValue(synthetic.getDebitAccount());
+                    row.createCell(13).setCellValue(synthetic.getCreditAccount());
+                    row.createCell(14).setCellValue(synthetic.getCurrency().doubleValue());
+                    row.createCell(15).setCellValue(moneyChange.doubleValue());
+                    row.createCell(16).setCellValue(synthetic.getCreditObject());
+                    row.createCell(17).setCellValue(synthetic.getItemCost());
+                    row.createCell(18).setCellValue("");
+                    row.createCell(19).setCellValue(synthetic.getUnit());
+                    row.createCell(20).setCellValue(synthetic.getCostSet());
+                    row.createCell(21).setCellValue(synthetic.getStatsCode());
+                    row.createCell(22).setCellValue(synthetic.getSaleContract());
+                    row.createCell(23).setCellValue("");
+                    row.createCell(24).setCellValue("");
+                    row.createCell(25).setCellValue("");
+                    row.createCell(26).setCellValue("");
+                    row.createCell(27).setCellValue("");
+                    row.createCell(28).setCellValue("");
+                    row.createCell(29).setCellValue("");
+                    row.createCell(30).setCellValue("");
+                    row.createCell(31).setCellValue("");
+                    row.createCell(31).setCellValue("");
+                    row.createCell(33).setCellValue("");
+                    row.createCell(34).setCellValue("");
+                    row.createCell(35).setCellValue("");
                 }
-                row.createCell(9).setCellValue("");
-                row.createCell(10).setCellValue(synthetic.getDebitAccount());
-                row.createCell(11).setCellValue((RichTextString) synthetic.getCurrency());
-                //  row.createCell(6).setCellValue((RichTextString) );
-                row.createCell(6).setCellValue(synthetic.getAccountingDate());
             }
 
             workbook.write(out);

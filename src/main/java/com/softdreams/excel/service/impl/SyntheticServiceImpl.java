@@ -1,10 +1,11 @@
 package com.softdreams.excel.service.impl;
 
-import com.softdreams.excel.domain.Customer;
 import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.SyntheticService;
+import com.softdreams.excel.service.dto.SyntheticDTO;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -214,6 +215,13 @@ public class SyntheticServiceImpl implements SyntheticService {
         } catch (IOException e) {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID) {
+        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo, keyUUID);
+        ByteArrayInputStream inputStream = ExcelHelper.debitNoteToExcel(synthetics);
+        return inputStream;
     }
 
     @Override

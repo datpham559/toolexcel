@@ -71,7 +71,7 @@ public class SyntheticResource {
     /**
      * {@code PUT  /synthetics/:id} : Updates an existing synthetic.
      *
-     * @param id the id of the synthetic to save.
+     * @param id        the id of the synthetic to save.
      * @param synthetic the synthetic to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated synthetic,
      * or with status {@code 400 (Bad Request)} if the synthetic is not valid,
@@ -105,7 +105,7 @@ public class SyntheticResource {
     /**
      * {@code PATCH  /synthetics/:id} : Partial updates given fields of an existing synthetic, field will ignore if it is null
      *
-     * @param id the id of the synthetic to save.
+     * @param id        the id of the synthetic to save.
      * @param synthetic the synthetic to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated synthetic,
      * or with status {@code 400 (Bad Request)} if the synthetic is not valid,
@@ -196,6 +196,18 @@ public class SyntheticResource {
 
         message = "Please upload an excel file!";
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+    }
+
+    @GetMapping(value = "/export")
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
+        String filename = "Bao_No.xlsx";
+        InputStreamResource file = new InputStreamResource(syntheticService.exportDebitNote(voucherTypeNo, keyUUID));
+
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
     }
 
     @GetMapping(value = "/export")

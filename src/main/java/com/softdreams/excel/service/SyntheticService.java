@@ -57,5 +57,7 @@ public interface SyntheticService {
     void delete(Long id);
     void saveToSynthetic(MultipartFile file);
 
+    ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID);
+
     public ByteArrayInputStream exportExcel();
 }
