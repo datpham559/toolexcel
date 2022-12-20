@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class SyntheticRepositoryCustomImpl implements SyntheticRepositoryCustom {
 
-    @Autowired
     @PersistenceContext(unitName = "entityManagerFactory")
     private EntityManager entityManager;
 
@@ -18,7 +17,7 @@ public class SyntheticRepositoryCustomImpl implements SyntheticRepositoryCustom 
     public List<SyntheticDTO> getSynthetic(int voucherTypeNo, String keyUUID) {
         StringBuilder sql = new StringBuilder();
         sql.append("exec ConvertDataToTax @voucherTypeNo = ?1,@keyUUID = ?2");
-        Query query = entityManager.createNativeQuery(sql.toString());
+        Query query = entityManager.createNativeQuery(sql.toString(), "SyntheticDTO");
         query.setParameter(1, voucherTypeNo);
         query.setParameter(2, keyUUID);
         query.executeUpdate();

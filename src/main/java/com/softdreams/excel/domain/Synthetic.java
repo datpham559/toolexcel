@@ -36,7 +36,7 @@ import javax.persistence.*;
                         @ColumnResult(name = "storageIn", type = String.class),
                         @ColumnResult(name = "storageOut", type = String.class),
                         @ColumnResult(name = "caculationUnit", type = String.class),
-                        @ColumnResult(name = "amount", type = Long.class),
+                        @ColumnResult(name = "amount", type = Float.class),
                         @ColumnResult(name = "price", type = BigDecimal.class),
                         @ColumnResult(name = "tranferRate", type = BigDecimal.class),
                         @ColumnResult(name = "moneyTranfer", type = BigDecimal.class),
@@ -128,7 +128,7 @@ public class Synthetic implements Serializable {
     private String caculationUnit;
 
     @Column(name = "amount")
-    private Long amount;
+    private Float amount;
 
     @Column(name = "price")
     private BigDecimal price;
@@ -425,16 +425,16 @@ public class Synthetic implements Serializable {
         this.caculationUnit = caculationUnit;
     }
 
-    public Long getAmount() {
+    public Float getAmount() {
         return this.amount;
     }
 
-    public Synthetic amount(Long amount) {
+    public Synthetic amount(Float amount) {
         this.setAmount(amount);
         return this;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 
