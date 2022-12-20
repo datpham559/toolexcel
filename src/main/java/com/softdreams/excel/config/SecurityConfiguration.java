@@ -88,6 +88,7 @@ public class SecurityConfiguration {
             .antMatchers("/api/import-beginning-inventory").permitAll()
             .antMatchers("/api/import-merchandise").permitAll()
             .antMatchers("/api/export-payment").permitAll()
+            .antMatchers("/api/export-receipts").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)

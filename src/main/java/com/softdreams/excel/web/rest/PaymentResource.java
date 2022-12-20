@@ -36,9 +36,9 @@ public class PaymentResource {
 
 
     @GetMapping(value = "/export-payment")
-    public ResponseEntity<Resource> exportExcel() {
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,@RequestParam("keyUUID") String keyUUID) {
         String filename = "Phieu Chi.xlsx";
-        InputStreamResource file = new InputStreamResource(paymentService.exportExcel());
+        InputStreamResource file = new InputStreamResource(paymentService.exportExcel(voucherTypeNo,keyUUID));
 
         return ResponseEntity
             .ok()

@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SyntheticRepository extends JpaRepository<Synthetic, Long> {
+public interface SyntheticRepository extends JpaRepository<Synthetic, Long>, SyntheticRepositoryCustom {
     @Query(value = "select * from synthetic where voucherTypeNo = 7 order by voucherNo", nativeQuery = true)
-    List<Synthetic> getAccreditativeOrderByVoucherNo();
+    List<Synthetic> getAccreditativeOrderByVoucherNoOfPayment();
+
+    @Query(value = "select * from synthetic where voucherTypeNo = 8 order by voucherNo", nativeQuery = true)
+    List<Synthetic> getAccreditativeOrderByVoucherNoOfReceipts();
 }

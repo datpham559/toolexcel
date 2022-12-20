@@ -1,0 +1,618 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-merchandise-heading" data-cy="MerchandiseCreateUpdateHeading">Thêm mới hoặc cập nhật Merchandise</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nature">Nature</label>
+          <input type="text" class="form-control" name="nature" id="field_nature" data-cy="nature" formControlName="nature" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_group_vthh">Group Vthh</label>
+          <input
+            type="text"
+            class="form-control"
+            name="group_vthh"
+            id="field_group_vthh"
+            data-cy="group_vthh"
+            formControlName="group_vthh"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_describe">Describe</label>
+          <input type="text" class="form-control" name="describe" id="field_describe" data-cy="describe" formControlName="describe" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_explain_buy">Explain Buy</label>
+          <input
+            type="text"
+            class="form-control"
+            name="explain_buy"
+            id="field_explain_buy"
+            data-cy="explain_buy"
+            formControlName="explain_buy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_explain_sell">Explain Sell</label>
+          <input
+            type="text"
+            class="form-control"
+            name="explain_sell"
+            id="field_explain_sell"
+            data-cy="explain_sell"
+            formControlName="explain_sell"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_main_dvt">Main Dvt</label>
+          <input type="text" class="form-control" name="main_dvt" id="field_main_dvt" data-cy="main_dvt" formControlName="main_dvt" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_warranty_period">Warranty Period</label>
+          <input
+            type="text"
+            class="form-control"
+            name="warranty_period"
+            id="field_warranty_period"
+            data-cy="warranty_period"
+            formControlName="warranty_period"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_quantity_inventory">Quantity Inventory</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quantity_inventory"
+            id="field_quantity_inventory"
+            data-cy="quantity_inventory"
+            formControlName="quantity_inventory"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_source">Source</label>
+          <input type="text" class="form-control" name="source" id="field_source" data-cy="source" formControlName="source" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_implicitly_repository">Implicitly Repository</label>
+          <input
+            type="text"
+            class="form-control"
+            name="implicitly_repository"
+            id="field_implicitly_repository"
+            data-cy="implicitly_repository"
+            formControlName="implicitly_repository"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_warehouse_account">Warehouse Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="warehouse_account"
+            id="field_warehouse_account"
+            data-cy="warehouse_account"
+            formControlName="warehouse_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_expense_account">Expense Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="expense_account"
+            id="field_expense_account"
+            data-cy="expense_account"
+            formControlName="expense_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_income_account">Income Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="income_account"
+            id="field_income_account"
+            data-cy="income_account"
+            formControlName="income_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_discount_account">Discount Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="discount_account"
+            id="field_discount_account"
+            data-cy="discount_account"
+            formControlName="discount_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sale_account">Sale Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sale_account"
+            id="field_sale_account"
+            data-cy="sale_account"
+            formControlName="sale_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_return_account">Return Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="return_account"
+            id="field_return_account"
+            data-cy="return_account"
+            formControlName="return_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_rate_ckmh">Rate Ckmh</label>
+          <input type="number" class="form-control" name="rate_ckmh" id="field_rate_ckmh" data-cy="rate_ckmh" formControlName="rate_ckmh" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fixed_purchase_price">Fixed Purchase Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fixed_purchase_price"
+            id="field_fixed_purchase_price"
+            data-cy="fixed_purchase_price"
+            formControlName="fixed_purchase_price"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_latest_purchase_price">Latest Purchase Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="latest_purchase_price"
+            id="field_latest_purchase_price"
+            data-cy="latest_purchase_price"
+            formControlName="latest_purchase_price"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_sell_1">Unit Price Sell 1</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_sell_1"
+            id="field_unit_price_sell_1"
+            data-cy="unit_price_sell_1"
+            formControlName="unit_price_sell_1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_sell_2">Unit Price Sell 2</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_sell_2"
+            id="field_unit_price_sell_2"
+            data-cy="unit_price_sell_2"
+            formControlName="unit_price_sell_2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_sell_3">Unit Price Sell 3</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_sell_3"
+            id="field_unit_price_sell_3"
+            data-cy="unit_price_sell_3"
+            formControlName="unit_price_sell_3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fixed_unit_price">Fixed Unit Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fixed_unit_price"
+            id="field_fixed_unit_price"
+            data-cy="fixed_unit_price"
+            formControlName="fixed_unit_price"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_after_tax">Unit Price After Tax</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_after_tax"
+            id="field_unit_price_after_tax"
+            data-cy="unit_price_after_tax"
+            formControlName="unit_price_after_tax"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tax_rate_gtgt">Tax Rate Gtgt</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tax_rate_gtgt"
+            id="field_tax_rate_gtgt"
+            data-cy="tax_rate_gtgt"
+            formControlName="tax_rate_gtgt"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tax_rate_nk">Tax Rate Nk</label>
+          <input
+            type="number"
+            class="form-control"
+            name="tax_rate_nk"
+            id="field_tax_rate_nk"
+            data-cy="tax_rate_nk"
+            formControlName="tax_rate_nk"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tax_rate_xk">Tax Rate Xk</label>
+          <input
+            type="number"
+            class="form-control"
+            name="tax_rate_xk"
+            id="field_tax_rate_xk"
+            data-cy="tax_rate_xk"
+            formControlName="tax_rate_xk"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_group_hhdv_taxable_ttdb">Group Hhdv Taxable Ttdb</label>
+          <input
+            type="text"
+            class="form-control"
+            name="group_hhdv_taxable_ttdb"
+            id="field_group_hhdv_taxable_ttdb"
+            data-cy="group_hhdv_taxable_ttdb"
+            formControlName="group_hhdv_taxable_ttdb"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unfollow">Unfollow</label>
+          <input type="number" class="form-control" name="unfollow" id="field_unfollow" data-cy="unfollow" formControlName="unfollow" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_inventory_number">Inventory Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="inventory_number"
+            id="field_inventory_number"
+            data-cy="inventory_number"
+            formControlName="inventory_number"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_characteristic">Characteristic</label>
+          <input
+            type="text"
+            class="form-control"
+            name="characteristic"
+            id="field_characteristic"
+            data-cy="characteristic"
+            formControlName="characteristic"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_inventory_value">Inventory Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="inventory_value"
+            id="field_inventory_value"
+            data-cy="inventory_value"
+            formControlName="inventory_value"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_follow">Follow</label>
+          <input type="number" class="form-control" name="follow" id="field_follow" data-cy="follow" formControlName="follow" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_discount">Discount</label>
+          <input type="number" class="form-control" name="discount" id="field_discount" data-cy="discount" formControlName="discount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_from_amount">From Amount</label>
+          <input
+            type="text"
+            class="form-control"
+            name="from_amount"
+            id="field_from_amount"
+            data-cy="from_amount"
+            formControlName="from_amount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_to_amount">To Amount</label>
+          <input type="text" class="form-control" name="to_amount" id="field_to_amount" data-cy="to_amount" formControlName="to_amount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_percent_discount">Percent Discount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="percent_discount"
+            id="field_percent_discount"
+            data-cy="percent_discount"
+            formControlName="percent_discount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_discount_amount">Discount Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="discount_amount"
+            id="field_discount_amount"
+            data-cy="discount_amount"
+            formControlName="discount_amount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_conversion_unit">Conversion Unit</label>
+          <input
+            type="text"
+            class="form-control"
+            name="conversion_unit"
+            id="field_conversion_unit"
+            data-cy="conversion_unit"
+            formControlName="conversion_unit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_primary_unit_conversion_rate">Primary Unit Conversion Rate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="primary_unit_conversion_rate"
+            id="field_primary_unit_conversion_rate"
+            data-cy="primary_unit_conversion_rate"
+            formControlName="primary_unit_conversion_rate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_calculation">Calculation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="calculation"
+            id="field_calculation"
+            data-cy="calculation"
+            formControlName="calculation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_describe1">Describe 1</label>
+          <input type="text" class="form-control" name="describe1" id="field_describe1" data-cy="describe1" formControlName="describe1" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_1">Unit Price 1</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_1"
+            id="field_unit_price_1"
+            data-cy="unit_price_1"
+            formControlName="unit_price_1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_2">Unit Price 2</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_2"
+            id="field_unit_price_2"
+            data-cy="unit_price_2"
+            formControlName="unit_price_2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_unit_price_3">Unit Price 3</label>
+          <input
+            type="number"
+            class="form-control"
+            name="unit_price_3"
+            id="field_unit_price_3"
+            data-cy="unit_price_3"
+            formControlName="unit_price_3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fixed_unit_price1">Fixed Unit Price 1</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fixed_unit_price1"
+            id="field_fixed_unit_price1"
+            data-cy="fixed_unit_price1"
+            formControlName="fixed_unit_price1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_material_code">Material Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="material_code"
+            id="field_material_code"
+            data-cy="material_code"
+            formControlName="material_code"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_material_name">Material Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="material_name"
+            id="field_material_name"
+            data-cy="material_name"
+            formControlName="material_name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dvt">Dvt</label>
+          <input type="text" class="form-control" name="dvt" id="field_dvt" data-cy="dvt" formControlName="dvt" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_amount">Amount</label>
+          <input type="text" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_specification_code">Specification Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="specification_code"
+            id="field_specification_code"
+            data-cy="specification_code"
+            formControlName="specification_code"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_display_name">Display Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="display_name"
+            id="field_display_name"
+            data-cy="display_name"
+            formControlName="display_name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_allow_same">Allow Same</label>
+          <input
+            type="text"
+            class="form-control"
+            name="allow_same"
+            id="field_allow_same"
+            data-cy="allow_same"
+            formControlName="allow_same"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_created_date">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_created_date"
+              data-cy="created_date"
+              type="text"
+              class="form-control"
+              name="created_date"
+              ngbDatepicker
+              #created_dateDp="ngbDatepicker"
+              formControlName="created_date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="created_dateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_keyUUID">Key UUID</label>
+          <input type="text" class="form-control" name="keyUUID" id="field_keyUUID" data-cy="keyUUID" formControlName="keyUUID" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

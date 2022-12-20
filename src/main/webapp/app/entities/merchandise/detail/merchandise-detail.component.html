@@ -1,0 +1,256 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="merchandise">
+      <h2 data-cy="merchandiseDetailsHeading"><span>Merchandise</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ merchandise.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ merchandise.code }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ merchandise.name }}</span>
+        </dd>
+        <dt><span>Nature</span></dt>
+        <dd>
+          <span>{{ merchandise.nature }}</span>
+        </dd>
+        <dt><span>Group Vthh</span></dt>
+        <dd>
+          <span>{{ merchandise.group_vthh }}</span>
+        </dd>
+        <dt><span>Describe</span></dt>
+        <dd>
+          <span>{{ merchandise.describe }}</span>
+        </dd>
+        <dt><span>Explain Buy</span></dt>
+        <dd>
+          <span>{{ merchandise.explain_buy }}</span>
+        </dd>
+        <dt><span>Explain Sell</span></dt>
+        <dd>
+          <span>{{ merchandise.explain_sell }}</span>
+        </dd>
+        <dt><span>Main Dvt</span></dt>
+        <dd>
+          <span>{{ merchandise.main_dvt }}</span>
+        </dd>
+        <dt><span>Warranty Period</span></dt>
+        <dd>
+          <span>{{ merchandise.warranty_period }}</span>
+        </dd>
+        <dt><span>Quantity Inventory</span></dt>
+        <dd>
+          <span>{{ merchandise.quantity_inventory }}</span>
+        </dd>
+        <dt><span>Source</span></dt>
+        <dd>
+          <span>{{ merchandise.source }}</span>
+        </dd>
+        <dt><span>Implicitly Repository</span></dt>
+        <dd>
+          <span>{{ merchandise.implicitly_repository }}</span>
+        </dd>
+        <dt><span>Warehouse Account</span></dt>
+        <dd>
+          <span>{{ merchandise.warehouse_account }}</span>
+        </dd>
+        <dt><span>Expense Account</span></dt>
+        <dd>
+          <span>{{ merchandise.expense_account }}</span>
+        </dd>
+        <dt><span>Income Account</span></dt>
+        <dd>
+          <span>{{ merchandise.income_account }}</span>
+        </dd>
+        <dt><span>Discount Account</span></dt>
+        <dd>
+          <span>{{ merchandise.discount_account }}</span>
+        </dd>
+        <dt><span>Sale Account</span></dt>
+        <dd>
+          <span>{{ merchandise.sale_account }}</span>
+        </dd>
+        <dt><span>Return Account</span></dt>
+        <dd>
+          <span>{{ merchandise.return_account }}</span>
+        </dd>
+        <dt><span>Rate Ckmh</span></dt>
+        <dd>
+          <span>{{ merchandise.rate_ckmh }}</span>
+        </dd>
+        <dt><span>Fixed Purchase Price</span></dt>
+        <dd>
+          <span>{{ merchandise.fixed_purchase_price }}</span>
+        </dd>
+        <dt><span>Latest Purchase Price</span></dt>
+        <dd>
+          <span>{{ merchandise.latest_purchase_price }}</span>
+        </dd>
+        <dt><span>Unit Price Sell 1</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_sell_1 }}</span>
+        </dd>
+        <dt><span>Unit Price Sell 2</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_sell_2 }}</span>
+        </dd>
+        <dt><span>Unit Price Sell 3</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_sell_3 }}</span>
+        </dd>
+        <dt><span>Fixed Unit Price</span></dt>
+        <dd>
+          <span>{{ merchandise.fixed_unit_price }}</span>
+        </dd>
+        <dt><span>Unit Price After Tax</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_after_tax }}</span>
+        </dd>
+        <dt><span>Tax Rate Gtgt</span></dt>
+        <dd>
+          <span>{{ merchandise.tax_rate_gtgt }}</span>
+        </dd>
+        <dt><span>Tax Rate Nk</span></dt>
+        <dd>
+          <span>{{ merchandise.tax_rate_nk }}</span>
+        </dd>
+        <dt><span>Tax Rate Xk</span></dt>
+        <dd>
+          <span>{{ merchandise.tax_rate_xk }}</span>
+        </dd>
+        <dt><span>Group Hhdv Taxable Ttdb</span></dt>
+        <dd>
+          <span>{{ merchandise.group_hhdv_taxable_ttdb }}</span>
+        </dd>
+        <dt><span>Unfollow</span></dt>
+        <dd>
+          <span>{{ merchandise.unfollow }}</span>
+        </dd>
+        <dt><span>Inventory Number</span></dt>
+        <dd>
+          <span>{{ merchandise.inventory_number }}</span>
+        </dd>
+        <dt><span>Characteristic</span></dt>
+        <dd>
+          <span>{{ merchandise.characteristic }}</span>
+        </dd>
+        <dt><span>Inventory Value</span></dt>
+        <dd>
+          <span>{{ merchandise.inventory_value }}</span>
+        </dd>
+        <dt><span>Follow</span></dt>
+        <dd>
+          <span>{{ merchandise.follow }}</span>
+        </dd>
+        <dt><span>Discount</span></dt>
+        <dd>
+          <span>{{ merchandise.discount }}</span>
+        </dd>
+        <dt><span>From Amount</span></dt>
+        <dd>
+          <span>{{ merchandise.from_amount }}</span>
+        </dd>
+        <dt><span>To Amount</span></dt>
+        <dd>
+          <span>{{ merchandise.to_amount }}</span>
+        </dd>
+        <dt><span>Percent Discount</span></dt>
+        <dd>
+          <span>{{ merchandise.percent_discount }}</span>
+        </dd>
+        <dt><span>Discount Amount</span></dt>
+        <dd>
+          <span>{{ merchandise.discount_amount }}</span>
+        </dd>
+        <dt><span>Conversion Unit</span></dt>
+        <dd>
+          <span>{{ merchandise.conversion_unit }}</span>
+        </dd>
+        <dt><span>Primary Unit Conversion Rate</span></dt>
+        <dd>
+          <span>{{ merchandise.primary_unit_conversion_rate }}</span>
+        </dd>
+        <dt><span>Calculation</span></dt>
+        <dd>
+          <span>{{ merchandise.calculation }}</span>
+        </dd>
+        <dt><span>Describe 1</span></dt>
+        <dd>
+          <span>{{ merchandise.describe1 }}</span>
+        </dd>
+        <dt><span>Unit Price 1</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_1 }}</span>
+        </dd>
+        <dt><span>Unit Price 2</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_2 }}</span>
+        </dd>
+        <dt><span>Unit Price 3</span></dt>
+        <dd>
+          <span>{{ merchandise.unit_price_3 }}</span>
+        </dd>
+        <dt><span>Fixed Unit Price 1</span></dt>
+        <dd>
+          <span>{{ merchandise.fixed_unit_price1 }}</span>
+        </dd>
+        <dt><span>Material Code</span></dt>
+        <dd>
+          <span>{{ merchandise.material_code }}</span>
+        </dd>
+        <dt><span>Material Name</span></dt>
+        <dd>
+          <span>{{ merchandise.material_name }}</span>
+        </dd>
+        <dt><span>Dvt</span></dt>
+        <dd>
+          <span>{{ merchandise.dvt }}</span>
+        </dd>
+        <dt><span>Amount</span></dt>
+        <dd>
+          <span>{{ merchandise.amount }}</span>
+        </dd>
+        <dt><span>Specification Code</span></dt>
+        <dd>
+          <span>{{ merchandise.specification_code }}</span>
+        </dd>
+        <dt><span>Display Name</span></dt>
+        <dd>
+          <span>{{ merchandise.display_name }}</span>
+        </dd>
+        <dt><span>Allow Same</span></dt>
+        <dd>
+          <span>{{ merchandise.allow_same }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ merchandise.created_date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key UUID</span></dt>
+        <dd>
+          <span>{{ merchandise.keyUUID }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/merchandise', merchandise.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>

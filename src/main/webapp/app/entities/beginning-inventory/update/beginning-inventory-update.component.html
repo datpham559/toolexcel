@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-beginning-inventory-heading" data-cy="BeginningInventoryCreateUpdateHeading">
+        Thêm mới hoặc cập nhật Beginning Inventory
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_account_number">Account Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="account_number"
+            id="field_account_number"
+            data-cy="account_number"
+            formControlName="account_number"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_account_name">Account Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="account_name"
+            id="field_account_name"
+            data-cy="account_name"
+            formControlName="account_name"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_first_debt">First Debt</label>
+          <input
+            type="number"
+            class="form-control"
+            name="first_debt"
+            id="field_first_debt"
+            data-cy="first_debt"
+            formControlName="first_debt"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_first_yes">First Yes</label>
+          <input type="number" class="form-control" name="first_yes" id="field_first_yes" data-cy="first_yes" formControlName="first_yes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_debt_arises">Debt Arises</label>
+          <input
+            type="number"
+            class="form-control"
+            name="debt_arises"
+            id="field_debt_arises"
+            data-cy="debt_arises"
+            formControlName="debt_arises"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_arises_yes">Arises Yes</label>
+          <input
+            type="number"
+            class="form-control"
+            name="arises_yes"
+            id="field_arises_yes"
+            data-cy="arises_yes"
+            formControlName="arises_yes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_accumulated_debt">Accumulated Debt</label>
+          <input
+            type="number"
+            class="form-control"
+            name="accumulated_debt"
+            id="field_accumulated_debt"
+            data-cy="accumulated_debt"
+            formControlName="accumulated_debt"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_accumulated_yes">Accumulated Yes</label>
+          <input
+            type="number"
+            class="form-control"
+            name="accumulated_yes"
+            id="field_accumulated_yes"
+            data-cy="accumulated_yes"
+            formControlName="accumulated_yes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_last_debt">Last Debt</label>
+          <input type="number" class="form-control" name="last_debt" id="field_last_debt" data-cy="last_debt" formControlName="last_debt" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_last_yes">Last Yes</label>
+          <input type="number" class="form-control" name="last_yes" id="field_last_yes" data-cy="last_yes" formControlName="last_yes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_created_date">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_created_date"
+              data-cy="created_date"
+              type="text"
+              class="form-control"
+              name="created_date"
+              ngbDatepicker
+              #created_dateDp="ngbDatepicker"
+              formControlName="created_date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="created_dateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_keyUUID">Key UUID</label>
+          <input type="text" class="form-control" name="keyUUID" id="field_keyUUID" data-cy="keyUUID" formControlName="keyUUID" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

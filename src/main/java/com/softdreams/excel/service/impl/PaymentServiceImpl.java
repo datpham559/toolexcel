@@ -4,6 +4,7 @@ import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.helper.PaymentExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.PaymentService;
+import com.softdreams.excel.service.dto.SyntheticDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public ByteArrayInputStream exportExcel() {
-        List<Synthetic> synthetics = syntheticRepository.getAccreditativeOrderByVoucherNo();
+    public ByteArrayInputStream exportExcel(int voucherTypeNo,String keyUUID) {
+        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);
         ByteArrayInputStream inputStream = PaymentExcelHelper.paymentToExcel(synthetics);
         return inputStream;
     }

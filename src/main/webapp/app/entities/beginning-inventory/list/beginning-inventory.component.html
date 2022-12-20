@@ -1,0 +1,165 @@
+<div>
+  <h2 id="page-heading" data-cy="BeginningInventoryHeading">
+    <span>Beginning Inventories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-beginning-inventory"
+        [routerLink]="['/beginning-inventory/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Beginning Inventory </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="beginningInventories?.length === 0">
+    <span>No Beginning Inventories found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="beginningInventories && beginningInventories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="account_number">
+            <div class="d-flex">
+              <span>Account Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="account_name">
+            <div class="d-flex">
+              <span>Account Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="first_debt">
+            <div class="d-flex">
+              <span>First Debt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="first_yes">
+            <div class="d-flex">
+              <span>First Yes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="debt_arises">
+            <div class="d-flex">
+              <span>Debt Arises</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="arises_yes">
+            <div class="d-flex">
+              <span>Arises Yes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="accumulated_debt">
+            <div class="d-flex">
+              <span>Accumulated Debt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="accumulated_yes">
+            <div class="d-flex">
+              <span>Accumulated Yes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="last_debt">
+            <div class="d-flex">
+              <span>Last Debt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="last_yes">
+            <div class="d-flex">
+              <span>Last Yes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_date">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyUUID">
+            <div class="d-flex">
+              <span>Key UUID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let beginningInventory of beginningInventories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/beginning-inventory', beginningInventory.id, 'view']">{{ beginningInventory.id }}</a>
+          </td>
+          <td>{{ beginningInventory.account_number }}</td>
+          <td>{{ beginningInventory.account_name }}</td>
+          <td>{{ beginningInventory.first_debt }}</td>
+          <td>{{ beginningInventory.first_yes }}</td>
+          <td>{{ beginningInventory.debt_arises }}</td>
+          <td>{{ beginningInventory.arises_yes }}</td>
+          <td>{{ beginningInventory.accumulated_debt }}</td>
+          <td>{{ beginningInventory.accumulated_yes }}</td>
+          <td>{{ beginningInventory.last_debt }}</td>
+          <td>{{ beginningInventory.last_yes }}</td>
+          <td>{{ beginningInventory.created_date | formatMediumDate }}</td>
+          <td>{{ beginningInventory.keyUUID }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/beginning-inventory', beginningInventory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/beginning-inventory', beginningInventory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(beginningInventory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

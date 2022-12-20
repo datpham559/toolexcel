@@ -58,5 +58,5 @@ public interface PaymentService {
 //     */
 //    void delete(Long id);
 
-    ByteArrayInputStream exportExcel();
+    ByteArrayInputStream exportExcel(int voucherTypeNo,String keyUUID);
 }

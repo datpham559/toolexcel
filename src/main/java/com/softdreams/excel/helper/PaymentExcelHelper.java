@@ -1,6 +1,7 @@
 package com.softdreams.excel.helper;
 
 import com.softdreams.excel.domain.Synthetic;
+import com.softdreams.excel.service.dto.SyntheticDTO;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -10,9 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class PaymentExcelHelper {
@@ -26,7 +25,6 @@ public class PaymentExcelHelper {
     "Số HĐ", "Ngày hóa đơn", "Nhóm HHDV mua vào"};
 
     static String SHEET = "SHEET1";
-
     public static boolean hasExcelFormat(MultipartFile file) {
 
         if (TYPE1.equals(file.getContentType()) || TYPE2.equals(file.getContentType())) {
@@ -34,6 +32,7 @@ public class PaymentExcelHelper {
         }
         return false;
     }
+
 
 //    public static List<Merchandise> excelToMerchandise(InputStream is) {
 //        try {
@@ -257,9 +256,11 @@ public class PaymentExcelHelper {
 //        }
 //    }
 
-    public static ByteArrayInputStream paymentToExcel(List<Synthetic> synthetics) {
+    public static ByteArrayInputStream paymentToExcel(List<SyntheticDTO> synthetics) {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             Sheet sheet = workbook.createSheet(SHEET);
+
+            Integer exchangeRate = 1;
 
             // Header
             Row headerRow = sheet.createRow(0);
@@ -327,7 +328,7 @@ public class PaymentExcelHelper {
             int rowIdx = 1;
             StringBuilder temp = new StringBuilder(synthetics.get(0).getVoucherNo());
             boolean check = false;
-            for (Synthetic synthetic : synthetics) {
+            for (SyntheticDTO synthetic : synthetics) {
                 Row row = sheet.createRow(rowIdx++);
                 if (!check){
                     row.createCell(0).setCellValue("Sổ tài chính");
@@ -343,7 +344,10 @@ public class PaymentExcelHelper {
                     cell5.setCellStyle(cellStyle);
 
                     row.createCell(6).setCellValue(synthetic.getCurrencyType());
-                    row.createCell(7).setCellValue("1");//tỷ giá
+                    if (synthetic.getCurrencyType().equals("VND")) {
+                        row.createCell(7).setCellValue(exchangeRate);
+                    }
+
                     row.createCell(8).setCellValue("");//loại đối tượng
                     row.createCell(9).setCellValue(synthetic.getCreditObject());
                     row.createCell(10).setCellValue("");//tên đối tượng
@@ -361,9 +365,9 @@ public class PaymentExcelHelper {
                     cell20.setCellValue(synthetic.getCurrency().doubleValue());
                     cell20.setCellStyle(cellStyleNumber);
 
-                    row.createCell(21).setCellValue("");//số tiền quy đổi
+                    row.createCell(21).setCellValue(synthetic.getMoneyTranfer().doubleValue());
                     row.createCell(22).setCellValue(synthetic.getCreditObject());//đối tượng HT
-                    row.createCell(23).setCellValue("");// Tk ngân hàng
+                    row.createCell(23).setCellValue(synthetic.getBankAccount());// Tk ngân hàng
                     row.createCell(24).setCellValue("");//khoản mục CP
                     row.createCell(25).setCellValue("");//mục thu/chi
                     row.createCell(26).setCellValue("");//phòng ban
@@ -372,8 +376,17 @@ public class PaymentExcelHelper {
                     row.createCell(29).setCellValue("");//hợp đồng
                     row.createCell(30).setCellValue("");////diễn giải HT thuế
                     row.createCell(31).setCellValue("");//TK thuế GTGT
-                    row.createCell(32).setCellValue("");//thuế suất
-                    row.createCell(33).setCellValue("");//tiền thuế GTGT
+                    if (synthetic.getTaxPercent() !=null){
+                        row.createCell(32).setCellValue(synthetic.getTaxPercent());//thuế suất
+                    }else{
+                        row.createCell(32).setCellValue("");
+                    }
+
+                    if (synthetic.getCurrencyTax() !=null){
+                        row.createCell(33).setCellValue(synthetic.getCurrencyTax().doubleValue());//tiền thuế GTGT
+                    }else{
+                        row.createCell(33).setCellValue("");
+                    }
                     row.createCell(34).setCellValue("");//giá tính thuế
                     row.createCell(35).setCellValue("");//đối tượng HT thuế
                     row.createCell(36).setCellValue("");//Mã số thuế ĐT hạch toán thuế
@@ -406,10 +419,12 @@ public class PaymentExcelHelper {
                     row.createCell(17).setCellValue("");//diễn giải HT
                     row.createCell(18).setCellValue(synthetic.getDebitAccount());
                     row.createCell(19).setCellValue(synthetic.getCreditAccount());
-                    row.createCell(20).setCellValue(synthetic.getCurrency().doubleValue());
-                    row.createCell(21).setCellValue(synthetic.getCurrency().doubleValue());//số tiền quy đổi
+                    Cell cell20 = row.createCell(20);
+                    cell20.setCellValue(synthetic.getCurrency().doubleValue());
+                    cell20.setCellStyle(cellStyleNumber);
+                    row.createCell(21).setCellValue(synthetic.getMoneyTranfer().doubleValue());//số tiền quy đổi
                     row.createCell(22).setCellValue(synthetic.getCreditObject());//đối tượng HT
-                    row.createCell(23).setCellValue("");// Tk ngân hàng
+                    row.createCell(23).setCellValue(synthetic.getBankAccount());// Tk ngân hàng
                     row.createCell(24).setCellValue("");//khoản mục CP
                     row.createCell(25).setCellValue("");//mục thu/chi
                     row.createCell(26).setCellValue("");//phòng ban
@@ -443,7 +458,9 @@ public class PaymentExcelHelper {
                     cell5.setCellValue(synthetic.getAccountingDate());
                     cell5.setCellStyle(cellStyle);
                     row.createCell(6).setCellValue(synthetic.getCurrencyType());
-                    row.createCell(7).setCellValue("1");//tỷ giá
+                    if (synthetic.getCurrencyType().equals("VND")) {
+                        row.createCell(7).setCellValue(exchangeRate);//tỷ giá
+                    }
                     row.createCell(8).setCellValue("");
                     row.createCell(9).setCellValue(synthetic.getCreditObject());
                     row.createCell(10).setCellValue("");//tên đối tượng
@@ -459,9 +476,9 @@ public class PaymentExcelHelper {
                     Cell cell20 = row.createCell(20);
                     cell20.setCellValue(synthetic.getCurrency().doubleValue());
                     cell20.setCellStyle(cellStyleNumber);
-                    row.createCell(21).setCellValue("");//số tiền quy đổi
+                    row.createCell(21).setCellValue(synthetic.getMoneyTranfer().doubleValue());//số tiền quy đổi
                     row.createCell(22).setCellValue(synthetic.getCreditObject());//đối tượng HT
-                    row.createCell(23).setCellValue("");// Tk ngân hàng
+                    row.createCell(23).setCellValue(synthetic.getBankAccount());// Tk ngân hàng
                     row.createCell(24).setCellValue("");//khoản mục CP
                     row.createCell(25).setCellValue("");//mục thu/chi
                     row.createCell(26).setCellValue("");//phòng ban
@@ -470,8 +487,20 @@ public class PaymentExcelHelper {
                     row.createCell(29).setCellValue("");//hợp đồng
                     row.createCell(30).setCellValue("");////diễn giải HT thuế
                     row.createCell(31).setCellValue("");//TK thuế GTGT
-                    row.createCell(32).setCellValue("");//thuế suất
-                    row.createCell(33).setCellValue("");//tiền thuế GTGT
+
+                    if (synthetic.getTaxPercent() !=null){
+                        row.createCell(32).setCellValue(synthetic.getTaxPercent());//thuế suất
+                    }else{
+                        row.createCell(32).setCellValue("");
+                    }
+
+                    if (synthetic.getCurrencyTax() !=null){
+                        row.createCell(33).setCellValue(synthetic.getCurrencyTax().doubleValue());//tiền thuế GTGT
+                    }else{
+                        row.createCell(33).setCellValue("");
+                    }
+//                    row.createCell(32).setCellValue("");//thuế suất
+//                    row.createCell(33).setCellValue("");//tiền thuế GTGT
                     row.createCell(34).setCellValue("");//giá tính thuế
                     row.createCell(35).setCellValue("");//đối tượng HT thuế
                     row.createCell(36).setCellValue("");//Mã số thuế ĐT hạch toán thuế

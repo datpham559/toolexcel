@@ -210,7 +210,7 @@ public class ExcelHelper {
                             synthetic.setCaculationUnit(currentCell.getStringCellValue());
                             break;
                         case 16:
-                            synthetic.setAmount((long) currentCell.getNumericCellValue());
+                            synthetic.setAmount((float) currentCell.getNumericCellValue());
                             break;
                         case 17:
                             synthetic.setPrice((BigDecimal.valueOf(currentCell.getNumericCellValue())));

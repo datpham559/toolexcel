@@ -1,0 +1,480 @@
+<div>
+  <h2 id="page-heading" data-cy="MerchandiseHeading">
+    <span>Merchandises</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-merchandise"
+        [routerLink]="['/merchandise/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Merchandise </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="merchandises?.length === 0">
+    <span>No Merchandises found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="merchandises && merchandises.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="code">
+            <div class="d-flex">
+              <span>Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span>Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nature">
+            <div class="d-flex">
+              <span>Nature</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="group_vthh">
+            <div class="d-flex">
+              <span>Group Vthh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="describe">
+            <div class="d-flex">
+              <span>Describe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="explain_buy">
+            <div class="d-flex">
+              <span>Explain Buy</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="explain_sell">
+            <div class="d-flex">
+              <span>Explain Sell</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="main_dvt">
+            <div class="d-flex">
+              <span>Main Dvt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="warranty_period">
+            <div class="d-flex">
+              <span>Warranty Period</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="quantity_inventory">
+            <div class="d-flex">
+              <span>Quantity Inventory</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="source">
+            <div class="d-flex">
+              <span>Source</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="implicitly_repository">
+            <div class="d-flex">
+              <span>Implicitly Repository</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="warehouse_account">
+            <div class="d-flex">
+              <span>Warehouse Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="expense_account">
+            <div class="d-flex">
+              <span>Expense Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="income_account">
+            <div class="d-flex">
+              <span>Income Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="discount_account">
+            <div class="d-flex">
+              <span>Discount Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sale_account">
+            <div class="d-flex">
+              <span>Sale Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="return_account">
+            <div class="d-flex">
+              <span>Return Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rate_ckmh">
+            <div class="d-flex">
+              <span>Rate Ckmh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixed_purchase_price">
+            <div class="d-flex">
+              <span>Fixed Purchase Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="latest_purchase_price">
+            <div class="d-flex">
+              <span>Latest Purchase Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_sell_1">
+            <div class="d-flex">
+              <span>Unit Price Sell 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_sell_2">
+            <div class="d-flex">
+              <span>Unit Price Sell 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_sell_3">
+            <div class="d-flex">
+              <span>Unit Price Sell 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixed_unit_price">
+            <div class="d-flex">
+              <span>Fixed Unit Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_after_tax">
+            <div class="d-flex">
+              <span>Unit Price After Tax</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax_rate_gtgt">
+            <div class="d-flex">
+              <span>Tax Rate Gtgt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax_rate_nk">
+            <div class="d-flex">
+              <span>Tax Rate Nk</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax_rate_xk">
+            <div class="d-flex">
+              <span>Tax Rate Xk</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="group_hhdv_taxable_ttdb">
+            <div class="d-flex">
+              <span>Group Hhdv Taxable Ttdb</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unfollow">
+            <div class="d-flex">
+              <span>Unfollow</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inventory_number">
+            <div class="d-flex">
+              <span>Inventory Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="characteristic">
+            <div class="d-flex">
+              <span>Characteristic</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inventory_value">
+            <div class="d-flex">
+              <span>Inventory Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="follow">
+            <div class="d-flex">
+              <span>Follow</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="discount">
+            <div class="d-flex">
+              <span>Discount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="from_amount">
+            <div class="d-flex">
+              <span>From Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="to_amount">
+            <div class="d-flex">
+              <span>To Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="percent_discount">
+            <div class="d-flex">
+              <span>Percent Discount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="discount_amount">
+            <div class="d-flex">
+              <span>Discount Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="conversion_unit">
+            <div class="d-flex">
+              <span>Conversion Unit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="primary_unit_conversion_rate">
+            <div class="d-flex">
+              <span>Primary Unit Conversion Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="calculation">
+            <div class="d-flex">
+              <span>Calculation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="describe1">
+            <div class="d-flex">
+              <span>Describe 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_1">
+            <div class="d-flex">
+              <span>Unit Price 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_2">
+            <div class="d-flex">
+              <span>Unit Price 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit_price_3">
+            <div class="d-flex">
+              <span>Unit Price 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixed_unit_price1">
+            <div class="d-flex">
+              <span>Fixed Unit Price 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="material_code">
+            <div class="d-flex">
+              <span>Material Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="material_name">
+            <div class="d-flex">
+              <span>Material Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dvt">
+            <div class="d-flex">
+              <span>Dvt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="amount">
+            <div class="d-flex">
+              <span>Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="specification_code">
+            <div class="d-flex">
+              <span>Specification Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="display_name">
+            <div class="d-flex">
+              <span>Display Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="allow_same">
+            <div class="d-flex">
+              <span>Allow Same</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_date">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyUUID">
+            <div class="d-flex">
+              <span>Key UUID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let merchandise of merchandises; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/merchandise', merchandise.id, 'view']">{{ merchandise.id }}</a>
+          </td>
+          <td>{{ merchandise.code }}</td>
+          <td>{{ merchandise.name }}</td>
+          <td>{{ merchandise.nature }}</td>
+          <td>{{ merchandise.group_vthh }}</td>
+          <td>{{ merchandise.describe }}</td>
+          <td>{{ merchandise.explain_buy }}</td>
+          <td>{{ merchandise.explain_sell }}</td>
+          <td>{{ merchandise.main_dvt }}</td>
+          <td>{{ merchandise.warranty_period }}</td>
+          <td>{{ merchandise.quantity_inventory }}</td>
+          <td>{{ merchandise.source }}</td>
+          <td>{{ merchandise.implicitly_repository }}</td>
+          <td>{{ merchandise.warehouse_account }}</td>
+          <td>{{ merchandise.expense_account }}</td>
+          <td>{{ merchandise.income_account }}</td>
+          <td>{{ merchandise.discount_account }}</td>
+          <td>{{ merchandise.sale_account }}</td>
+          <td>{{ merchandise.return_account }}</td>
+          <td>{{ merchandise.rate_ckmh }}</td>
+          <td>{{ merchandise.fixed_purchase_price }}</td>
+          <td>{{ merchandise.latest_purchase_price }}</td>
+          <td>{{ merchandise.unit_price_sell_1 }}</td>
+          <td>{{ merchandise.unit_price_sell_2 }}</td>
+          <td>{{ merchandise.unit_price_sell_3 }}</td>
+          <td>{{ merchandise.fixed_unit_price }}</td>
+          <td>{{ merchandise.unit_price_after_tax }}</td>
+          <td>{{ merchandise.tax_rate_gtgt }}</td>
+          <td>{{ merchandise.tax_rate_nk }}</td>
+          <td>{{ merchandise.tax_rate_xk }}</td>
+          <td>{{ merchandise.group_hhdv_taxable_ttdb }}</td>
+          <td>{{ merchandise.unfollow }}</td>
+          <td>{{ merchandise.inventory_number }}</td>
+          <td>{{ merchandise.characteristic }}</td>
+          <td>{{ merchandise.inventory_value }}</td>
+          <td>{{ merchandise.follow }}</td>
+          <td>{{ merchandise.discount }}</td>
+          <td>{{ merchandise.from_amount }}</td>
+          <td>{{ merchandise.to_amount }}</td>
+          <td>{{ merchandise.percent_discount }}</td>
+          <td>{{ merchandise.discount_amount }}</td>
+          <td>{{ merchandise.conversion_unit }}</td>
+          <td>{{ merchandise.primary_unit_conversion_rate }}</td>
+          <td>{{ merchandise.calculation }}</td>
+          <td>{{ merchandise.describe1 }}</td>
+          <td>{{ merchandise.unit_price_1 }}</td>
+          <td>{{ merchandise.unit_price_2 }}</td>
+          <td>{{ merchandise.unit_price_3 }}</td>
+          <td>{{ merchandise.fixed_unit_price1 }}</td>
+          <td>{{ merchandise.material_code }}</td>
+          <td>{{ merchandise.material_name }}</td>
+          <td>{{ merchandise.dvt }}</td>
+          <td>{{ merchandise.amount }}</td>
+          <td>{{ merchandise.specification_code }}</td>
+          <td>{{ merchandise.display_name }}</td>
+          <td>{{ merchandise.allow_same }}</td>
+          <td>{{ merchandise.created_date | formatMediumDate }}</td>
+          <td>{{ merchandise.keyUUID }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/merchandise', merchandise.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/merchandise', merchandise.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(merchandise)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

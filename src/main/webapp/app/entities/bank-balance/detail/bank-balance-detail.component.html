@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bankBalance">
+      <h2 data-cy="bankBalanceDetailsHeading"><span>Bank Balance</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ bankBalance.id }}</span>
+        </dd>
+        <dt><span>Bank Account</span></dt>
+        <dd>
+          <span>{{ bankBalance.bank_account }}</span>
+        </dd>
+        <dt><span>Bank Name</span></dt>
+        <dd>
+          <span>{{ bankBalance.bank_name }}</span>
+        </dd>
+        <dt><span>Branch</span></dt>
+        <dd>
+          <span>{{ bankBalance.branch }}</span>
+        </dd>
+        <dt><span>Opening Balance</span></dt>
+        <dd>
+          <span>{{ bankBalance.opening_balance }}</span>
+        </dd>
+        <dt><span>Debt Incurred</span></dt>
+        <dd>
+          <span>{{ bankBalance.debt_incurred }}</span>
+        </dd>
+        <dt><span>Incurred</span></dt>
+        <dd>
+          <span>{{ bankBalance.incurred }}</span>
+        </dd>
+        <dt><span>Ending Balance</span></dt>
+        <dd>
+          <span>{{ bankBalance.ending_balance }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ bankBalance.created_date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key UUID</span></dt>
+        <dd>
+          <span>{{ bankBalance.keyUUID }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bank-balance', bankBalance.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>
