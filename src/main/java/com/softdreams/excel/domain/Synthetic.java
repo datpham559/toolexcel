@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @SqlResultSetMappings(
     {
         @SqlResultSetMapping(
-            name = "MGForPPOrderConvertDTO",
+            name = "SyntheticDTO",
             classes = {
                 @ConstructorResult(
                     targetClass = SyntheticDTO.class,
@@ -60,10 +60,10 @@ import java.time.LocalDate;
                         @ColumnResult(name = "explanation", type = String.class),
                         @ColumnResult(name = "explanationDetail", type = String.class),
                         @ColumnResult(name = "recordStatus", type = String.class),
-                        @ColumnResult(name = "createdDate", type = String.class),
+                        @ColumnResult(name = "createdDate", type = LocalDate.class),
                         @ColumnResult(name = "keyUUID", type = String.class),
-                        @ColumnResult(name = "currencyTax", type = String.class),
-                        @ColumnResult(name = "taxPercent", type = String.class),
+                        @ColumnResult(name = "currencyTax", type = BigDecimal.class),
+                        @ColumnResult(name = "taxPercent", type = Integer.class),
                     }
                 ),
             }

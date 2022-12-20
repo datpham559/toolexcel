@@ -93,13 +93,20 @@ public class SyntheticDTO {
 
     private Integer taxPercent;
 
-    public SyntheticDTO(Long id, String voucherType, Integer voucherTypeNo, String voucherNo, LocalDate voucherDate, LocalDate accountingDate,
-                        String invoiceNo, LocalDate invoiceDate, String debitAccount, String creditAccount, String currencyType,
-                        BigDecimal currency, String materialGoodCode, String materialGoodName, String storageIn, String storageOut, String caculationUnit,
-                        Long amount, BigDecimal price, BigDecimal tranferRate, BigDecimal moneyTranfer, String fixedAssetsType, String fixedAssetsCode,
-                        String toolsCode, String debitObject, String creditObject, String unit, String employee, String bankAccount, String itemCost,
-                        String construction, String costSet, String purchaseOrder, String buyOrder, String purchaseContract, String saleContract,
-                        String statsCode, String explanation, String explanationDetail, String recordStatus, LocalDate createdDate, String keyUUID,
+    public SyntheticDTO(Long id, String voucherType, Integer voucherTypeNo,
+                        String voucherNo, LocalDate voucherDate, LocalDate accountingDate,
+                        String invoiceNo, LocalDate invoiceDate, String debitAccount,
+                        String creditAccount, String currencyType,
+                        BigDecimal currency, String materialGoodCode, String materialGoodName,
+                        String storageIn, String storageOut, String caculationUnit,
+                        Long amount, BigDecimal price, BigDecimal tranferRate,
+                        BigDecimal moneyTranfer, String fixedAssetsType, String fixedAssetsCode,
+                        String toolsCode, String debitObject, String creditObject,
+                        String unit, String employee, String bankAccount, String itemCost,
+                        String construction, String costSet, String purchaseOrder,
+                        String buyOrder, String purchaseContract, String saleContract,
+                        String statsCode, String explanation, String explanationDetail,
+                        String recordStatus, LocalDate createdDate, String keyUUID,
                         BigDecimal currencyTax, Integer taxPercent) {
         this.id = id;
         this.voucherType = voucherType;

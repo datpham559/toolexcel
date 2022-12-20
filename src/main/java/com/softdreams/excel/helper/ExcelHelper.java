@@ -469,14 +469,22 @@ public class ExcelHelper {
                         row.createCell(22).setCellValue(synthetic.getSaleContract());
                         row.createCell(23).setCellValue("");
                         row.createCell(24).setCellValue("");
-                        row.createCell(25).setCellValue("");
-                        row.createCell(26).setCellValue("");
+                        if (synthetic.getTaxPercent() !=null){
+                            row.createCell(25).setCellValue(synthetic.getTaxPercent());
+                        }else{
+                            row.createCell(25).setCellValue("");
+                        }
+                        if (synthetic.getCurrencyTax() !=null){
+                            row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
+                        }else{
+                            row.createCell(26).setCellValue("");
+                        }
                         row.createCell(27).setCellValue("");
                         row.createCell(28).setCellValue("");
                         row.createCell(29).setCellValue("");
                         row.createCell(30).setCellValue("");
                         row.createCell(31).setCellValue("");
-                        row.createCell(31).setCellValue("");
+                        row.createCell(32).setCellValue("");
                         row.createCell(33).setCellValue("");
                         row.createCell(34).setCellValue("");
                         row.createCell(35).setCellValue("");
@@ -513,14 +521,22 @@ public class ExcelHelper {
                         row.createCell(22).setCellValue(synthetic.getSaleContract());
                         row.createCell(23).setCellValue("");
                         row.createCell(24).setCellValue("");
-                        row.createCell(25).setCellValue("");
-                        row.createCell(26).setCellValue("");
+                        if (synthetic.getTaxPercent() !=null){
+                            row.createCell(25).setCellValue(synthetic.getTaxPercent());
+                        }else{
+                            row.createCell(25).setCellValue("");
+                        }
+                        if (synthetic.getCurrencyTax() !=null){
+                            row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
+                        }else{
+                            row.createCell(26).setCellValue("");
+                        }
                         row.createCell(27).setCellValue("");
                         row.createCell(28).setCellValue("");
                         row.createCell(29).setCellValue("");
                         row.createCell(30).setCellValue("");
                         row.createCell(31).setCellValue("");
-                        row.createCell(31).setCellValue("");
+                        row.createCell(32).setCellValue("");
                         row.createCell(33).setCellValue("");
                         row.createCell(34).setCellValue("");
                         row.createCell(35).setCellValue("");
@@ -556,19 +572,26 @@ public class ExcelHelper {
                     row.createCell(22).setCellValue(synthetic.getSaleContract());
                     row.createCell(23).setCellValue("");
                     row.createCell(24).setCellValue("");
-                    row.createCell(25).setCellValue("");
-                    row.createCell(26).setCellValue("");
+                    if (synthetic.getTaxPercent() !=null){
+                        row.createCell(25).setCellValue(synthetic.getTaxPercent());
+                    }else{
+                        row.createCell(25).setCellValue("");
+                    }
+                    if (synthetic.getCurrencyTax() !=null){
+                        row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
+                    }else{
+                        row.createCell(26).setCellValue("");
+                    }
                     row.createCell(27).setCellValue("");
                     row.createCell(28).setCellValue("");
                     row.createCell(29).setCellValue("");
                     row.createCell(30).setCellValue("");
                     row.createCell(31).setCellValue("");
-                    row.createCell(31).setCellValue("");
+                    row.createCell(32).setCellValue("");
                     row.createCell(33).setCellValue("");
                     row.createCell(34).setCellValue("");
                     row.createCell(35).setCellValue("");
                 }
-
             }
 
             workbook.write(out);
