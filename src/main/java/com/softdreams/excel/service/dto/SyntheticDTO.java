@@ -39,7 +39,7 @@ public class SyntheticDTO {
 
     private String caculationUnit;
 
-    private Long amount;
+    private Float amount;
 
     private BigDecimal price;
 
@@ -99,7 +99,7 @@ public class SyntheticDTO {
                         String creditAccount, String currencyType,
                         BigDecimal currency, String materialGoodCode, String materialGoodName,
                         String storageIn, String storageOut, String caculationUnit,
-                        Long amount, BigDecimal price, BigDecimal tranferRate,
+                        Float amount, BigDecimal price, BigDecimal tranferRate,
                         BigDecimal moneyTranfer, String fixedAssetsType, String fixedAssetsCode,
                         String toolsCode, String debitObject, String creditObject,
                         String unit, String employee, String bankAccount, String itemCost,
@@ -290,11 +290,11 @@ public class SyntheticDTO {
         this.caculationUnit = caculationUnit;
     }
 
-    public Long getAmount() {
+    public Float getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 
