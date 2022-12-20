@@ -45,48 +45,6 @@ public class SyntheticRepositoryCustomImpl implements SyntheticRepositoryCustom 
             synthetics,
             500,
             (ps, detail) -> {
-//                Common.setParam(ps,1,detail.getId());
-//                Common.setParam(ps,2,detail.getVoucherType());
-//                Common.setParam(ps,3,detail.getVoucherTypeNo());
-//                Common.setParam(ps,4,detail.getVoucherNo());
-//                Common.setParam(ps,5,detail.getVoucherDate());
-//                Common.setParam(ps,6,detail.getAccountingDate());
-//                Common.setParam(ps,7,detail.getInvoiceNo());
-//                Common.setParam(ps,8,detail.getInvoiceDate());
-//                Common.setParam(ps,9,detail.getDebitAccount());
-//                Common.setParam(ps,10,detail.getCreditAccount());
-//                Common.setParam(ps,11,detail.getCurrencyType());
-//                Common.setParam(ps,12,detail.getCurrency());
-//                Common.setParam(ps,13,detail.getMaterialGoodCode());
-//                Common.setParam(ps,14,detail.getMaterialGoodName());
-//                Common.setParam(ps,15,detail.getStorageIn());
-//                Common.setParam(ps,16,detail.getStorageOut());
-//                Common.setParam(ps,17,detail.getCaculationUnit());
-//                Common.setParam(ps,18,detail.getAmount());
-//                Common.setParam(ps,19,detail.getPrice());
-//                Common.setParam(ps,20,detail.getTranferRate());
-//                Common.setParam(ps,21,detail.getMoneyTranfer());
-//                Common.setParam(ps,22,detail.getFixedAssetsType());
-//                Common.setParam(ps,23,detail.getFixedAssetsCode());
-//                Common.setParam(ps,24,detail.getToolsCode());
-//                Common.setParam(ps,25,detail.getDebitObject());
-//                Common.setParam(ps,26,detail.getCreditObject());
-//                Common.setParam(ps,27,detail.getUnit());
-//                Common.setParam(ps,28,detail.getEmployee());
-//                Common.setParam(ps,29,detail.getBankAccount());
-//                Common.setParam(ps,30,detail.getItemCost());
-//                Common.setParam(ps,31,detail.getConstruction());
-//                Common.setParam(ps,32,detail.getCostSet());
-//                Common.setParam(ps,33,detail.getPurchaseOrder());
-//                Common.setParam(ps,34,detail.getBuyOrder());
-//                Common.setParam(ps,35,detail.getPurchaseContract());
-//                Common.setParam(ps,36,detail.getSaleContract());
-//                Common.setParam(ps,37,detail.getStatsCode());
-//                Common.setParam(ps,38,detail.getExplanation());
-//                Common.setParam(ps,39,detail.getExplanationDetail());
-//                Common.setParam(ps,40,detail.getRecordStatus());
-//                Common.setParam(ps,41,detail.getCreatedDate());
-//                Common.setParam(ps,42,detail.getKeyUUID());
                 Common.setParam(ps,1,detail.getVoucherType());
                 Common.setParam(ps,2,detail.getVoucherTypeNo());
                 Common.setParam(ps,3,detail.getVoucherNo());

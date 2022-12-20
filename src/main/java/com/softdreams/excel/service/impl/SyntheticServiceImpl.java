@@ -216,7 +216,6 @@ public class SyntheticServiceImpl implements SyntheticService {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
     }
-
     @Override
     public ByteArrayInputStream exportDebitNote(int voucherTypeNo,String keyUUID) {
         List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);

@@ -59,4 +59,5 @@ public interface SyntheticService {
     void saveToSynthetic(MultipartFile file);
 
     ByteArrayInputStream exportDebitNote(int voucherTypeNo,String keyUUID);
+
 }
