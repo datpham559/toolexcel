@@ -93,6 +93,98 @@ public class SyntheticDTO {
 
     private Integer taxPercent;
 
+    public SyntheticDTO(
+        Long id,
+        String voucherType,
+        Integer voucherTypeNo,
+        String voucherNo,
+        LocalDate voucherDate,
+        LocalDate accountingDate,
+        String invoiceNo,
+        LocalDate invoiceDate,
+        String debitAccount,
+        String creditAccount,
+        String currencyType,
+        BigDecimal currency,
+        String materialGoodCode,
+        String materialGoodName,
+        String storageIn,
+        String storageOut,
+        String caculationUnit,
+        Float amount,
+        BigDecimal price,
+        BigDecimal tranferRate,
+        BigDecimal moneyTranfer,
+        String fixedAssetsType,
+        String fixedAssetsCode,
+        String toolsCode,
+        String debitObject,
+        String creditObject,
+        String unit,
+        String employee,
+        String bankAccount,
+        String itemCost,
+        String construction,
+        String costSet,
+        String purchaseOrder,
+        String buyOrder,
+        String purchaseContract,
+        String saleContract,
+        String statsCode,
+        String explanation,
+        String explanationDetail,
+        String recordStatus,
+        LocalDate createdDate,
+        String keyUUID,
+        BigDecimal currencyTax,
+        Integer taxPercent
+    ) {
+        this.id = id;
+        this.voucherType = voucherType;
+        this.voucherTypeNo = voucherTypeNo;
+        this.voucherNo = voucherNo;
+        this.voucherDate = voucherDate;
+        this.accountingDate = accountingDate;
+        this.invoiceNo = invoiceNo;
+        this.invoiceDate = invoiceDate;
+        this.debitAccount = debitAccount;
+        this.creditAccount = creditAccount;
+        this.currencyType = currencyType;
+        this.currency = currency;
+        this.materialGoodCode = materialGoodCode;
+        this.materialGoodName = materialGoodName;
+        this.storageIn = storageIn;
+        this.storageOut = storageOut;
+        this.caculationUnit = caculationUnit;
+        this.amount = amount;
+        this.price = price;
+        this.tranferRate = tranferRate;
+        this.moneyTranfer = moneyTranfer;
+        this.fixedAssetsType = fixedAssetsType;
+        this.fixedAssetsCode = fixedAssetsCode;
+        this.toolsCode = toolsCode;
+        this.debitObject = debitObject;
+        this.creditObject = creditObject;
+        this.unit = unit;
+        this.employee = employee;
+        this.bankAccount = bankAccount;
+        this.itemCost = itemCost;
+        this.construction = construction;
+        this.costSet = costSet;
+        this.purchaseOrder = purchaseOrder;
+        this.buyOrder = buyOrder;
+        this.purchaseContract = purchaseContract;
+        this.saleContract = saleContract;
+        this.statsCode = statsCode;
+        this.explanation = explanation;
+        this.explanationDetail = explanationDetail;
+        this.recordStatus = recordStatus;
+        this.createdDate = createdDate;
+        this.keyUUID = keyUUID;
+        this.currencyTax = currencyTax;
+        this.taxPercent = taxPercent;
+    }
+
     public Long getId() {
         return id;
     }
@@ -442,98 +534,6 @@ public class SyntheticDTO {
     }
 
     public void setTaxPercent(Integer taxPercent) {
-        this.taxPercent = taxPercent;
-    }
-
-    public SyntheticDTO(
-        Long id,
-        String voucherType,
-        Integer voucherTypeNo,
-        String voucherNo,
-        LocalDate voucherDate,
-        LocalDate accountingDate,
-        String invoiceNo,
-        LocalDate invoiceDate,
-        String debitAccount,
-        String creditAccount,
-        String currencyType,
-        BigDecimal currency,
-        String materialGoodCode,
-        String materialGoodName,
-        String storageIn,
-        String storageOut,
-        String caculationUnit,
-        Float amount,
-        BigDecimal price,
-        BigDecimal tranferRate,
-        BigDecimal moneyTranfer,
-        String fixedAssetsType,
-        String fixedAssetsCode,
-        String toolsCode,
-        String debitObject,
-        String creditObject,
-        String unit,
-        String employee,
-        String bankAccount,
-        String itemCost,
-        String construction,
-        String costSet,
-        String purchaseOrder,
-        String buyOrder,
-        String purchaseContract,
-        String saleContract,
-        String statsCode,
-        String explanation,
-        String explanationDetail,
-        String recordStatus,
-        LocalDate createdDate,
-        String keyUUID,
-        BigDecimal currencyTax,
-        Integer taxPercent
-    ) {
-        this.id = id;
-        this.voucherType = voucherType;
-        this.voucherTypeNo = voucherTypeNo;
-        this.voucherNo = voucherNo;
-        this.voucherDate = voucherDate;
-        this.accountingDate = accountingDate;
-        this.invoiceNo = invoiceNo;
-        this.invoiceDate = invoiceDate;
-        this.debitAccount = debitAccount;
-        this.creditAccount = creditAccount;
-        this.currencyType = currencyType;
-        this.currency = currency;
-        this.materialGoodCode = materialGoodCode;
-        this.materialGoodName = materialGoodName;
-        this.storageIn = storageIn;
-        this.storageOut = storageOut;
-        this.caculationUnit = caculationUnit;
-        this.amount = amount;
-        this.price = price;
-        this.tranferRate = tranferRate;
-        this.moneyTranfer = moneyTranfer;
-        this.fixedAssetsType = fixedAssetsType;
-        this.fixedAssetsCode = fixedAssetsCode;
-        this.toolsCode = toolsCode;
-        this.debitObject = debitObject;
-        this.creditObject = creditObject;
-        this.unit = unit;
-        this.employee = employee;
-        this.bankAccount = bankAccount;
-        this.itemCost = itemCost;
-        this.construction = construction;
-        this.costSet = costSet;
-        this.purchaseOrder = purchaseOrder;
-        this.buyOrder = buyOrder;
-        this.purchaseContract = purchaseContract;
-        this.saleContract = saleContract;
-        this.statsCode = statsCode;
-        this.explanation = explanation;
-        this.explanationDetail = explanationDetail;
-        this.recordStatus = recordStatus;
-        this.createdDate = createdDate;
-        this.keyUUID = keyUUID;
-        this.currencyTax = currencyTax;
         this.taxPercent = taxPercent;
     }
 }
