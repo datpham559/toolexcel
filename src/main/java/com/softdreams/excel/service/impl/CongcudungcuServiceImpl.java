@@ -5,6 +5,7 @@ import com.softdreams.excel.helper.CongcudungcuHelper;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CongcudungcuRepository;
 import com.softdreams.excel.service.CongcudungcuService;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -150,5 +151,12 @@ public class CongcudungcuServiceImpl implements CongcudungcuService {
         } catch (IOException e) {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ByteArrayInputStream exportCongcudungcu() {
+        List<Congcudungcu> inventories = congcudungcuRepository.findAll();
+        ByteArrayInputStream inputStream = CongcudungcuHelper.ccdcToExcel(inventories);
+        return inputStream;
     }
 }

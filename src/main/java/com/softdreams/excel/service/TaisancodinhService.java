@@ -1,6 +1,7 @@
 package com.softdreams.excel.service;
 
 import com.softdreams.excel.domain.Taisancodinh;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,4 +57,6 @@ public interface TaisancodinhService {
     void delete(Long id);
 
     void saveTaisancodinh(MultipartFile file);
+
+    ByteArrayInputStream exportTSCDExcel();
 }

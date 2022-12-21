@@ -203,8 +203,12 @@ public class ExportExcelHelper {
             row.createCell(5).setCellValue("Không");
             row.createCell(6).setCellValue(synthetic.getVoucherNo());
             row.createCell(7).setCellValue("");
-            row.createCell(8).setCellValue(synthetic.getVoucherDate());
-            row.createCell(9).setCellValue(synthetic.getAccountingDate());
+            Cell cell = row.createCell(8);
+            cell.setCellValue(synthetic.getVoucherDate());
+            cell.setCellStyle(cellStyle);
+            cell = row.createCell(9);
+            cell.setCellValue(synthetic.getAccountingDate());
+            cell.setCellStyle(cellStyle);
             row.createCell(10).setCellValue(synthetic.getCurrencyType());
             if (synthetic.getCurrencyType().equals("VND")) {
                 row.createCell(11).setCellValue(createHashMap().get("VND"));
@@ -223,7 +227,9 @@ public class ExportExcelHelper {
             row.createCell(23).setCellValue("");
             row.createCell(24).setCellValue("");
             row.createCell(25).setCellValue(synthetic.getInvoiceNo());
-            row.createCell(26).setCellValue(synthetic.getInvoiceDate());
+            cell = row.createCell(26);
+            cell.setCellValue(synthetic.getInvoiceDate());
+            cell.setCellStyle(cellStyle);
             row.createCell(27).setCellValue(synthetic.getMaterialGoodCode());
             row.createCell(28).setCellValue(synthetic.getMaterialGoodName());
             row.createCell(29).setCellValue(synthetic.getCaculationUnit());
@@ -420,15 +426,11 @@ public class ExportExcelHelper {
             // Header
             Row headerRow = sheet.createRow(0);
             headerRow.setHeight((short) 400);
-            CellStyle cellStyleHeader = workbook.createCellStyle();
-
             CellStyle cellBody = workbook.createCellStyle();
             CreationHelper createHelper = workbook.getCreationHelper();
             cellBody.setDataFormat(createHelper.createDataFormat().getFormat("DD/MM/YYYY"));
-
             Font fontHeader = workbook.createFont();
             fontHeader.setBold(true);
-
             for (int col = 0; col < Header_chung_tu_mua_dich_vu.length; col++) {
                 Cell cell = headerRow.createCell(col);
                 cell.setCellValue(Header_chung_tu_mua_dich_vu[col]);
@@ -502,14 +504,14 @@ public class ExportExcelHelper {
                 Row row = sheet.createRow(rowIdx++);
                 if (synthetic != synthetics.get(0)) {
                     if (term.toString().equals(synthetic.getVoucherNo())) {
-                        createRow(row, synthetic, null, false);
+                        createRow(row, synthetic, cellBody, false);
                     } else {
                         term.delete(0, term.length());
                         term.append(synthetic.getVoucherNo());
-                        createRow(row, synthetic, null, true);
+                        createRow(row, synthetic, cellBody, true);
                     }
                 } else {
-                    createRow(row, synthetic, null, true);
+                    createRow(row, synthetic, cellBody, true);
                 }
             }
 

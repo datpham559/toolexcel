@@ -1,6 +1,7 @@
 package com.softdreams.excel.service;
 
 import com.softdreams.excel.domain.Congcudungcu;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,4 +57,6 @@ public interface CongcudungcuService {
     void delete(Long id);
 
     void saveCongcudungcu(MultipartFile file);
+
+    ByteArrayInputStream exportCongcudungcu();
 }

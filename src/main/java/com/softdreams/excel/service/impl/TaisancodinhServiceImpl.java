@@ -1,10 +1,16 @@
 package com.softdreams.excel.service.impl;
 
+import com.softdreams.excel.domain.Congcudungcu;
 import com.softdreams.excel.domain.Taisancodinh;
+import com.softdreams.excel.domain.Tonkhodauky;
+import com.softdreams.excel.helper.CongcudungcuHelper;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.helper.TaisancodinhHelper;
+import com.softdreams.excel.helper.TonkhodaukyHelper;
 import com.softdreams.excel.repository.TaisancodinhRepository;
+import com.softdreams.excel.repository.TonkhodaukyRepository;
 import com.softdreams.excel.service.TaisancodinhService;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,9 +32,11 @@ public class TaisancodinhServiceImpl implements TaisancodinhService {
     private final Logger log = LoggerFactory.getLogger(TaisancodinhServiceImpl.class);
 
     private final TaisancodinhRepository taisancodinhRepository;
+    private final TonkhodaukyRepository tonkhodaukyRepository;
 
-    public TaisancodinhServiceImpl(TaisancodinhRepository taisancodinhRepository) {
+    public TaisancodinhServiceImpl(TaisancodinhRepository taisancodinhRepository, TonkhodaukyRepository tonkhodaukyRepository) {
         this.taisancodinhRepository = taisancodinhRepository;
+        this.tonkhodaukyRepository = tonkhodaukyRepository;
     }
 
     @Override
@@ -147,5 +155,12 @@ public class TaisancodinhServiceImpl implements TaisancodinhService {
         } catch (IOException e) {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ByteArrayInputStream exportTSCDExcel() {
+        List<Taisancodinh> inventories = taisancodinhRepository.findAll();
+        ByteArrayInputStream inputStream = TaisancodinhHelper.tscdToExcel(inventories);
+        return inputStream;
     }
 }
