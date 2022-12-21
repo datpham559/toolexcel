@@ -1,0 +1,186 @@
+<div>
+  <h2 id="page-heading" data-cy="TonkhodaukyHeading">
+    <span>Tonkhodaukies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tonkhodauky"
+        [routerLink]="['/tonkhodauky/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Tonkhodauky </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tonkhodaukies?.length === 0">
+    <span>No Tonkhodaukies found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="tonkhodaukies && tonkhodaukies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ten_kho">
+            <div class="d-flex">
+              <span>Ten Kho</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ma_hang">
+            <div class="d-flex">
+              <span>Ma Hang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ten_hang">
+            <div class="d-flex">
+              <span>Ten Hang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dvt">
+            <div class="d-flex">
+              <span>Dvt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dau_ky_so_luong">
+            <div class="d-flex">
+              <span>Dau Ky So Luong</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dau_ky_gia_tri">
+            <div class="d-flex">
+              <span>Dau Ky Gia Tri</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nhap_kho_so_luong">
+            <div class="d-flex">
+              <span>Nhap Kho So Luong</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nhap_kho_gia_tri">
+            <div class="d-flex">
+              <span>Nhap Kho Gia Tri</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="xuat_kho_so_luong">
+            <div class="d-flex">
+              <span>Xuat Kho So Luong</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="xuat_kho_gia_tri">
+            <div class="d-flex">
+              <span>Xuat Kho Gia Tri</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cuoi_ky_so_luong">
+            <div class="d-flex">
+              <span>Cuoi Ky So Luong</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cuoi_ky_gia_tri">
+            <div class="d-flex">
+              <span>Cuoi Ky Gia Tri</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="don_gia_binh_quan">
+            <div class="d-flex">
+              <span>Don Gia Binh Quan</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="key_uuid">
+            <div class="d-flex">
+              <span>Key Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tonkhodauky of tonkhodaukies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tonkhodauky', tonkhodauky.id, 'view']">{{ tonkhodauky.id }}</a>
+          </td>
+          <td>{{ tonkhodauky.ten_kho }}</td>
+          <td>{{ tonkhodauky.ma_hang }}</td>
+          <td>{{ tonkhodauky.ten_hang }}</td>
+          <td>{{ tonkhodauky.dvt }}</td>
+          <td>{{ tonkhodauky.dau_ky_so_luong }}</td>
+          <td>{{ tonkhodauky.dau_ky_gia_tri }}</td>
+          <td>{{ tonkhodauky.nhap_kho_so_luong }}</td>
+          <td>{{ tonkhodauky.nhap_kho_gia_tri }}</td>
+          <td>{{ tonkhodauky.xuat_kho_so_luong }}</td>
+          <td>{{ tonkhodauky.xuat_kho_gia_tri }}</td>
+          <td>{{ tonkhodauky.cuoi_ky_so_luong }}</td>
+          <td>{{ tonkhodauky.cuoi_ky_gia_tri }}</td>
+          <td>{{ tonkhodauky.don_gia_binh_quan }}</td>
+          <td>{{ tonkhodauky.createdDate | formatMediumDate }}</td>
+          <td>{{ tonkhodauky.key_uuid }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/tonkhodauky', tonkhodauky.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/tonkhodauky', tonkhodauky.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(tonkhodauky)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
