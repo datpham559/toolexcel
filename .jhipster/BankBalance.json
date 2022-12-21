@@ -1,0 +1,48 @@
+{
+  "changelogDate": "20221216040032",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "bank_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bank_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "branch",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "opening_balance",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "debt_incurred",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "incurred",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "ending_balance",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "created_date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "keyUUID",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "BankBalance",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

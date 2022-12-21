@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="BankBalanceHeading">
+    <span>Bank Balances</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-bank-balance"
+        [routerLink]="['/bank-balance/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Bank Balance </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bankBalances?.length === 0">
+    <span>No Bank Balances found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="bankBalances && bankBalances.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bank_account">
+            <div class="d-flex">
+              <span>Bank Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bank_name">
+            <div class="d-flex">
+              <span>Bank Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="branch">
+            <div class="d-flex">
+              <span>Branch</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="opening_balance">
+            <div class="d-flex">
+              <span>Opening Balance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="debt_incurred">
+            <div class="d-flex">
+              <span>Debt Incurred</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="incurred">
+            <div class="d-flex">
+              <span>Incurred</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ending_balance">
+            <div class="d-flex">
+              <span>Ending Balance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_date">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyUUID">
+            <div class="d-flex">
+              <span>Key UUID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bankBalance of bankBalances; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/bank-balance', bankBalance.id, 'view']">{{ bankBalance.id }}</a>
+          </td>
+          <td>{{ bankBalance.bank_account }}</td>
+          <td>{{ bankBalance.bank_name }}</td>
+          <td>{{ bankBalance.branch }}</td>
+          <td>{{ bankBalance.opening_balance }}</td>
+          <td>{{ bankBalance.debt_incurred }}</td>
+          <td>{{ bankBalance.incurred }}</td>
+          <td>{{ bankBalance.ending_balance }}</td>
+          <td>{{ bankBalance.created_date | formatMediumDate }}</td>
+          <td>{{ bankBalance.keyUUID }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/bank-balance', bankBalance.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/bank-balance', bankBalance.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(bankBalance)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
