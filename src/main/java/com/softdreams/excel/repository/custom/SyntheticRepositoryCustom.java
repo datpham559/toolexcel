@@ -5,7 +5,8 @@ import com.softdreams.excel.service.dto.SyntheticDTO;
 import java.util.List;
 
 public interface SyntheticRepositoryCustom {
-    List<SyntheticDTO> getSynthetic(int VoucherNoType, String keyUUID);
+    List<SyntheticDTO> getSynthetic(int VoucherTypeNo, String keyUUID);
+    List<SyntheticDTO> getSaInvoice(int VoucherTypeNo, String keyUUID);
 
     void insertBulk(List<Synthetic> synthetics);
 }

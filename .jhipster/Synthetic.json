@@ -68,7 +68,7 @@
     },
     {
       "fieldName": "amount",
-      "fieldType": "Long"
+      "fieldType": "Float"
     },
     {
       "fieldName": "price",
@@ -164,6 +164,9 @@
     },
     {
       "fieldName": "keyUUID",
+      "fieldType": "String"
+    },{
+      "fieldName": "serialInvoice",
       "fieldType": "String"
     }
   ],

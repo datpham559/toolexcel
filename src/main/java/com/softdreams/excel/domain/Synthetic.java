@@ -14,6 +14,68 @@ import javax.persistence.*;
 @SqlResultSetMappings(
     {
         @SqlResultSetMapping(
+            name = "SaInvoiceDTO",
+            classes = {
+                @ConstructorResult(
+                    targetClass = SyntheticDTO.class,
+                    columns = {
+                        @ColumnResult(name = "id", type = Long.class),
+                        @ColumnResult(name = "voucherType", type = String.class),
+                        @ColumnResult(name = "voucherTypeNo", type = Integer.class),
+                        @ColumnResult(name = "voucherNo", type = String.class),
+                        @ColumnResult(name = "voucherDate", type = LocalDate.class),
+                        @ColumnResult(name = "accountingDate", type = LocalDate.class),
+                        @ColumnResult(name = "invoiceNo", type = String.class),
+                        @ColumnResult(name = "invoiceDate", type = LocalDate.class),
+                        @ColumnResult(name = "debitAccount", type = String.class),
+                        @ColumnResult(name = "creditAccount", type = String.class),
+                        @ColumnResult(name = "currencyType", type = String.class),
+                        @ColumnResult(name = "currency", type = BigDecimal.class),
+                        @ColumnResult(name = "materialGoodCode", type = String.class),
+                        @ColumnResult(name = "materialGoodName", type = String.class),
+                        @ColumnResult(name = "storageIn", type = String.class),
+                        @ColumnResult(name = "storageOut", type = String.class),
+                        @ColumnResult(name = "caculationUnit", type = String.class),
+                        @ColumnResult(name = "amount", type = Float.class),
+                        @ColumnResult(name = "price", type = BigDecimal.class),
+                        @ColumnResult(name = "tranferRate", type = BigDecimal.class),
+                        @ColumnResult(name = "moneyTranfer", type = BigDecimal.class),
+                        @ColumnResult(name = "fixedAssetsType", type = String.class),
+                        @ColumnResult(name = "fixedAssetsCode", type = String.class),
+                        @ColumnResult(name = "toolsCode", type = String.class),
+                        @ColumnResult(name = "debitObject", type = String.class),
+                        @ColumnResult(name = "creditObject", type = String.class),
+                        @ColumnResult(name = "unit", type = String.class),
+                        @ColumnResult(name = "employee", type = String.class),
+                        @ColumnResult(name = "bankAccount", type = String.class),
+                        @ColumnResult(name = "itemCost", type = String.class),
+                        @ColumnResult(name = "construction", type = String.class),
+                        @ColumnResult(name = "costSet", type = String.class),
+                        @ColumnResult(name = "purchaseOrder", type = String.class),
+                        @ColumnResult(name = "buyOrder", type = String.class),
+                        @ColumnResult(name = "purchaseContract", type = String.class),
+                        @ColumnResult(name = "saleContract", type = String.class),
+                        @ColumnResult(name = "statsCode", type = String.class),
+                        @ColumnResult(name = "explanation", type = String.class),
+                        @ColumnResult(name = "explanationDetail", type = String.class),
+                        @ColumnResult(name = "recordStatus", type = String.class),
+                        @ColumnResult(name = "createdDate", type = LocalDate.class),
+                        @ColumnResult(name = "keyUUID", type = String.class),
+                        @ColumnResult(name = "serialInvoice", type = String.class),
+                        @ColumnResult(name = "currencyTax", type = BigDecimal.class),
+                        @ColumnResult(name = "taxPercent", type = Integer.class),
+                        @ColumnResult(name = "debitAccountTax", type = String.class),
+                        @ColumnResult(name = "creditAccountTax", type = String.class),
+                        @ColumnResult(name = "debitAccountXK", type = String.class),
+                        @ColumnResult(name = "creditAccountXK", type = String.class),
+                        @ColumnResult(name = "currencyXK", type = BigDecimal.class),
+                        @ColumnResult(name = "priceXK", type = BigDecimal.class),
+                        @ColumnResult(name = "voucherNoXK", type = String.class),
+                    }
+                ),
+            }
+        ),
+        @SqlResultSetMapping(
             name = "SyntheticDTO",
             classes = {
                 @ConstructorResult(
@@ -61,6 +123,7 @@ import javax.persistence.*;
                         @ColumnResult(name = "recordStatus", type = String.class),
                         @ColumnResult(name = "createdDate", type = LocalDate.class),
                         @ColumnResult(name = "keyUUID", type = String.class),
+                        @ColumnResult(name = "serialInvoice", type = String.class),
                         @ColumnResult(name = "currencyTax", type = BigDecimal.class),
                         @ColumnResult(name = "taxPercent", type = Integer.class),
                         @ColumnResult(name = "debitAccountTax", type = String.class),
@@ -203,6 +266,9 @@ public class Synthetic implements Serializable {
 
     @Column(name = "keyUUID")
     private String keyUUID;
+
+    @Column(name = "serialInvoice")
+    private String serialInvoice;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -750,6 +816,19 @@ public class Synthetic implements Serializable {
 
     public void setKeyUUID(String keyUUID) {
         this.keyUUID = keyUUID;
+    }
+
+    public String getSerialInvoice() {
+        return serialInvoice;
+    }
+
+    public void setSerialInvoice(String serialInvoice) {
+        this.serialInvoice = serialInvoice;
+    }
+
+    public Synthetic serialInvoice(String serialInvoice) {
+        this.serialInvoice = serialInvoice;
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

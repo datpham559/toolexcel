@@ -58,8 +58,4 @@ public interface SyntheticService {
     void saveToSynthetic(MultipartFile file);
 
     ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID);
-
-    public ByteArrayInputStream exportCreditExcel();
-
-    ByteArrayInputStream exportBuyServiceExcel(int voucherTypeNo, String keyUUID);
 }
