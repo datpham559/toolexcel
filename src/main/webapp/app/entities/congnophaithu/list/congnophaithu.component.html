@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="CongnophaithuHeading">
+    <span>Congnophaithus</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-congnophaithu"
+        [routerLink]="['/congnophaithu/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Congnophaithu </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="congnophaithus?.length === 0">
+    <span>No Congnophaithus found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="congnophaithus && congnophaithus.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="makh">
+            <div class="d-flex">
+              <span>Makh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tenkh">
+            <div class="d-flex">
+              <span>Tenkh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tkcongno">
+            <div class="d-flex">
+              <span>Tkcongno</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sodunodauky">
+            <div class="d-flex">
+              <span>Sodunodauky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="soducodauky">
+            <div class="d-flex">
+              <span>Soducodauky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sonophatsinh">
+            <div class="d-flex">
+              <span>Sonophatsinh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="socophatsinh">
+            <div class="d-flex">
+              <span>Socophatsinh</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sodunocuoiky">
+            <div class="d-flex">
+              <span>Sodunocuoiky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="soducocuoiky">
+            <div class="d-flex">
+              <span>Soducocuoiky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="key_uuid">
+            <div class="d-flex">
+              <span>Key Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let congnophaithu of congnophaithus; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/congnophaithu', congnophaithu.id, 'view']">{{ congnophaithu.id }}</a>
+          </td>
+          <td>{{ congnophaithu.makh }}</td>
+          <td>{{ congnophaithu.tenkh }}</td>
+          <td>{{ congnophaithu.tkcongno }}</td>
+          <td>{{ congnophaithu.sodunodauky }}</td>
+          <td>{{ congnophaithu.soducodauky }}</td>
+          <td>{{ congnophaithu.sonophatsinh }}</td>
+          <td>{{ congnophaithu.socophatsinh }}</td>
+          <td>{{ congnophaithu.sodunocuoiky }}</td>
+          <td>{{ congnophaithu.soducocuoiky }}</td>
+          <td>{{ congnophaithu.createdDate | formatMediumDate }}</td>
+          <td>{{ congnophaithu.key_uuid }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/congnophaithu', congnophaithu.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/congnophaithu', congnophaithu.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(congnophaithu)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

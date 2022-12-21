@@ -4,8 +4,15 @@ import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.message.ResponseMessage;
 import com.softdreams.excel.repository.SyntheticRepository;
+import com.softdreams.excel.service.ChungTuMuaHangService;
+import com.softdreams.excel.service.CreditService;
 import com.softdreams.excel.service.SyntheticService;
 import com.softdreams.excel.web.rest.errors.BadRequestAlertException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,12 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * REST controller for managing {@link com.softdreams.excel.domain.Synthetic}.
@@ -44,9 +45,20 @@ public class SyntheticResource {
 
     private final SyntheticRepository syntheticRepository;
 
-    public SyntheticResource(SyntheticService syntheticService, SyntheticRepository syntheticRepository) {
+    private final ChungTuMuaHangService chungTuMuaHangService;
+
+    private final CreditService creditService;
+
+    public SyntheticResource(
+        SyntheticService syntheticService,
+        SyntheticRepository syntheticRepository,
+        ChungTuMuaHangService chungTuMuaHangService,
+        CreditService creditService
+    ) {
         this.syntheticService = syntheticService;
         this.syntheticRepository = syntheticRepository;
+        this.chungTuMuaHangService = chungTuMuaHangService;
+        this.creditService = creditService;
     }
 
     /**
@@ -114,7 +126,7 @@ public class SyntheticResource {
      * or with status {@code 500 (Internal Server Error)} if the synthetic couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/synthetics/{id}", consumes = {"application/json", "application/merge-patch+json"})
+    @PatchMapping(value = "/synthetics/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Synthetic> partialUpdateSynthetic(
         @PathVariable(value = "id", required = false) final Long id,
         @RequestBody Synthetic synthetic
@@ -200,11 +212,32 @@ public class SyntheticResource {
     }
 
     @GetMapping(value = "/export")
-    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,
-                                                @RequestParam("keyUUID") String keyUUID) {
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
         String filename = "Bao_No.xlsx";
-        InputStreamResource file = new InputStreamResource(syntheticService.exportDebitNote(voucherTypeNo,keyUUID));
+        InputStreamResource file = new InputStreamResource(syntheticService.exportDebitNote(voucherTypeNo, keyUUID));
 
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
+    @GetMapping(value = "/export_Bao_Co")
+    public ResponseEntity<Resource> exportExcel() {
+        String filename = "import_Bao_Co.xlsx";
+        InputStreamResource file = new InputStreamResource(creditService.exportCreditExcel());
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
+    @GetMapping(value = "/export_chung_tu_mua_hang")
+    public ResponseEntity<Resource> exportCTMH(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
+        String filename = "import_chung_tu_mua_hang.xlsx";
+        InputStreamResource file = new InputStreamResource(chungTuMuaHangService.exportBuyServiceExcel(voucherTypeNo, keyUUID));
         return ResponseEntity
             .ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)

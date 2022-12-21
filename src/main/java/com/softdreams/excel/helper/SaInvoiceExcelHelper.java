@@ -1,20 +1,19 @@
 package com.softdreams.excel.helper;
 
-import com.softdreams.excel.service.dto.SyntheticDTO;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import static com.softdreams.excel.helper.SheetConfig.*;
 
+import com.softdreams.excel.service.dto.SyntheticDTO;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-
-import static com.softdreams.excel.helper.SheetConfig.*;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class SaInvoiceExcelHelper {
 
-    public static ByteArrayInputStream saInvoiceToExcel(List<SyntheticDTO> synthetics,String serialInvoice)  {
+    public static ByteArrayInputStream saInvoiceToExcel(List<SyntheticDTO> synthetics, String serialInvoice) {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             Sheet sheet = workbook.createSheet(SHEET_CHUNG_TU_BAN_HANG);
 
@@ -108,7 +107,7 @@ public class SaInvoiceExcelHelper {
             }
             int rowIdx = 1;
             StringBuilder term = new StringBuilder();
-            if (synthetics.size() >0 ) {
+            if (synthetics.size() > 0) {
                 term.append(synthetics.get(0).getVoucherNo());
             }
             for (SyntheticDTO synthetic : synthetics) {
@@ -133,21 +132,21 @@ public class SaInvoiceExcelHelper {
                         row.createCell(15).setCellValue("");
                         row.createCell(16).setCellValue("");
                         row.createCell(17).setCellValue("");
-                        row.createCell(18).setCellValue("");//mst
+                        row.createCell(18).setCellValue(""); //mst
                         row.createCell(19).setCellValue("");
                         row.createCell(20).setCellValue(synthetic.getExplanation());
                         row.createCell(21).setCellValue("");
                         row.createCell(22).setCellValue("");
                         row.createCell(23).setCellValue("");
-                        row.createCell(24).setCellValue("");//kèm theo
+                        row.createCell(24).setCellValue(""); //kèm theo
                         row.createCell(25).setCellValue("");
                         row.createCell(26).setCellValue("");
                         row.createCell(27).setCellValue("");
                         row.createCell(28).setCellValue("");
                         row.createCell(29).setCellValue("");
-                        row.createCell(30).setCellValue("");// mặt hàng chung
+                        row.createCell(30).setCellValue(""); // mặt hàng chung
                         row.createCell(31).setCellValue("");
-                        row.createCell(32).setCellValue(serialInvoice);//ký hiệu hđ
+                        row.createCell(32).setCellValue(serialInvoice); //ký hiệu hđ
                         row.createCell(33).setCellValue(synthetic.getInvoiceNo());
                         row.createCell(34).setCellValue(synthetic.getInvoiceDate());
                         row.getCell(34).setCellStyle(cellBody);
@@ -156,14 +155,14 @@ public class SaInvoiceExcelHelper {
                         row.createCell(37).setCellValue(synthetic.getMaterialGoodCode());
                         row.createCell(38).setCellValue(synthetic.getMaterialGoodName());
                         row.createCell(39).setCellValue("Là hàng KM");
-                        row.createCell(40).setCellValue(synthetic.getStorageOut());//Kho
+                        row.createCell(40).setCellValue(synthetic.getStorageOut()); //Kho
                         row.createCell(41).setCellValue(synthetic.getDebitAccount());
                         row.createCell(42).setCellValue(synthetic.getCreditAccount());
                         row.createCell(43).setCellValue("");
                         row.createCell(44).setCellValue(synthetic.getCaculationUnit());
                         row.createCell(45).setCellValue(synthetic.getAmount());
                         row.createCell(46).setCellValue(synthetic.getPrice().doubleValue());
-                        row.createCell(47).setCellValue(synthetic.getPrice().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//đơn giá quy đổi
+                        row.createCell(47).setCellValue(synthetic.getPrice().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue()); //đơn giá quy đổi
                         row.createCell(48).setCellValue(synthetic.getCurrency().doubleValue());
                         row.createCell(49).setCellValue(synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());
                         row.createCell(50).setCellValue("");
@@ -177,19 +176,19 @@ public class SaInvoiceExcelHelper {
                         row.createCell(58).setCellValue("");
                         row.createCell(59).setCellValue("");
                         row.createCell(60).setCellValue("");
-                        if(synthetic.getTaxPercent() == null){
+                        if (synthetic.getTaxPercent() == null) {
                             row.createCell(61).setCellValue("");
-                        } else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
-                            row.createCell(61).setCellValue(synthetic.getTaxPercent()+"%");
-                        }else{
-                            row.createCell(61).setCellValue(10+"%");
+                        } else if (synthetic.getTaxPercent() == 8 || synthetic.getTaxPercent() == 10 || synthetic.getTaxPercent() == 5) {
+                            row.createCell(61).setCellValue(synthetic.getTaxPercent() + "%");
+                        } else {
+                            row.createCell(61).setCellValue(10 + "%");
                         }
-                        if (synthetic.getCurrencyTax() !=null){
+                        if (synthetic.getCurrencyTax() != null) {
                             row.createCell(62).setCellValue(synthetic.getCurrencyTax().doubleValue());
-                        }else {
+                        } else {
                             row.createCell(62).setCellValue("");
                         }
-                        row.createCell(63).setCellValue("");//thuế quy đổi
+                        row.createCell(63).setCellValue(""); //thuế quy đổi
                         row.createCell(64).setCellValue("");
                         row.createCell(65).setCellValue("");
                         row.createCell(66).setCellValue("");
@@ -207,10 +206,10 @@ public class SaInvoiceExcelHelper {
                     } else {
                         term.delete(0, term.length());
                         term.append(synthetic.getVoucherNo());
-                        createRowSaInvoice(row,synthetic,cellBody,serialInvoice);
+                        createRowSaInvoice(row, synthetic, cellBody, serialInvoice);
                     }
                 } else {
-                    createRowSaInvoice(row,synthetic,cellBody,serialInvoice);
+                    createRowSaInvoice(row, synthetic, cellBody, serialInvoice);
                 }
             }
 
@@ -221,7 +220,7 @@ public class SaInvoiceExcelHelper {
         }
     }
 
-    public static void createRowSaInvoice(Row row,SyntheticDTO synthetic,CellStyle cellBody,String serialInvoice){
+    public static void createRowSaInvoice(Row row, SyntheticDTO synthetic, CellStyle cellBody, String serialInvoice) {
         Integer exchangeRate = 1;
         row.createCell(0).setCellValue("Sổ tài chính");
         row.createCell(1).setCellValue("Có");
@@ -238,30 +237,30 @@ public class SaInvoiceExcelHelper {
         row.createCell(11).setCellValue(synthetic.getInvoiceDate());
         row.getCell(11).setCellStyle(cellBody);
         row.createCell(12).setCellValue(synthetic.getCurrencyType());
-        if (synthetic.getCurrencyType().equals("VND")){
+        if (synthetic.getCurrencyType().equals("VND")) {
             row.createCell(13).setCellValue(exchangeRate);
-        }else {
+        } else {
             row.createCell(13).setCellValue("");
         }
         row.createCell(14).setCellValue(synthetic.getCreditObject()); // mã đối tượng
         row.createCell(15).setCellValue("");
         row.createCell(16).setCellValue("");
         row.createCell(17).setCellValue("");
-        row.createCell(18).setCellValue("");//mst
+        row.createCell(18).setCellValue(""); //mst
         row.createCell(19).setCellValue("");
         row.createCell(20).setCellValue(synthetic.getExplanation());
         row.createCell(21).setCellValue("");
         row.createCell(22).setCellValue("");
         row.createCell(23).setCellValue("");
-        row.createCell(24).setCellValue("");//kèm theo
+        row.createCell(24).setCellValue(""); //kèm theo
         row.createCell(25).setCellValue("");
         row.createCell(26).setCellValue("");
         row.createCell(27).setCellValue("");
         row.createCell(28).setCellValue("");
         row.createCell(29).setCellValue("");
-        row.createCell(30).setCellValue("");// mặt hàng chung
+        row.createCell(30).setCellValue(""); // mặt hàng chung
         row.createCell(31).setCellValue("");
-        row.createCell(32).setCellValue(serialInvoice);//ký hiệu hđ
+        row.createCell(32).setCellValue(serialInvoice); //ký hiệu hđ
         row.createCell(33).setCellValue(synthetic.getInvoiceNo());
         row.createCell(34).setCellValue(synthetic.getInvoiceDate());
         row.getCell(34).setCellStyle(cellBody);
@@ -270,16 +269,16 @@ public class SaInvoiceExcelHelper {
         row.createCell(37).setCellValue(synthetic.getMaterialGoodCode());
         row.createCell(38).setCellValue(synthetic.getMaterialGoodName());
         row.createCell(39).setCellValue("Là hàng KM");
-        row.createCell(40).setCellValue(synthetic.getStorageOut());//Kho
+        row.createCell(40).setCellValue(synthetic.getStorageOut()); //Kho
         row.createCell(41).setCellValue(synthetic.getDebitAccount());
         row.createCell(42).setCellValue(synthetic.getCreditAccount());
         row.createCell(43).setCellValue("");
         row.createCell(44).setCellValue(synthetic.getCaculationUnit());
         row.createCell(45).setCellValue(synthetic.getAmount());
         row.createCell(46).setCellValue(synthetic.getPrice().doubleValue());
-        row.createCell(47).setCellValue(synthetic.getPrice().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//đơn giá quy đổi
+        row.createCell(47).setCellValue(synthetic.getPrice().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue()); //đơn giá quy đổi
         row.createCell(48).setCellValue(synthetic.getCurrency().doubleValue());
-        row.createCell(49).setCellValue(synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//thành tiền quy đổi
+        row.createCell(49).setCellValue(synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue()); //thành tiền quy đổi
         row.createCell(50).setCellValue("");
         row.createCell(51).setCellValue("");
         row.createCell(52).setCellValue("");
@@ -289,47 +288,46 @@ public class SaInvoiceExcelHelper {
         row.createCell(56).setCellValue("");
         row.createCell(57).setCellValue("");
         row.createCell(58).setCellValue("");
-        if (synthetic.getCurrencyXK() !=null) {
+        if (synthetic.getCurrencyXK() != null) {
             row.createCell(59).setCellValue(synthetic.getCurrencyXK().doubleValue());
-        }else {
+        } else {
             row.createCell(59).setCellValue("");
         }
         row.createCell(60).setCellValue("");
-        if(synthetic.getTaxPercent() == null){
+        if (synthetic.getTaxPercent() == null) {
             row.createCell(61).setCellValue("");
-        } else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
-            row.createCell(61).setCellValue(synthetic.getTaxPercent()+"%");
-        }else{
-            row.createCell(61).setCellValue(10+"%");
+        } else if (synthetic.getTaxPercent() == 8 || synthetic.getTaxPercent() == 10 || synthetic.getTaxPercent() == 5) {
+            row.createCell(61).setCellValue(synthetic.getTaxPercent() + "%");
+        } else {
+            row.createCell(61).setCellValue(10 + "%");
         }
-        if (synthetic.getCurrencyTax() !=null) {
+        if (synthetic.getCurrencyTax() != null) {
             row.createCell(62).setCellValue(synthetic.getCurrencyTax().doubleValue());
-            row.createCell(63).setCellValue(synthetic.getCurrencyTax().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//thuế quy đổi
-        }else {
+            row.createCell(63).setCellValue(synthetic.getCurrencyTax().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue()); //thuế quy đổi
+        } else {
             row.createCell(62).setCellValue("");
-            row.createCell(63).setCellValue("");//thuế quy đổi
+            row.createCell(63).setCellValue(""); //thuế quy đổi
         }
         row.createCell(64).setCellValue("");
         row.createCell(65).setCellValue("");
-        if (synthetic.getCreditAccountXK() !=null) {
+        if (synthetic.getCreditAccountXK() != null) {
             row.createCell(66).setCellValue(synthetic.getCreditAccountXK());
-        }else {
+        } else {
             row.createCell(66).setCellValue("");
-
         }
-        if (synthetic.getDebitAccountXK() !=null) {
+        if (synthetic.getDebitAccountXK() != null) {
             row.createCell(67).setCellValue(synthetic.getDebitAccountXK());
-        }else {
+        } else {
             row.createCell(67).setCellValue("");
         }
-        if (synthetic.getPriceXK() !=null) {
+        if (synthetic.getPriceXK() != null) {
             row.createCell(68).setCellValue(synthetic.getPriceXK().doubleValue());
-        }else {
+        } else {
             row.createCell(68).setCellValue("");
         }
-        if (synthetic.getCurrencyXK() !=null) {
+        if (synthetic.getCurrencyXK() != null) {
             row.createCell(69).setCellValue(synthetic.getCurrencyXK().doubleValue());
-        }else {
+        } else {
             row.createCell(69).setCellValue("");
         }
         row.createCell(70).setCellValue("");

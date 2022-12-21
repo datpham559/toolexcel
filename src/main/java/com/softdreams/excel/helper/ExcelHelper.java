@@ -1,12 +1,11 @@
 package com.softdreams.excel.helper;
 
+import static com.softdreams.excel.helper.ScaleConfig.scales;
+import static com.softdreams.excel.helper.SheetConfig.*;
+
 import com.softdreams.excel.domain.Customer;
 import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.service.dto.SyntheticDTO;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,13 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.softdreams.excel.helper.ScaleConfig.scales;
-import static com.softdreams.excel.helper.SheetConfig.*;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelHelper {
-
-
 
     public static boolean hasExcelFormat(MultipartFile file) {
         if (TYPE1.equals(file.getContentType()) || TYPE2.equals(file.getContentType())) {
@@ -431,7 +428,6 @@ public class ExcelHelper {
             StringBuilder term = new StringBuilder();
             term.append(synthetics.get(0).getVoucherNo());
             for (SyntheticDTO synthetic : synthetics) {
-
                 BigDecimal moneyChange = synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate));
                 Row row = sheet.createRow(rowIdx++);
                 if (synthetic != synthetics.get(0)) {
@@ -463,16 +459,16 @@ public class ExcelHelper {
                         row.createCell(22).setCellValue(synthetic.getSaleContract());
                         row.createCell(23).setCellValue("");
                         row.createCell(24).setCellValue("");
-                        if(synthetic.getTaxPercent() == null) {
+                        if (synthetic.getTaxPercent() == null) {
                             row.createCell(25).setCellValue("");
-                        }else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
-                            row.createCell(25).setCellValue(synthetic.getTaxPercent()+"%");
-                        }else {
-                            row.createCell(25).setCellValue(10+"%");
+                        } else if (synthetic.getTaxPercent() == 8 || synthetic.getTaxPercent() == 10 || synthetic.getTaxPercent() == 5) {
+                            row.createCell(25).setCellValue(synthetic.getTaxPercent() + "%");
+                        } else {
+                            row.createCell(25).setCellValue(10 + "%");
                         }
-                        if (synthetic.getCurrencyTax() !=null){
+                        if (synthetic.getCurrencyTax() != null) {
                             row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
-                        }else{
+                        } else {
                             row.createCell(26).setCellValue("");
                         }
                         row.createCell(27).setCellValue("");
@@ -487,10 +483,10 @@ public class ExcelHelper {
                     } else {
                         term.delete(0, term.length());
                         term.append(synthetic.getVoucherNo());
-                        createRowDebitNote(row,synthetic,cellBody);
+                        createRowDebitNote(row, synthetic, cellBody);
                     }
                 } else {
-                    createRowDebitNote(row,synthetic,cellBody);
+                    createRowDebitNote(row, synthetic, cellBody);
                 }
             }
 
@@ -501,7 +497,7 @@ public class ExcelHelper {
         }
     }
 
-    public static void createRowDebitNote(Row row,SyntheticDTO synthetic ,CellStyle cellBody){
+    public static void createRowDebitNote(Row row, SyntheticDTO synthetic, CellStyle cellBody) {
         Integer exchangeRate = 1;
         BigDecimal moneyChange = synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate));
 
@@ -535,16 +531,16 @@ public class ExcelHelper {
         row.createCell(22).setCellValue(synthetic.getSaleContract());
         row.createCell(23).setCellValue("");
         row.createCell(24).setCellValue("");
-        if(synthetic.getTaxPercent() == null) {
+        if (synthetic.getTaxPercent() == null) {
             row.createCell(25).setCellValue("");
-        }else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
-            row.createCell(25).setCellValue(synthetic.getTaxPercent()+"%");
-        }else {
-            row.createCell(25).setCellValue(10+"%");
+        } else if (synthetic.getTaxPercent() == 8 || synthetic.getTaxPercent() == 10 || synthetic.getTaxPercent() == 5) {
+            row.createCell(25).setCellValue(synthetic.getTaxPercent() + "%");
+        } else {
+            row.createCell(25).setCellValue(10 + "%");
         }
-        if (synthetic.getCurrencyTax() !=null){
+        if (synthetic.getCurrencyTax() != null) {
             row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
-        }else{
+        } else {
             row.createCell(26).setCellValue("");
         }
         row.createCell(27).setCellValue("");

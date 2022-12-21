@@ -1,7 +1,6 @@
 package com.softdreams.excel.service;
 
 import com.softdreams.excel.domain.Synthetic;
-
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +57,5 @@ public interface SyntheticService {
     void delete(Long id);
     void saveToSynthetic(MultipartFile file);
 
-    ByteArrayInputStream exportDebitNote(int voucherTypeNo,String keyUUID );
-
+    ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID);
 }

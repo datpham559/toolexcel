@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="congcudungcu">
+      <h2 data-cy="congcudungcuDetailsHeading"><span>Congcudungcu</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ congcudungcu.id }}</span>
+        </dd>
+        <dt><span>Ma Ccdc</span></dt>
+        <dd>
+          <span>{{ congcudungcu.ma_ccdc }}</span>
+        </dd>
+        <dt><span>Ten Ccdc</span></dt>
+        <dd>
+          <span>{{ congcudungcu.ten_ccdc }}</span>
+        </dd>
+        <dt><span>Loai Ccdc</span></dt>
+        <dd>
+          <span>{{ congcudungcu.loai_ccdc }}</span>
+        </dd>
+        <dt><span>Ly Do Ghi Tang</span></dt>
+        <dd>
+          <span>{{ congcudungcu.ly_do_ghi_tang }}</span>
+        </dd>
+        <dt><span>Ngay Ghi Tang</span></dt>
+        <dd>
+          <span>{{ congcudungcu.ngay_ghi_tang | formatMediumDate }}</span>
+        </dd>
+        <dt><span>So Ct Ghi Tang</span></dt>
+        <dd>
+          <span>{{ congcudungcu.so_ct_ghi_tang }}</span>
+        </dd>
+        <dt><span>So Ky Phan Bo</span></dt>
+        <dd>
+          <span>{{ congcudungcu.so_ky_phan_bo }}</span>
+        </dd>
+        <dt><span>So Ky Pb Con Lai</span></dt>
+        <dd>
+          <span>{{ congcudungcu.so_ky_pb_con_lai }}</span>
+        </dd>
+        <dt><span>Dvt</span></dt>
+        <dd>
+          <span>{{ congcudungcu.dvt }}</span>
+        </dd>
+        <dt><span>Sl Ghi Tang</span></dt>
+        <dd>
+          <span>{{ congcudungcu.sl_ghi_tang }}</span>
+        </dd>
+        <dt><span>Luy Ke Sl Da Giam</span></dt>
+        <dd>
+          <span>{{ congcudungcu.luy_ke_sl_da_giam }}</span>
+        </dd>
+        <dt><span>Sl Con Lai</span></dt>
+        <dd>
+          <span>{{ congcudungcu.sl_con_lai }}</span>
+        </dd>
+        <dt><span>Gia Tri Ccdc</span></dt>
+        <dd>
+          <span>{{ congcudungcu.gia_tri_ccdc }}</span>
+        </dd>
+        <dt><span>Gia Tri PB Hang Ky</span></dt>
+        <dd>
+          <span>{{ congcudungcu.gia_tri_PB_hang_ky }}</span>
+        </dd>
+        <dt><span>Pb Trong Ky</span></dt>
+        <dd>
+          <span>{{ congcudungcu.pb_trong_ky }}</span>
+        </dd>
+        <dt><span>Luy Ke Da Pb</span></dt>
+        <dd>
+          <span>{{ congcudungcu.luy_ke_da_pb }}</span>
+        </dd>
+        <dt><span>Gia Tri Con Lai</span></dt>
+        <dd>
+          <span>{{ congcudungcu.gia_tri_con_lai }}</span>
+        </dd>
+        <dt><span>Tk Cho Phan Bo</span></dt>
+        <dd>
+          <span>{{ congcudungcu.tk_cho_phan_bo }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ congcudungcu.createdDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key Uuid</span></dt>
+        <dd>
+          <span>{{ congcudungcu.key_uuid }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/congcudungcu', congcudungcu.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>

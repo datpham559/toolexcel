@@ -12,6 +12,11 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221215094920_added_entity_Customer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221216033616_added_entity_Congnophaithu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221216035200_added_entity_Congnophaitra.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221216040318_added_entity_Congcudungcu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221216041737_added_entity_Taisancodinh.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221216042217_added_entity_Tonkhodauky.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221216014016_added_entity_Synthetic.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221216034731_added_entity_DmNCC.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221216040032_added_entity_BankBalance.xml" relativeToChangelogFile="false"/>

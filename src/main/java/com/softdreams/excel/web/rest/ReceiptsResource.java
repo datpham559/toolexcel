@@ -31,11 +31,9 @@ public class ReceiptsResource {
 
     private final ReceiptsService receiptsService;
 
-
     public ReceiptsResource(ReceiptsService receiptsService) {
         this.receiptsService = receiptsService;
     }
-
 
     @GetMapping(value = "/export-receipts")
     public ResponseEntity<Resource> exportExcel() {

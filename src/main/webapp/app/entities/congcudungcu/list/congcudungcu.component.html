@@ -1,0 +1,221 @@
+<div>
+  <h2 id="page-heading" data-cy="CongcudungcuHeading">
+    <span>Congcudungcus</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-congcudungcu"
+        [routerLink]="['/congcudungcu/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Congcudungcu </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="congcudungcus?.length === 0">
+    <span>No Congcudungcus found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="congcudungcus && congcudungcus.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ma_ccdc">
+            <div class="d-flex">
+              <span>Ma Ccdc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ten_ccdc">
+            <div class="d-flex">
+              <span>Ten Ccdc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="loai_ccdc">
+            <div class="d-flex">
+              <span>Loai Ccdc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ly_do_ghi_tang">
+            <div class="d-flex">
+              <span>Ly Do Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ngay_ghi_tang">
+            <div class="d-flex">
+              <span>Ngay Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_ct_ghi_tang">
+            <div class="d-flex">
+              <span>So Ct Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_ky_phan_bo">
+            <div class="d-flex">
+              <span>So Ky Phan Bo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="so_ky_pb_con_lai">
+            <div class="d-flex">
+              <span>So Ky Pb Con Lai</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dvt">
+            <div class="d-flex">
+              <span>Dvt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sl_ghi_tang">
+            <div class="d-flex">
+              <span>Sl Ghi Tang</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="luy_ke_sl_da_giam">
+            <div class="d-flex">
+              <span>Luy Ke Sl Da Giam</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sl_con_lai">
+            <div class="d-flex">
+              <span>Sl Con Lai</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_ccdc">
+            <div class="d-flex">
+              <span>Gia Tri Ccdc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_PB_hang_ky">
+            <div class="d-flex">
+              <span>Gia Tri PB Hang Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pb_trong_ky">
+            <div class="d-flex">
+              <span>Pb Trong Ky</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="luy_ke_da_pb">
+            <div class="d-flex">
+              <span>Luy Ke Da Pb</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gia_tri_con_lai">
+            <div class="d-flex">
+              <span>Gia Tri Con Lai</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tk_cho_phan_bo">
+            <div class="d-flex">
+              <span>Tk Cho Phan Bo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="key_uuid">
+            <div class="d-flex">
+              <span>Key Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let congcudungcu of congcudungcus; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/congcudungcu', congcudungcu.id, 'view']">{{ congcudungcu.id }}</a>
+          </td>
+          <td>{{ congcudungcu.ma_ccdc }}</td>
+          <td>{{ congcudungcu.ten_ccdc }}</td>
+          <td>{{ congcudungcu.loai_ccdc }}</td>
+          <td>{{ congcudungcu.ly_do_ghi_tang }}</td>
+          <td>{{ congcudungcu.ngay_ghi_tang | formatMediumDate }}</td>
+          <td>{{ congcudungcu.so_ct_ghi_tang }}</td>
+          <td>{{ congcudungcu.so_ky_phan_bo }}</td>
+          <td>{{ congcudungcu.so_ky_pb_con_lai }}</td>
+          <td>{{ congcudungcu.dvt }}</td>
+          <td>{{ congcudungcu.sl_ghi_tang }}</td>
+          <td>{{ congcudungcu.luy_ke_sl_da_giam }}</td>
+          <td>{{ congcudungcu.sl_con_lai }}</td>
+          <td>{{ congcudungcu.gia_tri_ccdc }}</td>
+          <td>{{ congcudungcu.gia_tri_PB_hang_ky }}</td>
+          <td>{{ congcudungcu.pb_trong_ky }}</td>
+          <td>{{ congcudungcu.luy_ke_da_pb }}</td>
+          <td>{{ congcudungcu.gia_tri_con_lai }}</td>
+          <td>{{ congcudungcu.tk_cho_phan_bo }}</td>
+          <td>{{ congcudungcu.createdDate | formatMediumDate }}</td>
+          <td>{{ congcudungcu.key_uuid }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/congcudungcu', congcudungcu.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/congcudungcu', congcudungcu.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(congcudungcu)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

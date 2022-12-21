@@ -1,11 +1,10 @@
 package com.softdreams.excel.domain;
 
 import com.softdreams.excel.service.dto.SyntheticDTO;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.*;
 
 /**
  * A Synthetic.
@@ -268,7 +267,7 @@ public class Synthetic implements Serializable {
     @Column(name = "keyUUID")
     private String keyUUID;
 
-    @Column(name ="serialInvoice")
+    @Column(name = "serialInvoice")
     private String serialInvoice;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -831,6 +830,7 @@ public class Synthetic implements Serializable {
         this.serialInvoice = serialInvoice;
         return this;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

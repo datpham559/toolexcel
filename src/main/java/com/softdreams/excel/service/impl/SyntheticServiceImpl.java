@@ -5,18 +5,17 @@ import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.SyntheticService;
 import com.softdreams.excel.service.dto.SyntheticDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Service Implementation for managing {@link Synthetic}.
@@ -216,9 +215,10 @@ public class SyntheticServiceImpl implements SyntheticService {
             throw new RuntimeException("fail to store excel data: " + e.getMessage());
         }
     }
+
     @Override
-    public ByteArrayInputStream exportDebitNote(int voucherTypeNo,String keyUUID) {
-            List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);
+    public ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID) {
+        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo, keyUUID);
         ByteArrayInputStream inputStream = ExcelHelper.debitNoteToExcel(synthetics);
         return inputStream;
     }

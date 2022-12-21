@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="taisancodinh">
+      <h2 data-cy="taisancodinhDetailsHeading"><span>Taisancodinh</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ taisancodinh.id }}</span>
+        </dd>
+        <dt><span>Ma Tscd</span></dt>
+        <dd>
+          <span>{{ taisancodinh.ma_tscd }}</span>
+        </dd>
+        <dt><span>Ten Tscd</span></dt>
+        <dd>
+          <span>{{ taisancodinh.ten_tscd }}</span>
+        </dd>
+        <dt><span>Loai Tscd</span></dt>
+        <dd>
+          <span>{{ taisancodinh.loai_tscd }}</span>
+        </dd>
+        <dt><span>Don Vi Su Dung</span></dt>
+        <dd>
+          <span>{{ taisancodinh.don_vi_su_dung }}</span>
+        </dd>
+        <dt><span>Ngay Ghi Tang</span></dt>
+        <dd>
+          <span>{{ taisancodinh.ngay_ghi_tang | formatMediumDate }}</span>
+        </dd>
+        <dt><span>So Ct Ghi Tang</span></dt>
+        <dd>
+          <span>{{ taisancodinh.so_ct_ghi_tang }}</span>
+        </dd>
+        <dt><span>Ngay Bat Dau Tinh Kh</span></dt>
+        <dd>
+          <span>{{ taisancodinh.ngay_bat_dau_tinh_kh | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Thoi Gian Su Dung</span></dt>
+        <dd>
+          <span>{{ taisancodinh.thoi_gian_su_dung }}</span>
+        </dd>
+        <dt><span>Thoi Gian Su Dung Con Lai</span></dt>
+        <dd>
+          <span>{{ taisancodinh.thoi_gian_su_dung_con_lai }}</span>
+        </dd>
+        <dt><span>Nguyen Gia</span></dt>
+        <dd>
+          <span>{{ taisancodinh.nguyen_gia }}</span>
+        </dd>
+        <dt><span>Gia Tri Tinh Kh</span></dt>
+        <dd>
+          <span>{{ taisancodinh.gia_tri_tinh_kh }}</span>
+        </dd>
+        <dt><span>Hao Mon Trong Ky</span></dt>
+        <dd>
+          <span>{{ taisancodinh.hao_mon_trong_ky }}</span>
+        </dd>
+        <dt><span>Hao Mon Luy Ke</span></dt>
+        <dd>
+          <span>{{ taisancodinh.hao_mon_luy_ke }}</span>
+        </dd>
+        <dt><span>Gia Tri Con Lai</span></dt>
+        <dd>
+          <span>{{ taisancodinh.gia_tri_con_lai }}</span>
+        </dd>
+        <dt><span>Gia Tri KH Thang</span></dt>
+        <dd>
+          <span>{{ taisancodinh.gia_tri_KH_thang }}</span>
+        </dd>
+        <dt><span>Tk Nguyen Gia</span></dt>
+        <dd>
+          <span>{{ taisancodinh.tk_nguyen_gia }}</span>
+        </dd>
+        <dt><span>Tk Khau Hao</span></dt>
+        <dd>
+          <span>{{ taisancodinh.tk_khau_hao }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ taisancodinh.createdDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Key Uuid</span></dt>
+        <dd>
+          <span>{{ taisancodinh.key_uuid }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Quay lại</span>
+      </button>
+
+      <button type="button" [routerLink]="['/taisancodinh', taisancodinh.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Sửa</span>
+      </button>
+    </div>
+  </div>
+</div>

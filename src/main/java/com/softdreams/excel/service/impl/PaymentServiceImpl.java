@@ -5,13 +5,12 @@ import com.softdreams.excel.helper.PaymentExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.PaymentService;
 import com.softdreams.excel.service.dto.SyntheticDTO;
+import java.io.ByteArrayInputStream;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.ByteArrayInputStream;
-import java.util.List;
 
 @Service
 @Transactional
@@ -25,8 +24,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public ByteArrayInputStream exportExcel(int voucherTypeNo,String keyUUID) {
-        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);
+    public ByteArrayInputStream exportExcel(int voucherTypeNo, String keyUUID) {
+        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo, keyUUID);
         ByteArrayInputStream inputStream = PaymentExcelHelper.paymentToExcel(synthetics);
         return inputStream;
     }

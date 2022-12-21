@@ -29,16 +29,14 @@ public class PaymentResource {
 
     private final PaymentService paymentService;
 
-
     public PaymentResource(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-
     @GetMapping(value = "/export-payment")
-    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,@RequestParam("keyUUID") String keyUUID) {
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
         String filename = "Phieu Chi.xlsx";
-        InputStreamResource file = new InputStreamResource(paymentService.exportExcel(voucherTypeNo,keyUUID));
+        InputStreamResource file = new InputStreamResource(paymentService.exportExcel(voucherTypeNo, keyUUID));
 
         return ResponseEntity
             .ok()

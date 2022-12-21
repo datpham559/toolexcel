@@ -6,13 +6,12 @@ import com.softdreams.excel.helper.ReceiptsExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.ReceiptsService;
 import com.softdreams.excel.service.dto.SyntheticDTO;
+import java.io.ByteArrayInputStream;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.ByteArrayInputStream;
-import java.util.List;
 
 @Service
 @Transactional

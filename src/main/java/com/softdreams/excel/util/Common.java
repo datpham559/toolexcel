@@ -98,14 +98,14 @@ public class Common {
                 number = 30;
                 break;
             case 2:
-            {
-                if ((year % 400 == 0) || (year % 4 == 0 & year % 100 == 0)) {
-                    number = 29;
-                } else {
-                    number = 28;
+                {
+                    if ((year % 400 == 0) || (year % 4 == 0 & year % 100 == 0)) {
+                        number = 29;
+                    } else {
+                        number = 28;
+                    }
+                    break;
                 }
-                break;
-            }
             default:
                 number = 0;
                 break;
@@ -176,15 +176,15 @@ public class Common {
         if (!Strings.isNullOrEmpty(fromDate) && !Strings.isNullOrEmpty(toDate)) {
             sqlBuilder.append(
                 "AND :fromDate" +
-                    columnName +
-                    " <= CONVERT(varchar, " +
-                    columnName +
-                    ", 112) AND :toDate" +
-                    columnName +
-                    " " +
-                    ">= CONVERT(varchar, " +
-                    columnName +
-                    ", 112) "
+                columnName +
+                " <= CONVERT(varchar, " +
+                columnName +
+                ", 112) AND :toDate" +
+                columnName +
+                " " +
+                ">= CONVERT(varchar, " +
+                columnName +
+                ", 112) "
             );
             params.put("fromDate" + columnName, fromDate);
             params.put("toDate" + columnName, toDate);
@@ -218,14 +218,14 @@ public class Common {
         if (!Strings.isNullOrEmpty(fromDate) && !Strings.isNullOrEmpty(toDate)) {
             sqlBuilder.append(
                 "AND :from" +
-                    param +
-                    " <= CONVERT(varchar, " +
-                    columnName +
-                    ", 112) AND :to" +
-                    param +
-                    " >= CONVERT(varchar, " +
-                    columnName +
-                    ", 112) "
+                param +
+                " <= CONVERT(varchar, " +
+                columnName +
+                ", 112) AND :to" +
+                param +
+                " >= CONVERT(varchar, " +
+                columnName +
+                ", 112) "
             );
             params.put("from" + param, fromDate);
             params.put("to" + param, toDate);
@@ -250,25 +250,25 @@ public class Common {
         if (!Strings.isNullOrEmpty(fromDate) && !Strings.isNullOrEmpty(toDate)) {
             sqlBuilder.append(
                 " AND ((:from" +
-                    param +
-                    " <= CONVERT(varchar, " +
-                    columnName1 +
-                    ", 112) AND :to" +
-                    param +
-                    " >= CONVERT(varchar, " +
-                    columnName1 +
-                    ", 112)) OR "
+                param +
+                " <= CONVERT(varchar, " +
+                columnName1 +
+                ", 112) AND :to" +
+                param +
+                " >= CONVERT(varchar, " +
+                columnName1 +
+                ", 112)) OR "
             );
             sqlBuilder.append(
                 " (:from" +
-                    param +
-                    " <= CONVERT(varchar, " +
-                    columnName2 +
-                    ", 112) AND :to" +
-                    param +
-                    " >= CONVERT(varchar, " +
-                    columnName2 +
-                    ", 112))) "
+                param +
+                " <= CONVERT(varchar, " +
+                columnName2 +
+                ", 112) AND :to" +
+                param +
+                " >= CONVERT(varchar, " +
+                columnName2 +
+                ", 112))) "
             );
             params.put("from" + param, fromDate);
             params.put("to" + param, toDate);
@@ -432,11 +432,11 @@ public class Common {
             //            cal.setTime(date);
             String formatedDate =
                 dateStr.getYear() +
-                    "" +
-                    (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
-                    "" +
-                    (dateStr.getDayOfMonth() < 10 ? "0" + dateStr.getDayOfMonth() : dateStr.getDayOfMonth()) +
-                    "";
+                "" +
+                (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
+                "" +
+                (dateStr.getDayOfMonth() < 10 ? "0" + dateStr.getDayOfMonth() : dateStr.getDayOfMonth()) +
+                "";
             //            System.out.println("formatedDate : " + formatedDate);
             return formatedDate;
         } catch (Exception ex) {
@@ -455,11 +455,11 @@ public class Common {
             //            cal.setTime(date);
             String formatedDate =
                 dateStr.getYear() +
-                    "-" +
-                    (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
-                    "-" +
-                    (dateStr.getDayOfMonth() < 10 ? "0" + dateStr.getDayOfMonth() : dateStr.getDayOfMonth()) +
-                    "";
+                "-" +
+                (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
+                "-" +
+                (dateStr.getDayOfMonth() < 10 ? "0" + dateStr.getDayOfMonth() : dateStr.getDayOfMonth()) +
+                "";
             //            System.out.println("formatedDate : " + formatedDate);
             return formatedDate;
         } catch (Exception ex) {
@@ -482,11 +482,11 @@ public class Common {
             } else {
                 formatedDate =
                     (dateStr.getDayOfMonth() < 10 ? "0" + dateStr.getDayOfMonth() : dateStr.getDayOfMonth()) +
-                        "" +
-                        "/" +
-                        (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
-                        "/" +
-                        dateStr.getYear();
+                    "" +
+                    "/" +
+                    (dateStr.getMonthValue() < 10 ? "0" + dateStr.getMonthValue() : dateStr.getMonthValue()) +
+                    "/" +
+                    dateStr.getYear();
             }
             //            System.out.println("formatedDate : " + formatedDate);
             return formatedDate;
@@ -500,23 +500,23 @@ public class Common {
         if (mst.length() <= 14 && mst.length() >= 10) {
             Integer value =
                 getInt(mst.charAt(0)) *
-                    31 +
-                    getInt(mst.charAt(1)) *
-                        29 +
-                    getInt(mst.charAt(2)) *
-                        23 +
-                    getInt(mst.charAt(3)) *
-                        19 +
-                    getInt(mst.charAt(4)) *
-                        17 +
-                    getInt(mst.charAt(5)) *
-                        13 +
-                    getInt(mst.charAt(6)) *
-                        7 +
-                    getInt(mst.charAt(7)) *
-                        5 +
-                    getInt(mst.charAt(8)) *
-                        3;
+                31 +
+                getInt(mst.charAt(1)) *
+                29 +
+                getInt(mst.charAt(2)) *
+                23 +
+                getInt(mst.charAt(3)) *
+                19 +
+                getInt(mst.charAt(4)) *
+                17 +
+                getInt(mst.charAt(5)) *
+                13 +
+                getInt(mst.charAt(6)) *
+                7 +
+                getInt(mst.charAt(7)) *
+                5 +
+                getInt(mst.charAt(8)) *
+                3;
             int mod = 10 - value % 11;
             return Math.abs(mod) == getInt(mst.charAt(9));
         } else {
@@ -542,21 +542,21 @@ public class Common {
         String data = id.toString();
         String finalData =
             data.substring(6, 8) +
-                data.substring(4, 6) +
-                data.substring(2, 4) +
-                data.substring(0, 2) +
-                "-" +
-                data.substring(11, 13) +
-                data.substring(9, 11) +
-                "-" +
-                data.substring(16, 18) +
-                data.substring(14, 16) +
-                data.substring(18);
+            data.substring(4, 6) +
+            data.substring(2, 4) +
+            data.substring(0, 2) +
+            "-" +
+            data.substring(11, 13) +
+            data.substring(9, 11) +
+            "-" +
+            data.substring(16, 18) +
+            data.substring(14, 16) +
+            data.substring(18);
         return UUID.fromString(finalData);
     }
 
-
     /**
+
      * @param input
      * @return
      * @author anmt
@@ -581,13 +581,13 @@ public class Common {
         }
     }
 
-//    public static void setParam(PreparedStatement ps, int index, UUID value) throws SQLException {
-//        if (value == null) {
-//            ps.setNull(index, Types.NVARCHAR);
-//        } else {
-//            ps.setString(index, Utils.uuidConvertToGUID(value).toString());
-//        }
-//    }
+    //    public static void setParam(PreparedStatement ps, int index, UUID value) throws SQLException {
+    //        if (value == null) {
+    //            ps.setNull(index, Types.NVARCHAR);
+    //        } else {
+    //            ps.setString(index, Utils.uuidConvertToGUID(value).toString());
+    //        }
+    //    }
 
     public static void setParam(PreparedStatement ps, int index, Integer value) throws SQLException {
         if (value == null) {
@@ -630,10 +630,9 @@ public class Common {
         if (value == null) {
             ps.setNull(index, Types.NVARCHAR);
         } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
-                .withZone(ZoneId.systemDefault());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").withZone(ZoneId.systemDefault());
             String value2 = formatter.format(value);
-//            ps.setString(index, formatter.format(value));
+            //            ps.setString(index, formatter.format(value));
             ps.setString(index, value2);
         }
     }
@@ -686,6 +685,7 @@ public class Common {
             ps.setDate(index, (java.sql.Date) value);
         }
     }
+
     public static void setParam(PreparedStatement ps, int index, Float value) throws SQLException {
         if (value == null) {
             ps.setNull(index, Types.FLOAT);
