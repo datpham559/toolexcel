@@ -202,19 +202,30 @@ public class BuyLocallyExcelHelper {
                     row.createCell(49).setCellValue("");//Hạn dùng
                     row.createCell(50).setCellValue("");//diễn giải thuế
                     row.createCell(51).setCellValue("");//giá tính thuế
-                    row.createCell(51).setCellValue("");//%thuế Nk
-                    row.createCell(52).setCellValue("");//tiền thuế Nk
-                    row.createCell(53).setCellValue("");//TK thuế Nk
+                    row.createCell(52).setCellValue("");//%thuế Nk
+                    row.createCell(53).setCellValue("");//tiền thuế Nk
                     row.createCell(54).setCellValue("");//TK thuế Nk
-                    row.createCell(55).setCellValue("");//% thuế TTĐB
-                    row.createCell(56).setCellValue("");//tiền thuế TTĐB
-                    row.createCell(57).setCellValue("");//TK thuế TTĐB
+                    row.createCell(55).setCellValue("");//TK thuế Nk
+                    row.createCell(56).setCellValue("");//% thuế TTĐB
+                    row.createCell(57).setCellValue("");//tiền thuế TTĐB
                     row.createCell(58).setCellValue("");//TK thuế TTĐB
-                    row.createCell(59).setCellValue("");//% thuế GTGT
-                    row.createCell(60).setCellValue(synthetic.getCurrency().doubleValue());//tiền thuế GTGT
-                    row.createCell(61).setCellValue("");//tiền thuế GTGT QĐ
-                    row.createCell(62).setCellValue(synthetic.getDebitAccount());//TK thuế GTGT QĐ
-                    row.createCell(63).setCellValue(synthetic.getCreditAccount());//TKĐƯ thuế GTGT
+                    row.createCell(59).setCellValue("");//TK thuế TTĐB
+                    row.createCell(60).setCellValue("");//% thuế GTGT
+                    row.createCell(61).setCellValue(synthetic.getCurrency().doubleValue());//tiền thuế GTGT
+                    row.createCell(62).setCellValue("");//tiền thuế GTGT QĐ
+                    row.createCell(63).setCellValue(synthetic.getDebitAccount());//TK thuế GTGT QĐ
+                    row.createCell(64).setCellValue(synthetic.getCreditAccount());//TKĐƯ thuế GTGT
+                    row.createCell(65).setCellValue("");//mẫu số HĐ (HT)
+                    row.createCell(66).setCellValue("");//Ký hiệu HĐ (HT)
+                    row.createCell(67).setCellValue("");//Số HĐ (HT)
+                    row.createCell(68).setCellValue("");//Ngày HĐ (HT)
+                    row.createCell(69).setCellValue("1");//Nhóm HHDV mua vào
+                    row.createCell(70).setCellValue(synthetic.getItemCost());//Khoản mục CP
+                    row.createCell(71).setCellValue("");//Đối tượng THCP
+                    row.createCell(72).setCellValue("");//Hợp đồng
+                    row.createCell(73).setCellValue("");//Mục thu/chi
+                    row.createCell(74).setCellValue("");//phòng ban
+                    row.createCell(75).setCellValue("");//mã thống kê
                     check = true;
                     continue;
                 }
