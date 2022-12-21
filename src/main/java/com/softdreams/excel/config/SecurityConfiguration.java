@@ -81,6 +81,7 @@ public class SecurityConfiguration {
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/customer/**").permitAll()
+            .antMatchers("/api/saInvoice/**").permitAll()
             .antMatchers("/api/synthetic/**").permitAll()
             .antMatchers("/api/import").permitAll()
             .antMatchers("/api/import-ncc").permitAll()

@@ -200,7 +200,8 @@ public class SyntheticResource {
     }
 
     @GetMapping(value = "/export")
-    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,@RequestParam("keyUUID") String keyUUID) {
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,
+                                                @RequestParam("keyUUID") String keyUUID) {
         String filename = "Bao_No.xlsx";
         InputStreamResource file = new InputStreamResource(syntheticService.exportDebitNote(voucherTypeNo,keyUUID));
 
