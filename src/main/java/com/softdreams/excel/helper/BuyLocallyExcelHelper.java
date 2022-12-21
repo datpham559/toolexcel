@@ -191,7 +191,7 @@ public class BuyLocallyExcelHelper {
                     row.createCell(38).setCellValue("");//đơn giá
                     row.createCell(39).setCellValue(synthetic.getPrice().doubleValue());//đơn giá QĐ
                     row.createCell(40).setCellValue(synthetic.getCurrency().doubleValue());//thành tiền
-                    row.createCell(41).setCellValue(synthetic.getCurrency().doubleValue() * 1.0);//thành tiền QĐ
+                    row.createCell(41).setCellValue(synthetic.getCurrency().doubleValue() * 1.0 );//thành tiền QĐ
                     row.createCell(42).setCellValue(synthetic.getTranferRate().doubleValue());//Tỷ lệ CK
                     row.createCell(43).setCellValue("");//tiền Ck
                     row.createCell(44).setCellValue(synthetic.getMoneyTranfer().doubleValue());//tiền Ck QĐ
@@ -205,27 +205,25 @@ public class BuyLocallyExcelHelper {
                     row.createCell(52).setCellValue("");//%thuế Nk
                     row.createCell(53).setCellValue("");//tiền thuế Nk
                     row.createCell(54).setCellValue("");//TK thuế Nk
-                    row.createCell(55).setCellValue("");//TK thuế Nk
-                    row.createCell(56).setCellValue("");//% thuế TTĐB
-                    row.createCell(57).setCellValue("");//tiền thuế TTĐB
-                    row.createCell(58).setCellValue("");//TK thuế TTĐB
-                    row.createCell(59).setCellValue("");//TK thuế TTĐB
-                    row.createCell(60).setCellValue("");//% thuế GTGT
-                    row.createCell(61).setCellValue(synthetic.getCurrency().doubleValue());//tiền thuế GTGT
-                    row.createCell(62).setCellValue("");//tiền thuế GTGT QĐ
-                    row.createCell(63).setCellValue(synthetic.getDebitAccount());//TK thuế GTGT QĐ
-                    row.createCell(64).setCellValue(synthetic.getCreditAccount());//TKĐƯ thuế GTGT
-                    row.createCell(65).setCellValue("");//mẫu số HĐ (HT)
-                    row.createCell(66).setCellValue("");//Ký hiệu HĐ (HT)
-                    row.createCell(67).setCellValue("");//Số HĐ (HT)
-                    row.createCell(68).setCellValue("");//Ngày HĐ (HT)
-                    row.createCell(69).setCellValue("1");//Nhóm HHDV mua vào
-                    row.createCell(70).setCellValue(synthetic.getItemCost());//Khoản mục CP
-                    row.createCell(71).setCellValue("");//Đối tượng THCP
-                    row.createCell(72).setCellValue("");//Hợp đồng
-                    row.createCell(73).setCellValue("");//Mục thu/chi
-                    row.createCell(74).setCellValue("");//phòng ban
-                    row.createCell(75).setCellValue("");//mã thống kê
+                    row.createCell(55).setCellValue("");//% thuế TTĐB
+                    row.createCell(56).setCellValue("");//tiền thuế TTĐB
+                    row.createCell(57).setCellValue("");//TK thuế TTĐB
+                    row.createCell(58).setCellValue("");//% thuế GTGT
+                    row.createCell(59).setCellValue(synthetic.getCurrency().doubleValue());//tiền thuế GTGT
+                    row.createCell(60).setCellValue("");//tiền thuế GTGT QĐ
+                    row.createCell(61).setCellValue(synthetic.getDebitAccount());//TK thuế GTGT
+                    row.createCell(62).setCellValue(synthetic.getCreditAccount());//TKĐƯ thuế GTGT
+                    row.createCell(63).setCellValue("");//mẫu số HĐ (HT)
+                    row.createCell(64).setCellValue("");//Ký hiệu HĐ (HT)
+                    row.createCell(65).setCellValue("");//Số HĐ (HT)
+                    row.createCell(66).setCellValue("");//Ngày HĐ (HT)
+                    row.createCell(67).setCellValue("1");//Nhóm HHDV mua vào
+                    row.createCell(68).setCellValue(synthetic.getItemCost());//Khoản mục CP
+                    row.createCell(69).setCellValue("");//Đối tượng THCP
+                    row.createCell(70).setCellValue("");//Hợp đồng
+                    row.createCell(71).setCellValue("");//Mục thu/chi
+                    row.createCell(72).setCellValue("");//phòng ban
+                    row.createCell(73).setCellValue("");//mã thống kê
                     check = true;
                     continue;
                 }
