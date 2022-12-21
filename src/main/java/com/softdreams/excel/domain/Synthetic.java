@@ -64,6 +64,8 @@ import java.time.LocalDate;
                         @ColumnResult(name = "keyUUID", type = String.class),
                         @ColumnResult(name = "currencyTax", type = BigDecimal.class),
                         @ColumnResult(name = "taxPercent", type = Integer.class),
+                        @ColumnResult(name = "debitAccountTax", type = String.class),
+                        @ColumnResult(name = "creditAccountTax", type = String.class),
                     }
                 ),
             }

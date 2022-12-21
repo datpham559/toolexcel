@@ -375,7 +375,7 @@ public class PaymentExcelHelper {
                     row.createCell(28).setCellValue("");// mã thống kê
                     row.createCell(29).setCellValue("");//hợp đồng
                     row.createCell(30).setCellValue("");////diễn giải HT thuế
-                    row.createCell(31).setCellValue("");//TK thuế GTGT
+                    row.createCell(31).setCellValue(synthetic.getDebitAccountTax());//TK thuế GTGT
                     if (synthetic.getTaxPercent() !=null){
                         row.createCell(32).setCellValue(synthetic.getTaxPercent());//thuế suất
                     }else{
@@ -486,7 +486,7 @@ public class PaymentExcelHelper {
                     row.createCell(28).setCellValue("");// mã thống kê
                     row.createCell(29).setCellValue("");//hợp đồng
                     row.createCell(30).setCellValue("");////diễn giải HT thuế
-                    row.createCell(31).setCellValue("");//TK thuế GTGT
+                    row.createCell(31).setCellValue(synthetic.getDebitAccount());//TK thuế GTGT
 
                     if (synthetic.getTaxPercent() !=null){
                         row.createCell(32).setCellValue(synthetic.getTaxPercent());//thuế suất

@@ -91,6 +91,10 @@ public class SyntheticDTO {
 
     private BigDecimal currencyTax;
 
+    private String debitAccountTax;
+
+    private String creditAccountTax;
+
     private Integer taxPercent;
 
     public SyntheticDTO(Long id, String voucherType, Integer voucherTypeNo,
@@ -107,7 +111,7 @@ public class SyntheticDTO {
                         String buyOrder, String purchaseContract, String saleContract,
                         String statsCode, String explanation, String explanationDetail,
                         String recordStatus, LocalDate createdDate, String keyUUID,
-                        BigDecimal currencyTax, Integer taxPercent) {
+                        BigDecimal currencyTax, Integer taxPercent, String debitAccountTax, String creditAccountTax) {
         this.id = id;
         this.voucherType = voucherType;
         this.voucherTypeNo = voucherTypeNo;
@@ -152,6 +156,8 @@ public class SyntheticDTO {
         this.keyUUID = keyUUID;
         this.currencyTax = currencyTax;
         this.taxPercent = taxPercent;
+        this.debitAccountTax = debitAccountTax;
+        this.creditAccountTax = creditAccountTax;
     }
 
     public Long getId() {
@@ -500,6 +506,22 @@ public class SyntheticDTO {
 
     public Integer getTaxPercent() {
         return taxPercent;
+    }
+
+    public String getDebitAccountTax() {
+        return debitAccountTax;
+    }
+
+    public void setDebitAccountTax(String debitAccountTax) {
+        this.debitAccountTax = debitAccountTax;
+    }
+
+    public String getCreditAccountTax() {
+        return creditAccountTax;
+    }
+
+    public void setCreditAccountTax(String creditAccountTax) {
+        this.creditAccountTax = creditAccountTax;
     }
 
     public void setTaxPercent(Integer taxPercent) {
