@@ -1,6 +1,7 @@
 package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Congcudungcu;
+import com.softdreams.excel.helper.CongcudungcuHelper;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CongcudungcuRepository;
 import com.softdreams.excel.service.CongcudungcuService;
@@ -138,7 +139,7 @@ public class CongcudungcuServiceImpl implements CongcudungcuService {
     @Override
     public void saveCongcudungcu(MultipartFile file) {
         try {
-            List<Congcudungcu> inventories = ExcelHelper.excelToCongcudungcu(file.getInputStream());
+            List<Congcudungcu> inventories = CongcudungcuHelper.excelToCongcudungcu(file.getInputStream());
             String key = UUID.randomUUID().toString();
             LocalDate date = LocalDate.now();
             for (Congcudungcu Congcudungcu : inventories) {

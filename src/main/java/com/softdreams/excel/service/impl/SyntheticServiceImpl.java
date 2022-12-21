@@ -2,10 +2,10 @@ package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.helper.ExcelHelper;
+import com.softdreams.excel.helper.ExportExcelHelper;
 import com.softdreams.excel.repository.SyntheticRepository;
 import com.softdreams.excel.service.SyntheticService;
 import com.softdreams.excel.service.dto.SyntheticDTO;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -225,9 +225,16 @@ public class SyntheticServiceImpl implements SyntheticService {
     }
 
     @Override
-    public ByteArrayInputStream exportExcel() {
+    public ByteArrayInputStream exportCreditExcel() {
         List<Synthetic> synthetics = syntheticRepository.getAccreditativeOrderByVoucherNo9();
-        ByteArrayInputStream inputStream = ExcelHelper.creditTransferToExcel(synthetics);
+        ByteArrayInputStream inputStream = ExportExcelHelper.creditTransferToExcel(synthetics);
+        return inputStream;
+    }
+
+    @Override
+    public ByteArrayInputStream exportBuyServiceExcel(int voucherTypeNo, String keyUUID) {
+        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo, keyUUID);
+        ByteArrayInputStream inputStream = ExportExcelHelper.chung_tu_mua_dich_vuToExcel(synthetics);
         return inputStream;
     }
 }

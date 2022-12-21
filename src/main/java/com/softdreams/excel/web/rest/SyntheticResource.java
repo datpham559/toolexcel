@@ -213,7 +213,18 @@ public class SyntheticResource {
     @GetMapping(value = "/export_Bao_Co")
     public ResponseEntity<Resource> exportExcel() {
         String filename = "import_Bao_Co.xlsx";
-        InputStreamResource file = new InputStreamResource(syntheticService.exportExcel());
+        InputStreamResource file = new InputStreamResource(syntheticService.exportCreditExcel());
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
+    @GetMapping(value = "/export_chung_tu_mua_hang")
+    public ResponseEntity<Resource> exportCTMH(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
+        String filename = "import_chung_tu_mua_hang.xlsx";
+        InputStreamResource file = new InputStreamResource(syntheticService.exportBuyServiceExcel(voucherTypeNo, keyUUID));
         return ResponseEntity
             .ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)

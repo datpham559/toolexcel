@@ -59,5 +59,7 @@ public interface SyntheticService {
 
     ByteArrayInputStream exportDebitNote(int voucherTypeNo, String keyUUID);
 
-    public ByteArrayInputStream exportExcel();
+    public ByteArrayInputStream exportCreditExcel();
+
+    ByteArrayInputStream exportBuyServiceExcel(int voucherTypeNo, String keyUUID);
 }

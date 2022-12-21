@@ -1,6 +1,7 @@
 package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Congnophaithu;
+import com.softdreams.excel.helper.CongnophaithuHelper;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.repository.CongnophaithuRepository;
 import com.softdreams.excel.service.CongnophaithuService;
@@ -113,7 +114,7 @@ public class CongnophaithuServiceImpl implements CongnophaithuService {
     @Override
     public void saveCongnophaithu(MultipartFile file) {
         try {
-            List<Congnophaithu> Congnophaithus = ExcelHelper.excelToCong_no_phai_thu(file.getInputStream());
+            List<Congnophaithu> Congnophaithus = CongnophaithuHelper.excelToCong_no_phai_thu(file.getInputStream());
             String key = UUID.randomUUID().toString();
             LocalDate date = LocalDate.now();
             for (Congnophaithu Congnophaithu : Congnophaithus) {

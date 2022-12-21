@@ -2,6 +2,7 @@ package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Tonkhodauky;
 import com.softdreams.excel.helper.ExcelHelper;
+import com.softdreams.excel.helper.TonkhodaukyHelper;
 import com.softdreams.excel.repository.TonkhodaukyRepository;
 import com.softdreams.excel.service.TonkhodaukyService;
 import java.io.IOException;
@@ -123,7 +124,7 @@ public class TonkhodaukyServiceImpl implements TonkhodaukyService {
     @Override
     public void saveTonkhodauky(MultipartFile file) {
         try {
-            List<Tonkhodauky> Tonkhodaukys = ExcelHelper.excelToTonkhodauky(file.getInputStream());
+            List<Tonkhodauky> Tonkhodaukys = TonkhodaukyHelper.excelToTonkhodauky(file.getInputStream());
             String key = UUID.randomUUID().toString();
             LocalDate date = LocalDate.now();
             for (Tonkhodauky Tonkhodauky : Tonkhodaukys) {

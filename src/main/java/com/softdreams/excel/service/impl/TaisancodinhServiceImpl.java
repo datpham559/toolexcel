@@ -2,6 +2,7 @@ package com.softdreams.excel.service.impl;
 
 import com.softdreams.excel.domain.Taisancodinh;
 import com.softdreams.excel.helper.ExcelHelper;
+import com.softdreams.excel.helper.TaisancodinhHelper;
 import com.softdreams.excel.repository.TaisancodinhRepository;
 import com.softdreams.excel.service.TaisancodinhService;
 import java.io.IOException;
@@ -135,7 +136,7 @@ public class TaisancodinhServiceImpl implements TaisancodinhService {
     @Override
     public void saveTaisancodinh(MultipartFile file) {
         try {
-            List<Taisancodinh> Taisancodinhs = ExcelHelper.excelToTaisancodinh(file.getInputStream());
+            List<Taisancodinh> Taisancodinhs = TaisancodinhHelper.excelToTaisancodinh(file.getInputStream());
             String key = UUID.randomUUID().toString();
             LocalDate date = LocalDate.now();
             for (Taisancodinh Taisancodinh : Taisancodinhs) {
