@@ -189,6 +189,24 @@ public class SyntheticDTO {
         this.keyUUID = keyUUID;
         this.currencyTax = currencyTax;
         this.taxPercent = taxPercent;
+        this.debitAccountTax = debitAccountTax;
+        this.creditAccountTax = creditAccountTax;
+    }
+
+    public String getDebitAccountTax() {
+        return debitAccountTax;
+    }
+
+    public void setDebitAccountTax(String debitAccountTax) {
+        this.debitAccountTax = debitAccountTax;
+    }
+
+    public String getCreditAccountTax() {
+        return creditAccountTax;
+    }
+
+    public void setCreditAccountTax(String creditAccountTax) {
+        this.creditAccountTax = creditAccountTax;
     }
 
     public Long getId() {
