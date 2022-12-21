@@ -18,9 +18,9 @@ public class SaInvoiceServiceImpl implements SaInvoiceService {
     @Autowired
     private SyntheticRepository syntheticRepository;
     @Override
-    public ByteArrayInputStream exportSaInvoice(int voucherTypeNo, String keyUUID) {
+    public ByteArrayInputStream exportSaInvoice(int voucherTypeNo, String keyUUID,String serialInvoice) {
         List<SyntheticDTO> synthetics = syntheticRepository.getSaInvoice(voucherTypeNo,keyUUID);
-        ByteArrayInputStream inputStream = SaInvoiceExcelHelper.saInvoiceToExcel(synthetics);
+        ByteArrayInputStream inputStream = SaInvoiceExcelHelper.saInvoiceToExcel(synthetics,serialInvoice);
         return inputStream;
     }
 }

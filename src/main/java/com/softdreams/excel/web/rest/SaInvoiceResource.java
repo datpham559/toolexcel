@@ -22,9 +22,12 @@ public class SaInvoiceResource {
     }
 
     @GetMapping(value = "/export")
-    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
+    public ResponseEntity<Resource> exportExcel(@RequestParam("voucherTypeNo") int voucherTypeNo,
+                                                @RequestParam("keyUUID") String keyUUID,
+                                                @RequestParam(value ="serialInvoice",required = false) String serialInvoice
+                                                ) {
         String filename = "Chung_tu_ban_hang.xlsx";
-        InputStreamResource file = new InputStreamResource(saInvoiceService.exportSaInvoice(voucherTypeNo,keyUUID));
+        InputStreamResource file = new InputStreamResource(saInvoiceService.exportSaInvoice(voucherTypeNo,keyUUID,serialInvoice));
 
         return ResponseEntity
             .ok()

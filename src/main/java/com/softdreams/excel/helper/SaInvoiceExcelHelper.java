@@ -14,7 +14,7 @@ import static com.softdreams.excel.helper.SheetConfig.*;
 
 public class SaInvoiceExcelHelper {
 
-    public static ByteArrayInputStream saInvoiceToExcel(List<SyntheticDTO> synthetics)  {
+    public static ByteArrayInputStream saInvoiceToExcel(List<SyntheticDTO> synthetics,String serialInvoice)  {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             Sheet sheet = workbook.createSheet(SHEET_CHUNG_TU_BAN_HANG);
 
@@ -147,7 +147,7 @@ public class SaInvoiceExcelHelper {
                         row.createCell(29).setCellValue("");
                         row.createCell(30).setCellValue("");// mặt hàng chung
                         row.createCell(31).setCellValue("");
-                        row.createCell(32).setCellValue("");//ký hiệu hđ
+                        row.createCell(32).setCellValue(serialInvoice);//ký hiệu hđ
                         row.createCell(33).setCellValue(synthetic.getInvoiceNo());
                         row.createCell(34).setCellValue(synthetic.getInvoiceDate());
                         row.getCell(34).setCellStyle(cellBody);
@@ -207,10 +207,10 @@ public class SaInvoiceExcelHelper {
                     } else {
                         term.delete(0, term.length());
                         term.append(synthetic.getVoucherNo());
-                        createRowSaInvoice(row,synthetic,cellBody);
+                        createRowSaInvoice(row,synthetic,cellBody,serialInvoice);
                     }
                 } else {
-                    createRowSaInvoice(row,synthetic,cellBody);
+                    createRowSaInvoice(row,synthetic,cellBody,serialInvoice);
                 }
             }
 
@@ -221,7 +221,7 @@ public class SaInvoiceExcelHelper {
         }
     }
 
-    public static void createRowSaInvoice(Row row,SyntheticDTO synthetic,CellStyle cellBody){
+    public static void createRowSaInvoice(Row row,SyntheticDTO synthetic,CellStyle cellBody,String serialInvoice){
         Integer exchangeRate = 1;
         row.createCell(0).setCellValue("Sổ tài chính");
         row.createCell(1).setCellValue("Có");
@@ -261,7 +261,7 @@ public class SaInvoiceExcelHelper {
         row.createCell(29).setCellValue("");
         row.createCell(30).setCellValue("");// mặt hàng chung
         row.createCell(31).setCellValue("");
-        row.createCell(32).setCellValue("");//ký hiệu hđ
+        row.createCell(32).setCellValue(serialInvoice);//ký hiệu hđ
         row.createCell(33).setCellValue(synthetic.getInvoiceNo());
         row.createCell(34).setCellValue(synthetic.getInvoiceDate());
         row.getCell(34).setCellStyle(cellBody);
