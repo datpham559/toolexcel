@@ -4,6 +4,8 @@ import com.softdreams.excel.domain.Synthetic;
 import com.softdreams.excel.helper.ExcelHelper;
 import com.softdreams.excel.message.ResponseMessage;
 import com.softdreams.excel.repository.SyntheticRepository;
+import com.softdreams.excel.service.ChungTuMuaHangService;
+import com.softdreams.excel.service.CreditService;
 import com.softdreams.excel.service.SyntheticService;
 import com.softdreams.excel.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -43,9 +45,20 @@ public class SyntheticResource {
 
     private final SyntheticRepository syntheticRepository;
 
-    public SyntheticResource(SyntheticService syntheticService, SyntheticRepository syntheticRepository) {
+    private final ChungTuMuaHangService chungTuMuaHangService;
+
+    private final CreditService creditService;
+
+    public SyntheticResource(
+        SyntheticService syntheticService,
+        SyntheticRepository syntheticRepository,
+        ChungTuMuaHangService chungTuMuaHangService,
+        CreditService creditService
+    ) {
         this.syntheticService = syntheticService;
         this.syntheticRepository = syntheticRepository;
+        this.chungTuMuaHangService = chungTuMuaHangService;
+        this.creditService = creditService;
     }
 
     /**
@@ -203,6 +216,28 @@ public class SyntheticResource {
         String filename = "Bao_No.xlsx";
         InputStreamResource file = new InputStreamResource(syntheticService.exportDebitNote(voucherTypeNo, keyUUID));
 
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
+    @GetMapping(value = "/export_Bao_Co")
+    public ResponseEntity<Resource> exportExcel() {
+        String filename = "import_Bao_Co.xlsx";
+        InputStreamResource file = new InputStreamResource(creditService.exportCreditExcel());
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+            .body(file);
+    }
+
+    @GetMapping(value = "/export_chung_tu_mua_hang")
+    public ResponseEntity<Resource> exportCTMH(@RequestParam("voucherTypeNo") int voucherTypeNo, @RequestParam("keyUUID") String keyUUID) {
+        String filename = "import_chung_tu_mua_hang.xlsx";
+        InputStreamResource file = new InputStreamResource(chungTuMuaHangService.exportBuyServiceExcel(voucherTypeNo, keyUUID));
         return ResponseEntity
             .ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
