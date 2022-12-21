@@ -1,0 +1,368 @@
+<div>
+  <h2 id="page-heading" data-cy="SyntheticHeading">
+    <span>Synthetics</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-synthetic"
+        [routerLink]="['/synthetic/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Synthetic </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="synthetics?.length === 0">
+    <span>No Synthetics found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="synthetics && synthetics.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="voucherType">
+            <div class="d-flex">
+              <span>Voucher Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="voucherTypeNo">
+            <div class="d-flex">
+              <span>Voucher Type No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="voucherNo">
+            <div class="d-flex">
+              <span>Voucher No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="voucherDate">
+            <div class="d-flex">
+              <span>Voucher Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="accountingDate">
+            <div class="d-flex">
+              <span>Accounting Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="invoiceNo">
+            <div class="d-flex">
+              <span>Invoice No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="invoiceDate">
+            <div class="d-flex">
+              <span>Invoice Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="debitAccount">
+            <div class="d-flex">
+              <span>Debit Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="creditAccount">
+            <div class="d-flex">
+              <span>Credit Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currencyType">
+            <div class="d-flex">
+              <span>Currency Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currency">
+            <div class="d-flex">
+              <span>Currency</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="materialGoodCode">
+            <div class="d-flex">
+              <span>Material Good Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="materialGoodName">
+            <div class="d-flex">
+              <span>Material Good Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="storageIn">
+            <div class="d-flex">
+              <span>Storage In</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="storageOut">
+            <div class="d-flex">
+              <span>Storage Out</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="caculationUnit">
+            <div class="d-flex">
+              <span>Caculation Unit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="amount">
+            <div class="d-flex">
+              <span>Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tranferRate">
+            <div class="d-flex">
+              <span>Tranfer Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="moneyTranfer">
+            <div class="d-flex">
+              <span>Money Tranfer</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixedAssetsType">
+            <div class="d-flex">
+              <span>Fixed Assets Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixedAssetsCode">
+            <div class="d-flex">
+              <span>Fixed Assets Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="toolsCode">
+            <div class="d-flex">
+              <span>Tools Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="debitObject">
+            <div class="d-flex">
+              <span>Debit Object</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="creditObject">
+            <div class="d-flex">
+              <span>Credit Object</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unit">
+            <div class="d-flex">
+              <span>Unit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="employee">
+            <div class="d-flex">
+              <span>Employee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bankAccount">
+            <div class="d-flex">
+              <span>Bank Account</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="itemCost">
+            <div class="d-flex">
+              <span>Item Cost</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="construction">
+            <div class="d-flex">
+              <span>Construction</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costSet">
+            <div class="d-flex">
+              <span>Cost Set</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="purchaseOrder">
+            <div class="d-flex">
+              <span>Purchase Order</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="buyOrder">
+            <div class="d-flex">
+              <span>Buy Order</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="purchaseContract">
+            <div class="d-flex">
+              <span>Purchase Contract</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="saleContract">
+            <div class="d-flex">
+              <span>Sale Contract</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="statsCode">
+            <div class="d-flex">
+              <span>Stats Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="explanation">
+            <div class="d-flex">
+              <span>Explanation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="explanationDetail">
+            <div class="d-flex">
+              <span>Explanation Detail</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordStatus">
+            <div class="d-flex">
+              <span>Record Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyUUID">
+            <div class="d-flex">
+              <span>Key UUID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let synthetic of synthetics; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/synthetic', synthetic.id, 'view']">{{ synthetic.id }}</a>
+          </td>
+          <td>{{ synthetic.voucherType }}</td>
+          <td>{{ synthetic.voucherTypeNo }}</td>
+          <td>{{ synthetic.voucherNo }}</td>
+          <td>{{ synthetic.voucherDate | formatMediumDate }}</td>
+          <td>{{ synthetic.accountingDate | formatMediumDate }}</td>
+          <td>{{ synthetic.invoiceNo }}</td>
+          <td>{{ synthetic.invoiceDate | formatMediumDate }}</td>
+          <td>{{ synthetic.debitAccount }}</td>
+          <td>{{ synthetic.creditAccount }}</td>
+          <td>{{ synthetic.currencyType }}</td>
+          <td>{{ synthetic.currency }}</td>
+          <td>{{ synthetic.materialGoodCode }}</td>
+          <td>{{ synthetic.materialGoodName }}</td>
+          <td>{{ synthetic.storageIn }}</td>
+          <td>{{ synthetic.storageOut }}</td>
+          <td>{{ synthetic.caculationUnit }}</td>
+          <td>{{ synthetic.amount }}</td>
+          <td>{{ synthetic.price }}</td>
+          <td>{{ synthetic.tranferRate }}</td>
+          <td>{{ synthetic.moneyTranfer }}</td>
+          <td>{{ synthetic.fixedAssetsType }}</td>
+          <td>{{ synthetic.fixedAssetsCode }}</td>
+          <td>{{ synthetic.toolsCode }}</td>
+          <td>{{ synthetic.debitObject }}</td>
+          <td>{{ synthetic.creditObject }}</td>
+          <td>{{ synthetic.unit }}</td>
+          <td>{{ synthetic.employee }}</td>
+          <td>{{ synthetic.bankAccount }}</td>
+          <td>{{ synthetic.itemCost }}</td>
+          <td>{{ synthetic.construction }}</td>
+          <td>{{ synthetic.costSet }}</td>
+          <td>{{ synthetic.purchaseOrder }}</td>
+          <td>{{ synthetic.buyOrder }}</td>
+          <td>{{ synthetic.purchaseContract }}</td>
+          <td>{{ synthetic.saleContract }}</td>
+          <td>{{ synthetic.statsCode }}</td>
+          <td>{{ synthetic.explanation }}</td>
+          <td>{{ synthetic.explanationDetail }}</td>
+          <td>{{ synthetic.recordStatus }}</td>
+          <td>{{ synthetic.createdDate | formatMediumDate }}</td>
+          <td>{{ synthetic.keyUUID }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/synthetic', synthetic.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/synthetic', synthetic.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(synthetic)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

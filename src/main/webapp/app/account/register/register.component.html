@@ -1,0 +1,156 @@
+<div>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      <h1 data-cy="registerTitle">Đăng ký</h1>
+
+      <div class="alert alert-success" *ngIf="success">
+        <strong>Đăng ký thành công!</strong> Bạn vui lòng kiểm tra hộp thư để xác nhận tài khoản.
+      </div>
+
+      <div class="alert alert-danger" *ngIf="error"><strong>Đăng ký thất bại!</strong> Vui lòng thử lại sau.</div>
+
+      <div class="alert alert-danger" *ngIf="errorUserExists">
+        <strong>Tên tài khoản này đã được sử dụng!</strong> Bạn vui lòng chọn tên tài khoản khác.
+      </div>
+
+      <div class="alert alert-danger" *ngIf="errorEmailExists">
+        <strong>Email này đã được sử dụng!</strong> Bạn vui lòng nhập email khác.
+      </div>
+
+      <div class="alert alert-danger" *ngIf="doNotMatch">Xác nhận mật khẩu không khớp!</div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+        <div class="mb-3">
+          <label class="form-label" for="login">Tên tài khoản</label>
+          <input
+            type="text"
+            class="form-control"
+            id="login"
+            name="login"
+            placeholder="Nhập tên tài khoản của bạn"
+            formControlName="login"
+            data-cy="username"
+            #login
+          />
+
+          <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Bạn phải nhập tên tài khoản. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
+              Tên tài khoản phải có ít nhất 1 ký tự.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
+              Tên tài khoản không được vượt quá 50 ký tự.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern"> Your username is invalid. </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Nhập email của bạn"
+            formControlName="email"
+            data-cy="email"
+          />
+
+          <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Bạn phải nhập email. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Email bạn nhập không hợp lệ. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.minlength">
+              Email phải có ít nhất 5 ký tự.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
+              Email không được vượt quá 50 ký tự.
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="password">Mật khẩu mới</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Nhập mật khẩu mới"
+            formControlName="password"
+            data-cy="firstPassword"
+          />
+
+          <div
+            *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Bạn phải nhập mật khẩu. </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
+              Mật khẩu phải có ít nhất 4 ký tự.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
+              Mật khẩu không được vượt quá 50 ký tự.
+            </small>
+          </div>
+
+          <jhi-password-strength-bar [passwordToCheck]="registerForm.get('password')!.value"></jhi-password-strength-bar>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="confirmPassword">Xác nhận mật khẩu mới</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Nhập lại mật khẩu mới"
+            formControlName="confirmPassword"
+            data-cy="secondPassword"
+          />
+
+          <div
+            *ngIf="
+              registerForm.get('confirmPassword')!.invalid &&
+              (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+              Bạn phải nhập lại mật khẩu để xác nhận.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
+              Mật khẩu phải có ít nhất 4 ký tự.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
+              Mật khẩu không được vượt quá 50 ký tự.
+            </small>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">Đăng ký</button>
+      </form>
+
+      <div class="mt-3 alert alert-warning">
+        <span>Nếu bạn muốn </span>
+        <a class="alert-link" routerLink="/login">đăng nhập</a
+        ><span
+          >, bạn có thể thử với tài khoản mặc định:<br />- Quản trị viên (tài khoản="admin" và mật khẩu="admin") <br />- Người dùng (tài
+          khoản="user" và mật khẩu="user").</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
