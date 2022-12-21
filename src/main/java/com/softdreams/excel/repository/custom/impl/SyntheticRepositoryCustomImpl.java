@@ -33,6 +33,21 @@ public class SyntheticRepositoryCustomImpl implements SyntheticRepositoryCustom 
         List<SyntheticDTO> syntheticDTOS = query.getResultList();
         return syntheticDTOS;
     }
+
+    @Override
+    public List<SyntheticDTO> getSaInvoice(int VoucherTypeNo, String keyUUID) {
+        StringBuilder sql = new StringBuilder();
+        sql.append(
+            "exec ConvertDataToTax @voucherTypeNo = ?1,@keyUUID = ?2"
+        );
+        Query query = entityManager.createNativeQuery(sql.toString(), "SaInvoiceDTO");
+        query.setParameter(1, VoucherTypeNo);
+        query.setParameter(2, keyUUID);
+        query.executeUpdate();
+        List<SyntheticDTO> syntheticDTOS = query.getResultList();
+        return syntheticDTOS;
+    }
+
     public void insertBulk(List<Synthetic> synthetics){
         String sql =
             "   insert into synthetic (voucherType,voucherTypeNo,voucherNo,voucherDate,accountingDate," +

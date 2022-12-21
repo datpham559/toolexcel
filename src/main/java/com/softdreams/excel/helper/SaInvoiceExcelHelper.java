@@ -16,7 +16,7 @@ public class SaInvoiceExcelHelper {
 
     public static ByteArrayInputStream saInvoiceToExcel(List<SyntheticDTO> synthetics)  {
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
-            Sheet sheet = workbook.createSheet(SHEET_BAO_NO);
+            Sheet sheet = workbook.createSheet(SHEET_CHUNG_TU_BAN_HANG);
 
             Integer exchangeRate = 1;
 
@@ -32,9 +32,9 @@ public class SaInvoiceExcelHelper {
             Font fontHeader = workbook.createFont();
             fontHeader.setBold(true);
 
-            for (int col = 0; col < HEADERs_BAO_NO.length; col++) {
+            for (int col = 0; col < HEADERs_BAN_HANG.length; col++) {
                 Cell cell = headerRow.createCell(col);
-                cell.setCellValue(HEADERs_BAO_NO[col]);
+                cell.setCellValue(HEADERs_BAN_HANG[col]);
                 sheet.setColumnWidth(col, 20 * 250);
                 if (col <= 31) {
                     CellStyle light_blue = workbook.createCellStyle();
@@ -108,7 +108,9 @@ public class SaInvoiceExcelHelper {
             }
             int rowIdx = 1;
             StringBuilder term = new StringBuilder();
-            term.append(synthetics.get(0).getVoucherNo());
+            if (synthetics.size() >0 ) {
+                term.append(synthetics.get(0).getVoucherNo());
+            }
             for (SyntheticDTO synthetic : synthetics) {
                 Row row = sheet.createRow(rowIdx++);
                 if (synthetic != synthetics.get(0)) {
@@ -148,6 +150,7 @@ public class SaInvoiceExcelHelper {
                         row.createCell(32).setCellValue("");//ký hiệu hđ
                         row.createCell(33).setCellValue(synthetic.getInvoiceNo());
                         row.createCell(34).setCellValue(synthetic.getInvoiceDate());
+                        row.getCell(34).setCellStyle(cellBody);
                         row.createCell(35).setCellValue("Chưa thanh toán");
                         row.createCell(36).setCellValue("Hóa đơn mới tạo lập");
                         row.createCell(37).setCellValue(synthetic.getMaterialGoodCode());
@@ -160,9 +163,9 @@ public class SaInvoiceExcelHelper {
                         row.createCell(44).setCellValue(synthetic.getCaculationUnit());
                         row.createCell(45).setCellValue(synthetic.getAmount());
                         row.createCell(46).setCellValue(synthetic.getPrice().doubleValue());
-                        row.createCell(47).setCellValue("");//đơn giá quy đổi
+                        row.createCell(47).setCellValue(synthetic.getPrice().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//đơn giá quy đổi
                         row.createCell(48).setCellValue(synthetic.getCurrency().doubleValue());
-                        row.createCell(49).setCellValue("");//thành tiền quy đổi
+                        row.createCell(49).setCellValue(synthetic.getCurrency().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());
                         row.createCell(50).setCellValue("");
                         row.createCell(51).setCellValue("");
                         row.createCell(52).setCellValue("");
@@ -174,10 +177,20 @@ public class SaInvoiceExcelHelper {
                         row.createCell(58).setCellValue("");
                         row.createCell(59).setCellValue("");
                         row.createCell(60).setCellValue("");
-                        row.createCell(61).setCellValue("");
-                        row.createCell(62).setCellValue(synthetic.getTaxPercent());
-                        row.createCell(63).setCellValue(synthetic.getCurrencyTax().doubleValue());
-                        row.createCell(64).setCellValue("");//thuế quy đổi
+                        if(synthetic.getTaxPercent() == null){
+                            row.createCell(61).setCellValue("");
+                        } else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
+                            row.createCell(61).setCellValue(synthetic.getTaxPercent()+"%");
+                        }else{
+                            row.createCell(61).setCellValue(10+"%");
+                        }
+                        if (synthetic.getCurrencyTax() !=null){
+                            row.createCell(62).setCellValue(synthetic.getCurrencyTax().doubleValue());
+                        }else {
+                            row.createCell(62).setCellValue("");
+                        }
+                        row.createCell(63).setCellValue("");//thuế quy đổi
+                        row.createCell(64).setCellValue("");
                         row.createCell(65).setCellValue("");
                         row.createCell(66).setCellValue("");
                         row.createCell(67).setCellValue("");
@@ -217,8 +230,8 @@ public class SaInvoiceExcelHelper {
         row.createCell(4).setCellValue("");
         row.createCell(5).setCellValue("Có");
         row.createCell(6).setCellValue("Không");
-        row.createCell(7).setCellValue(synthetic.getVoucherType());
-        row.createCell(8).setCellValue("Số phiếu xuất kho");
+        row.createCell(7).setCellValue(synthetic.getVoucherNo());
+        row.createCell(8).setCellValue(synthetic.getVoucherNoXK());
         row.createCell(9).setCellValue("");
         row.createCell(10).setCellValue(synthetic.getVoucherDate());
         row.getCell(10).setCellStyle(cellBody);
@@ -276,17 +289,49 @@ public class SaInvoiceExcelHelper {
         row.createCell(56).setCellValue("");
         row.createCell(57).setCellValue("");
         row.createCell(58).setCellValue("");
-        row.createCell(59).setCellValue("");
+        if (synthetic.getCurrencyXK() !=null) {
+            row.createCell(59).setCellValue(synthetic.getCurrencyXK().doubleValue());
+        }else {
+            row.createCell(59).setCellValue("");
+        }
         row.createCell(60).setCellValue("");
-        row.createCell(61).setCellValue("");
-        row.createCell(62).setCellValue(synthetic.getTaxPercent());
-        row.createCell(63).setCellValue(synthetic.getCurrencyTax().doubleValue());
-        row.createCell(64).setCellValue(synthetic.getCurrencyTax().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//thuế quy đổi
+        if(synthetic.getTaxPercent() == null){
+            row.createCell(61).setCellValue("");
+        } else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
+            row.createCell(61).setCellValue(synthetic.getTaxPercent()+"%");
+        }else{
+            row.createCell(61).setCellValue(10+"%");
+        }
+        if (synthetic.getCurrencyTax() !=null) {
+            row.createCell(62).setCellValue(synthetic.getCurrencyTax().doubleValue());
+            row.createCell(63).setCellValue(synthetic.getCurrencyTax().multiply(BigDecimal.valueOf(exchangeRate)).doubleValue());//thuế quy đổi
+        }else {
+            row.createCell(62).setCellValue("");
+            row.createCell(63).setCellValue("");//thuế quy đổi
+        }
+        row.createCell(64).setCellValue("");
         row.createCell(65).setCellValue("");
-        row.createCell(66).setCellValue("");
-        row.createCell(67).setCellValue("");
-        row.createCell(68).setCellValue("");
-        row.createCell(69).setCellValue("");
+        if (synthetic.getCreditAccountXK() !=null) {
+            row.createCell(66).setCellValue(synthetic.getCreditAccountXK());
+        }else {
+            row.createCell(66).setCellValue("");
+
+        }
+        if (synthetic.getDebitAccountXK() !=null) {
+            row.createCell(67).setCellValue(synthetic.getDebitAccountXK());
+        }else {
+            row.createCell(67).setCellValue("");
+        }
+        if (synthetic.getPriceXK() !=null) {
+            row.createCell(68).setCellValue(synthetic.getPriceXK().doubleValue());
+        }else {
+            row.createCell(68).setCellValue("");
+        }
+        if (synthetic.getCurrencyXK() !=null) {
+            row.createCell(69).setCellValue(synthetic.getCurrencyXK().doubleValue());
+        }else {
+            row.createCell(69).setCellValue("");
+        }
         row.createCell(70).setCellValue("");
         row.createCell(71).setCellValue("");
         row.createCell(72).setCellValue("");

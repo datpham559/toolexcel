@@ -89,9 +89,23 @@ public class SyntheticDTO {
 
     private String keyUUID;
 
+    private String serialInvoice;
+
     private BigDecimal currencyTax;
 
     private Integer taxPercent;
+    private String debitAccountTax;
+
+    private String creditAccountTax;
+
+    private String debitAccountXK;
+    private String creditAccountXK;
+
+    private BigDecimal currencyXK;
+
+    private BigDecimal priceXK;
+
+    private String voucherNoXK;
 
     public SyntheticDTO(Long id, String voucherType, Integer voucherTypeNo,
                         String voucherNo, LocalDate voucherDate, LocalDate accountingDate,
@@ -106,8 +120,11 @@ public class SyntheticDTO {
                         String construction, String costSet, String purchaseOrder,
                         String buyOrder, String purchaseContract, String saleContract,
                         String statsCode, String explanation, String explanationDetail,
-                        String recordStatus, LocalDate createdDate, String keyUUID,
-                        BigDecimal currencyTax, Integer taxPercent) {
+                        String recordStatus, LocalDate createdDate, String keyUUID,String serialInvoice,
+                        BigDecimal currencyTax, Integer taxPercent,String debitAccountTax,String creditAccountTax,
+                        String debitAccountXK,String creditAccountXK,
+                        BigDecimal currencyXK,BigDecimal priceXK,String voucherNoXK
+                        ) {
         this.id = id;
         this.voucherType = voucherType;
         this.voucherTypeNo = voucherTypeNo;
@@ -150,8 +167,78 @@ public class SyntheticDTO {
         this.recordStatus = recordStatus;
         this.createdDate = createdDate;
         this.keyUUID = keyUUID;
+        this.serialInvoice = serialInvoice;
         this.currencyTax = currencyTax;
         this.taxPercent = taxPercent;
+        this.debitAccountTax = debitAccountTax;
+        this.creditAccountTax = creditAccountTax;
+        this.debitAccountXK = debitAccountXK;
+        this.creditAccountXK = creditAccountXK;
+        this.currencyXK = currencyXK;
+        this.priceXK = priceXK;
+        this.voucherNoXK = voucherNoXK;
+    }
+
+    public SyntheticDTO(Long id, String voucherType, Integer voucherTypeNo, String voucherNo,
+                        LocalDate voucherDate, LocalDate accountingDate, String invoiceNo,
+                        LocalDate invoiceDate, String debitAccount, String creditAccount, String currencyType,
+                        BigDecimal currency, String materialGoodCode, String materialGoodName, String storageIn,
+                        String storageOut, String caculationUnit, Float amount, BigDecimal price,
+                        BigDecimal tranferRate, BigDecimal moneyTranfer, String fixedAssetsType,
+                        String fixedAssetsCode, String toolsCode, String debitObject, String creditObject,
+                        String unit, String employee, String bankAccount, String itemCost, String construction,
+                        String costSet, String purchaseOrder, String buyOrder, String purchaseContract,
+                        String saleContract, String statsCode, String explanation, String explanationDetail,
+                        String recordStatus, LocalDate createdDate, String keyUUID, String serialInvoice,
+                        BigDecimal currencyTax, Integer taxPercent, String debitAccountTax,
+                        String creditAccountTax) {
+        this.id = id;
+        this.voucherType = voucherType;
+        this.voucherTypeNo = voucherTypeNo;
+        this.voucherNo = voucherNo;
+        this.voucherDate = voucherDate;
+        this.accountingDate = accountingDate;
+        this.invoiceNo = invoiceNo;
+        this.invoiceDate = invoiceDate;
+        this.debitAccount = debitAccount;
+        this.creditAccount = creditAccount;
+        this.currencyType = currencyType;
+        this.currency = currency;
+        this.materialGoodCode = materialGoodCode;
+        this.materialGoodName = materialGoodName;
+        this.storageIn = storageIn;
+        this.storageOut = storageOut;
+        this.caculationUnit = caculationUnit;
+        this.amount = amount;
+        this.price = price;
+        this.tranferRate = tranferRate;
+        this.moneyTranfer = moneyTranfer;
+        this.fixedAssetsType = fixedAssetsType;
+        this.fixedAssetsCode = fixedAssetsCode;
+        this.toolsCode = toolsCode;
+        this.debitObject = debitObject;
+        this.creditObject = creditObject;
+        this.unit = unit;
+        this.employee = employee;
+        this.bankAccount = bankAccount;
+        this.itemCost = itemCost;
+        this.construction = construction;
+        this.costSet = costSet;
+        this.purchaseOrder = purchaseOrder;
+        this.buyOrder = buyOrder;
+        this.purchaseContract = purchaseContract;
+        this.saleContract = saleContract;
+        this.statsCode = statsCode;
+        this.explanation = explanation;
+        this.explanationDetail = explanationDetail;
+        this.recordStatus = recordStatus;
+        this.createdDate = createdDate;
+        this.keyUUID = keyUUID;
+        this.serialInvoice = serialInvoice;
+        this.currencyTax = currencyTax;
+        this.taxPercent = taxPercent;
+        this.debitAccountTax = debitAccountTax;
+        this.creditAccountTax = creditAccountTax;
     }
 
     public Long getId() {
@@ -490,6 +577,14 @@ public class SyntheticDTO {
         this.keyUUID = keyUUID;
     }
 
+    public String getSerialInvoice() {
+        return serialInvoice;
+    }
+
+    public void setSerialInvoice(String serialInvoice) {
+        this.serialInvoice = serialInvoice;
+    }
+
     public BigDecimal getCurrencyTax() {
         return currencyTax;
     }
@@ -504,5 +599,61 @@ public class SyntheticDTO {
 
     public void setTaxPercent(Integer taxPercent) {
         this.taxPercent = taxPercent;
+    }
+
+    public String getDebitAccountTax() {
+        return debitAccountTax;
+    }
+
+    public void setDebitAccountTax(String debitAccountTax) {
+        this.debitAccountTax = debitAccountTax;
+    }
+
+    public String getCreditAccountTax() {
+        return creditAccountTax;
+    }
+
+    public void setCreditAccountTax(String creditAccountTax) {
+        this.creditAccountTax = creditAccountTax;
+    }
+
+    public String getDebitAccountXK() {
+        return debitAccountXK;
+    }
+
+    public void setDebitAccountXK(String debitAccountXK) {
+        this.debitAccountXK = debitAccountXK;
+    }
+
+    public String getCreditAccountXK() {
+        return creditAccountXK;
+    }
+
+    public void setCreditAccountXK(String creditAccountXK) {
+        this.creditAccountXK = creditAccountXK;
+    }
+
+    public BigDecimal getCurrencyXK() {
+        return currencyXK;
+    }
+
+    public void setCurrencyXK(BigDecimal currencyXK) {
+        this.currencyXK = currencyXK;
+    }
+
+    public BigDecimal getPriceXK() {
+        return priceXK;
+    }
+
+    public void setPriceXK(BigDecimal priceXK) {
+        this.priceXK = priceXK;
+    }
+
+    public String getVoucherNoXK() {
+        return voucherNoXK;
+    }
+
+    public void setVoucherNoXK(String voucherNoXK) {
+        this.voucherNoXK = voucherNoXK;
     }
 }

@@ -463,10 +463,12 @@ public class ExcelHelper {
                         row.createCell(22).setCellValue(synthetic.getSaleContract());
                         row.createCell(23).setCellValue("");
                         row.createCell(24).setCellValue("");
-                        if (synthetic.getTaxPercent() !=null){
-                            row.createCell(25).setCellValue(synthetic.getTaxPercent());
-                        }else{
+                        if(synthetic.getTaxPercent() == null) {
                             row.createCell(25).setCellValue("");
+                        }else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
+                            row.createCell(25).setCellValue(synthetic.getTaxPercent()+"%");
+                        }else {
+                            row.createCell(25).setCellValue(10+"%");
                         }
                         if (synthetic.getCurrencyTax() !=null){
                             row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());
@@ -533,10 +535,12 @@ public class ExcelHelper {
         row.createCell(22).setCellValue(synthetic.getSaleContract());
         row.createCell(23).setCellValue("");
         row.createCell(24).setCellValue("");
-        if (synthetic.getTaxPercent() !=null){
-            row.createCell(25).setCellValue(synthetic.getTaxPercent());
-        }else{
+        if(synthetic.getTaxPercent() == null) {
             row.createCell(25).setCellValue("");
+        }else if (synthetic.getTaxPercent() == 8 ||synthetic.getTaxPercent() ==10 ||synthetic.getTaxPercent() ==5){
+            row.createCell(25).setCellValue(synthetic.getTaxPercent()+"%");
+        }else {
+            row.createCell(25).setCellValue(10+"%");
         }
         if (synthetic.getCurrencyTax() !=null){
             row.createCell(26).setCellValue(synthetic.getCurrencyTax().doubleValue());

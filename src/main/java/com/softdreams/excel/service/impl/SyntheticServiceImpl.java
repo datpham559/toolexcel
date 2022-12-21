@@ -218,7 +218,7 @@ public class SyntheticServiceImpl implements SyntheticService {
     }
     @Override
     public ByteArrayInputStream exportDebitNote(int voucherTypeNo,String keyUUID) {
-        List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);
+            List<SyntheticDTO> synthetics = syntheticRepository.getSynthetic(voucherTypeNo,keyUUID);
         ByteArrayInputStream inputStream = ExcelHelper.debitNoteToExcel(synthetics);
         return inputStream;
     }

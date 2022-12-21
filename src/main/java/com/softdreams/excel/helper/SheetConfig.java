@@ -1,5 +1,7 @@
 package com.softdreams.excel.helper;
 
+import java.util.List;
+
 public class SheetConfig {
     public static String TYPE1 = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     public static String TYPE2 = "application/vnd.ms-excel";
@@ -8,7 +10,9 @@ public class SheetConfig {
     static String SHEET_KHACH_HANG = "Khach_hang";
     static String SHEET_BAO_NO = "Bao_no";
 
-    static String SHEET_CHUNG_TU_BAN_HANG = "Ban_hang";static String[] HEADERs_BAN_HANG={"Vào sổ","Ghi sổ","Phương thức thanh toán","Hình thức bán hàng","kèm phiếu xuất kho","Lập kèm hóa đơn","Đã lập hóa đơn","Số chứng từ","Số phiếu xuất","Số CT thanh toán","Ngày chứng từ","Ngày hạch toán","Tỷ giá","Mã đối tượng","Tên đối tượng","Địa chỉ","Nộp vào TK","Mã số thuế","Người liên hệ","Diễn giải","Mã nhân viên","Điều khoản TT","Hạn thanh toán","Kèm theo","Số tài khoản","Tên ngân hàng","In kèm bảng kê","Số bảng kê","Ngày bảng kê","Mặt hàng chung","Mẫu số HĐ","Ký hiệu HĐ","Số HĐ","Ngày HĐ","Hình thức TT","Trạng thái HĐ","Mã hàng(*)",
-        "Tên hàng","Là hàng KM","Kho","TK Nợ","Tk Có","ĐT hạch toán","ĐVT","Số lượng","Đơn giá","Đơn giá QĐ","Thành tiền","Thành tiền QĐ","Tỷ lệ CK","Tiền CK","Tiền CK QĐ","Tài khoản CK","Số Lô","Hạn dùng","Diễn giải thuế","Giá tính thuế","% thuế XK","Tiền thuế XK","TK đối ứng thuế XK","% thuế GTGT","Tiền thuế GTGT","Tiền thuế GT QĐ","TK thuế GTGT","TKĐƯ thuế GTGT","TK Kho","TK giá vốn","Đơn giá vốn","Tiền vốn","Nhóm ngành nghề","Khoản mục CP","Đối tượng THCP","Hợp đồng","Mục thu/chi","Phòng ban","Mã thống kê"};
+    static String SHEET_CHUNG_TU_BAN_HANG = "Ban_hang";
+    static String[] HEADERs_BAN_HANG = {"Vào sổ", "Ghi sổ", "Phương thức thanh toán", "Hình thức bán hàng", "kèm phiếu xuất kho", "Lập kèm hóa đơn", "Đã lập hóa đơn", "Số chứng từ", "Số phiếu xuất", "Số CT thanh toán", "Ngày chứng từ", "Ngày hạch toán", "Loại tiền", "Tỷ giá", "Mã đối tượng", "Tên đối tượng", "Địa chỉ", "Nộp vào TK", "Mã số thuế", "Người liên hệ", "Diễn giải", "Mã nhân viên", "Điều khoản TT", "Hạn thanh toán", "Kèm theo", "Số tài khoản", "Tên ngân hàng", "In kèm bảng kê", "Số bảng kê", "Ngày bảng kê", "Mặt hàng chung", "Mẫu số HĐ", "Ký hiệu HĐ", "Số HĐ", "Ngày HĐ", "Hình thức TT", "Trạng thái HĐ", "Mã hàng(*)",
+        "Tên hàng", "Là hàng KM", "Kho", "TK Nợ", "Tk Có", "ĐT hạch toán", "ĐVT", "Số lượng", "Đơn giá", "Đơn giá QĐ", "Thành tiền", "Thành tiền QĐ", "Tỷ lệ CK", "Tiền CK", "Tiền CK QĐ", "Tài khoản CK", "Số Lô", "Hạn dùng", "Diễn giải thuế", "Giá tính thuế", "% thuế XK", "Tiền thuế XK", "TK đối ứng thuế XK", "% thuế GTGT", "Tiền thuế GTGT", "Tiền thuế GT QĐ", "TK thuế GTGT", "TKĐƯ thuế GTGT", "TK Kho", "TK giá vốn", "Đơn giá vốn", "Tiền vốn", "Nhóm ngành nghề", "Khoản mục CP", "Đối tượng THCP", "Hợp đồng", "Mục thu/chi", "Phòng ban", "Mã thống kê"};
 
+    static List<Integer> taxPercent = List.of(5,8,10);
 }
