@@ -1,0 +1,119 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-bank-balance-heading" data-cy="BankBalanceCreateUpdateHeading">Thêm mới hoặc cập nhật Bank Balance</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bank_account">Bank Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bank_account"
+            id="field_bank_account"
+            data-cy="bank_account"
+            formControlName="bank_account"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bank_name">Bank Name</label>
+          <input type="text" class="form-control" name="bank_name" id="field_bank_name" data-cy="bank_name" formControlName="bank_name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_branch">Branch</label>
+          <input type="text" class="form-control" name="branch" id="field_branch" data-cy="branch" formControlName="branch" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_opening_balance">Opening Balance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="opening_balance"
+            id="field_opening_balance"
+            data-cy="opening_balance"
+            formControlName="opening_balance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_debt_incurred">Debt Incurred</label>
+          <input
+            type="number"
+            class="form-control"
+            name="debt_incurred"
+            id="field_debt_incurred"
+            data-cy="debt_incurred"
+            formControlName="debt_incurred"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_incurred">Incurred</label>
+          <input type="number" class="form-control" name="incurred" id="field_incurred" data-cy="incurred" formControlName="incurred" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ending_balance">Ending Balance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ending_balance"
+            id="field_ending_balance"
+            data-cy="ending_balance"
+            formControlName="ending_balance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_created_date">Created Date</label>
+          <div class="input-group">
+            <input
+              id="field_created_date"
+              data-cy="created_date"
+              type="text"
+              class="form-control"
+              name="created_date"
+              ngbDatepicker
+              #created_dateDp="ngbDatepicker"
+              formControlName="created_date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="created_dateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_keyUUID">Key UUID</label>
+          <input type="text" class="form-control" name="keyUUID" id="field_keyUUID" data-cy="keyUUID" formControlName="keyUUID" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Hủy</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Lưu</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="DmNCCHeading">
+    <span>Dm NCCS</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dm-ncc"
+        [routerLink]="['/dm-ncc/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Thêm mới một Dm NCC </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dmNCCS?.length === 0">
+    <span>No Dm NCCS found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="dmNCCS && dmNCCS.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="supplier_code">
+            <div class="d-flex">
+              <span>Supplier Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="supplier_name">
+            <div class="d-flex">
+              <span>Supplier Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="address">
+            <div class="d-flex">
+              <span>Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="group_kh_ncc">
+            <div class="d-flex">
+              <span>Group Kh Ncc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax_code">
+            <div class="d-flex">
+              <span>Tax Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="phone_number">
+            <div class="d-flex">
+              <span>Phone Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="unfollow">
+            <div class="d-flex">
+              <span>Unfollow</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_date">
+            <div class="d-flex">
+              <span>Created Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyUUID">
+            <div class="d-flex">
+              <span>Key UUID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dmNCC of dmNCCS; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dm-ncc', dmNCC.id, 'view']">{{ dmNCC.id }}</a>
+          </td>
+          <td>{{ dmNCC.supplier_code }}</td>
+          <td>{{ dmNCC.supplier_name }}</td>
+          <td>{{ dmNCC.address }}</td>
+          <td>{{ dmNCC.group_kh_ncc }}</td>
+          <td>{{ dmNCC.tax_code }}</td>
+          <td>{{ dmNCC.phone_number }}</td>
+          <td>{{ dmNCC.unfollow }}</td>
+          <td>{{ dmNCC.created_date | formatMediumDate }}</td>
+          <td>{{ dmNCC.keyUUID }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/dm-ncc', dmNCC.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Xem</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/dm-ncc', dmNCC.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Sửa</span>
+              </button>
+
+              <button type="submit" (click)="delete(dmNCC)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Xóa</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

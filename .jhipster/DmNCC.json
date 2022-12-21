@@ -1,0 +1,48 @@
+{
+  "changelogDate": "20221216034731",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "supplier_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "supplier_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "group_kh_ncc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tax_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phone_number",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "unfollow",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "created_date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "keyUUID",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "DmNCC",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,240 @@
+{
+  "changelogDate": "20221216043355",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nature",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "group_vthh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "describe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "explain_buy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "explain_sell",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "main_dvt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "warranty_period",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantity_inventory",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "source",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "implicitly_repository",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "warehouse_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expense_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "income_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "discount_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sale_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "return_account",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rate_ckmh",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fixed_purchase_price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "latest_purchase_price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_sell_1",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_sell_2",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_sell_3",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fixed_unit_price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_after_tax",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tax_rate_gtgt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tax_rate_nk",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tax_rate_xk",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "group_hhdv_taxable_ttdb",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "unfollow",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "inventory_number",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "characteristic",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "inventory_value",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "follow",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "discount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "from_amount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "to_amount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "percent_discount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "discount_amount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "conversion_unit",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "primary_unit_conversion_rate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "calculation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "describe1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "unit_price_1",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_2",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unit_price_3",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fixed_unit_price1",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "material_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "material_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dvt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "specification_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "display_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "allow_same",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created_date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "keyUUID",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Merchandise",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
